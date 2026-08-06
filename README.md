@@ -329,13 +329,17 @@ This interdependence should define the identity of the game and create memorable
 
 # Open Questions
 
-- What emotions should the game evoke?
-- Who is the primary audience?
-- What art style best supports the experience?
-- Should there be an overarching story?
-- How difficult should puzzles become?
-- What makes this game unique compared to existing cooperative puzzle games?
-- What additional mechanics could deepen the cooperation between the characters?
+These have been answered. See `README-Design-Feedback.md` for the full breakdown.
+
+| Question                                         | Decision                                          |
+| ------------------------------------------------ | ------------------------------------------------- |
+| What emotions should players feel?               | Heartwarming + concern for the other character    |
+| Who is the primary audience?                     | Everyone                                          |
+| What art style best supports the experience?     | Pixel art + Storybook                             |
+| Should there be an overarching story?            | Yes — Big and Little are lost, trying to get home |
+| How difficult should puzzles become?             | Very difficult by the end                         |
+| What makes this unique?                          | The teamwork aspect                               |
+| What deepens cooperation between characters?     | They are family                                   |
 
 ---
 
