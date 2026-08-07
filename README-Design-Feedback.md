@@ -82,18 +82,9 @@ design decision from music to puzzle structure to the win condition.
 
 ------------------------------------------------------------------------
 
-# Title Recommendation
+# Title
 
-The top candidates from the session:
-
--   In Tandem
--   Better Together
--   Divide & Conquer
--   Two Paths
--   Big & Small
--   One Way Together
-
-**Recommendation: One Way Together**
+**One Way Together** *(confirmed)*
 
 It says everything the game is about in three words.
 
@@ -101,7 +92,7 @@ There is one way home. There is one way through every puzzle.
 
 Together.
 
-"Big & Small" is a strong subtitle or tagline if a more descriptive
+"Big & Small" remains a strong subtitle or tagline if a more descriptive
 name is needed at launch.
 
 ------------------------------------------------------------------------
