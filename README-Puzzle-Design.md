@@ -35,8 +35,10 @@ D      Dani starting position
 █      Solid wall or ground
 ▓      Platform (can stand on)
 ○      Boulder (Scarlet can push)
+□      Stackable object (Dani picks up and stacks)
 ≡      Pressure plate (holds when stood on)
 [  ]   Gate / door (open or closed)
+🗝      Secret key (hidden collectible)
 ~      Rope or vine (Dani can climb)
 ...    Narrow tunnel (Dani only)
 ^      Lever or switch
@@ -386,15 +388,38 @@ puzzles combine everything without mercy.
 
 ------------------------------------------------------------------------
 
-# Questions to Resolve Before Building
+# Design Decisions — Resolved
 
-1. **Single player or co-op?** Who controls whom? One player switches
-   between Scarlet and Dani, or two players?
-2. **Failure state?** What happens when a character falls or gets
-   stuck? Instant reset, rewind, or checkpoint?
-3. **How long is each puzzle?** 30 seconds at a glance or 5-10 minutes
-   of thinking?
-4. **Are there collectibles beyond coins?** Hidden items, secret paths,
-   lore pieces?
-5. **Does Dani's yellow hoodie have any in-game significance?** Could
-   be a visual guide mechanic — bright against dark environments.
+1. **Controls:** Single-player switches between Scarlet and Dani.
+   Local co-op puts a second player on the other character.
+
+2. **Failure state:** Return to last checkpoint. Optionally spend coins
+   to respawn in place and skip the reset.
+
+3. **Puzzle length:** Solvable in ~30 seconds once understood. Puzzles
+   should be tight and readable — 1 to 2 screens wide.
+
+4. **Collectibles:** Secret keys (hidden, unlock lore doors and bonus
+   content) + stackable objects Dani can pile up to reach high ledges.
+
+5. **Dani's yellow hoodie:** Purely aesthetic — no mechanic tied to it.
+
+------------------------------------------------------------------------
+
+# New Mechanic to Add to World 1 — Stacking
+
+Dani can pick up small objects (crates, barrels, small stone blocks)
+and stack them beneath high ledges to reach switches and platforms that
+are otherwise inaccessible.
+
+Suggested introduction: **Puzzle 4 or 5** — after the crawl tunnel
+teaches that Dani's size is a strength, the stack mechanic reinforces
+that she is also resourceful in open space, not just in tight passages.
+
+Example puzzle beat:
+
+-   A switch sits too high for Dani to reach.
+-   Scarlet cannot reach it either — ledge is narrow.
+-   A crate sits nearby.
+-   Dani carries the crate under the switch and climbs it.
+-   Switch activated. Path opens.

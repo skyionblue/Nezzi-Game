@@ -12,14 +12,18 @@ foundation of the game.
 
 | Question                                         | Decision                                          |
 | ------------------------------------------------ | ------------------------------------------------- |
-| What emotions should players feel?               | Heartwarming + concern for the other character    |
-| Who is the primary audience?                     | Everyone                                          |
-| What art style best supports the experience?     | Pixel art + Storybook                             |
-| Should there be an overarching story?            | Yes — Scarlet and Dani are lost, trying to get home |
-| How difficult should puzzles become?             | Very difficult by the end                         |
-| What makes this unique?                          | The teamwork aspect                               |
-| What deepens cooperation between characters?     | They are siblings                                 |
-| What do coins do?                                | Spend them to unlock hints on puzzles             |
+| What emotions should players feel?               | Heartwarming + concern for the other character              |
+| Who is the primary audience?                     | Everyone                                                    |
+| What art style best supports the experience?     | Pixel art + Storybook                                       |
+| Should there be an overarching story?            | Yes — Scarlet and Dani are lost, trying to get home         |
+| How difficult should puzzles become?             | Very difficult by the end                                   |
+| What makes this unique?                          | The teamwork aspect                                         |
+| What deepens cooperation between characters?     | They are siblings                                           |
+| What do coins do?                                | Hints on puzzles + optional respawn in place                |
+| Controls?                                        | Single-player switches; local co-op (friend takes the other)|
+| Failure state?                                   | Return to checkpoint; spend coins to respawn in place       |
+| How long is each puzzle?                         | Solvable in ~30 seconds once understood                     |
+| Collectibles beyond coins?                       | Secret keys (unlock doors) + stackable objects for Dani     |
 
 ------------------------------------------------------------------------
 
@@ -272,31 +276,99 @@ feel essential.
 
 ------------------------------------------------------------------------
 
-# Hint System
+# Controls
 
-Players collect coins throughout each level.
+**Single-player:** The player switches between Scarlet and Dani at will.
+One is active; the other holds position and waits.
 
-Coins are spent to unlock hints when stuck on a puzzle.
+**Local co-op:** A second player picks up a controller and takes the other
+character. The game becomes fully cooperative — no switching needed.
 
-This system does several things well:
+The game should feel complete in both modes. Puzzles should not require
+simultaneous inputs that make single-player impossible, but co-op should
+feel natural and not just "single-player with a helper."
 
--   It rewards exploration — thorough players have more hints available.
--   It respects the difficulty curve — very hard late puzzles remain
-    hard, but players have a safety valve.
--   It avoids frustration without removing the satisfaction of solving
-    something on your own.
--   It creates a natural monetization path: earn coins in-game, or
-    optionally purchase them.
+------------------------------------------------------------------------
+
+# Failure State
+
+**Default:** On failure (fall, trap, stuck), both characters return to
+the last checkpoint. Checkpoints are placed at natural puzzle entry
+points.
+
+**Coin respawn:** Players can spend coins to respawn in place immediately
+rather than resetting to the checkpoint. This is valuable in long
+multi-step puzzles where a late mistake would reset significant progress.
+
+This makes coins a genuine resource management decision:
+
+-   Save coins for hints on hard puzzles.
+-   Spend coins to avoid a long checkpoint reset on a late mistake.
+-   Neither use is always correct. The player chooses based on context.
+
+------------------------------------------------------------------------
+
+# Coin System
+
+Players collect coins scattered throughout each level.
+
+Coins have two uses:
+
+1.  **Hints** — layered nudges when stuck on a puzzle. First hint: a
+    nudge. Second hint: more specific. Third hint: the solution. Each
+    layer costs more coins.
+
+2.  **Respawn in place** — skip the checkpoint reset after a failure.
+    Spend coins, stay where you are.
 
 Design considerations:
 
--   Hints should be layered. A first hint gives a nudge. A second hint
-    gives more. A third reveals the solution. Each layer costs more coins.
 -   Hide coins in places that reward curiosity — off the main path,
     behind small puzzles, in hard-to-reach spots.
 -   Never put coins behind the solution to the puzzle they're in. The
-    reward for exploring should be hints for the *next* puzzle, not the
-    current one.
+    reward for exploring should be hints for the *next* puzzle.
+-   Late-game puzzles should have more coins nearby — the difficulty
+    warrants more safety valve resources.
+
+------------------------------------------------------------------------
+
+# Collectibles
+
+## Secret Keys
+
+Hidden throughout each level. Not required to finish — only players
+who explore thoroughly will find them.
+
+Keys unlock secret doors that lead to:
+
+-   Hidden lore (murals, carvings that hint at why Scarlet and Dani
+    are lost and what happened)
+-   Bonus puzzles
+-   Cosmetic unlocks
+
+Secret keys give curious players a reason to look everywhere, and
+reward the relationship with the world beyond just solving puzzles.
+
+## Stackable Objects (Dani)
+
+Small objects Dani can pick up and stack to reach higher ledges.
+
+Examples:
+
+-   Wooden crates
+-   Ancient stone blocks (small ones)
+-   Barrels
+
+Scarlet cannot use these — she is too heavy for the makeshift stacks.
+Dani stacks two or three objects beneath a high ledge and climbs up.
+
+This adds a mechanic that is entirely Dani's. It reinforces her
+resourcefulness and gives her agency in physical space the way Scarlet's
+strength gives Scarlet agency in physical space.
+
+**Puzzle design implication:** Puzzles can now ask "where did that
+object come from?" — Dani might need to carry a stackable item from
+one part of the room to another before she can reach a critical switch.
 
 ------------------------------------------------------------------------
 
