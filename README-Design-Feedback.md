@@ -15,26 +15,33 @@ foundation of the game.
 | What emotions should players feel?               | Heartwarming + concern for the other character    |
 | Who is the primary audience?                     | Everyone                                          |
 | What art style best supports the experience?     | Pixel art + Storybook                             |
-| Should there be an overarching story?            | Yes — Big and Little are lost, trying to get home |
+| Should there be an overarching story?            | Yes — Scarlet and Dani are lost, trying to get home |
 | How difficult should puzzles become?             | Very difficult by the end                         |
 | What makes this unique?                          | The teamwork aspect                               |
-| What deepens cooperation between characters?     | They are family                                   |
+| What deepens cooperation between characters?     | They are siblings                                 |
+| What do coins do?                                | Spend them to unlock hints on puzzles             |
 
 ------------------------------------------------------------------------
 
 # The Single Most Important Decision
 
-**Big and Little are family.**
+**Scarlet and Dani are siblings.**
 
-This changes everything.
+They are not strangers. They are not friends who met on an adventure.
+They are a big sibling and a little sibling, lost together, trying to
+find their way home.
 
-The two characters are not strangers. They are not friends who met on an
-adventure. They are family — lost together, trying to find their way home.
+The sibling relationship brings something a parent/child dynamic
+cannot: equality of investment. Neither is in charge. Neither is simply
+protecting the other. They need each other equally, and they both know
+it.
 
-Every puzzle, every separation, every reunion now carries weight that no
-mechanic can manufacture on its own. When the player worries the other
-character won't make it, they aren't worried about an AI companion. They
-are worried about family.
+Scarlet keeps Dani safe. Dani leads the way. Neither would make it alone.
+
+Every puzzle, every separation, every reunion now carries weight that
+no mechanic can manufacture on its own. When the player worries the
+other character won't make it, they aren't worried about an AI companion.
+They are worried about family.
 
 This is the emotional core of the game. Every design decision should
 protect it.
@@ -43,7 +50,7 @@ protect it.
 
 # The Story
 
-**Big and Little are lost.**
+**Scarlet and Dani are lost.**
 
 Something happened. They don't know the way back. Home is out there
 somewhere, and the only way to reach it is together.
@@ -67,8 +74,8 @@ Players should feel two things, often at the same time:
 
 **Heartwarming**
 
-The relationship between Big and Little should feel genuine. Small
-moments — Big waiting patiently, Little leading the way, a quiet moment
+The relationship between Scarlet and Dani should feel genuine. Small
+moments — Scarlet waiting patiently, Dani leading the way, a quiet moment
 between puzzles — should make players smile.
 
 **Concern**
@@ -92,7 +99,7 @@ There is one way home. There is one way through every puzzle.
 
 Together.
 
-"Big & Small" remains a strong subtitle or tagline if a more descriptive
+"Scarlet & Dani" remains a strong subtitle or tagline if a more descriptive
 name is needed at launch.
 
 ------------------------------------------------------------------------
@@ -177,12 +184,12 @@ Example:
 
 A giant stone door blocks the path.
 
--   Big forces it open.
--   Debris prevents Big from entering.
--   Little crawls inside.
--   Little repairs an ancient mechanism.
+-   Scarlet forces it open.
+-   Debris prevents Scarlet from entering.
+-   Dani crawls inside.
+-   Dani repairs an ancient mechanism.
 -   The mechanism clears the debris.
--   Big proceeds.
+-   Scarlet proceeds.
 
 Neither solved the puzzle alone.
 
@@ -219,8 +226,8 @@ Sometimes the characters cannot see each other.
 
 Examples:
 
--   Big hears machinery activate.
--   Little sees a bridge extend.
+-   Scarlet hears machinery activate.
+-   Dani sees a bridge extend.
 -   Doors open somewhere else.
 -   Elevators begin moving.
 
@@ -232,36 +239,64 @@ That makes every reunion more meaningful.
 
 # Character Design Principles
 
-## Big
+## Scarlet
 
 -   Brave
 -   Protective
 -   Strong
 -   Patient
 
-Big's abilities should feel powerful without feeling invincible. Big
-cannot go everywhere. That vulnerability is what makes Little essential.
+Scarlet's abilities should feel powerful without feeling invincible. Scarlet
+cannot go everywhere. That vulnerability is what makes Dani essential.
 
-## Little
+## Dani
 
 -   Curious
 -   Clever
 -   Adventurous
 -   Resourceful
 
-Little's abilities should feel clever without feeling fragile. Little
-cannot do everything alone. That limitation is what makes Big essential.
+Dani's abilities should feel clever without feeling fragile. Dani
+cannot do everything alone. That limitation is what makes Scarlet essential.
 
 ## Equal Importance
 
-Big solves physical problems.
+Scarlet solves physical problems.
 
-Little solves exploration and precision.
+Dani solves exploration and precision.
 
 Neither is more important. Neither is the "main" character.
 
 The game should make both players (or both characters in single-player)
 feel essential.
+
+------------------------------------------------------------------------
+
+# Hint System
+
+Players collect coins throughout each level.
+
+Coins are spent to unlock hints when stuck on a puzzle.
+
+This system does several things well:
+
+-   It rewards exploration — thorough players have more hints available.
+-   It respects the difficulty curve — very hard late puzzles remain
+    hard, but players have a safety valve.
+-   It avoids frustration without removing the satisfaction of solving
+    something on your own.
+-   It creates a natural monetization path: earn coins in-game, or
+    optionally purchase them.
+
+Design considerations:
+
+-   Hints should be layered. A first hint gives a nudge. A second hint
+    gives more. A third reveals the solution. Each layer costs more coins.
+-   Hide coins in places that reward curiosity — off the main path,
+    behind small puzzles, in hard-to-reach spots.
+-   Never put coins behind the solution to the puzzle they're in. The
+    reward for exploring should be hints for the *next* puzzle, not the
+    current one.
 
 ------------------------------------------------------------------------
 
@@ -307,8 +342,8 @@ any individual puzzle, the game has achieved its purpose.
 # Next Steps
 
 1.  Settle on a title
-2.  Name the characters (the real names, beyond Big and Little)
-3.  Define their relationship (parent/child, siblings, grandparent/grandchild)
+2.  Characters named: Scarlet (tall) and Dani (small) — siblings ✓
+3.  Relationship defined: siblings ✓
 4.  Establish the visual identity with reference art
 5.  Design the first 10 tutorial puzzles
 6.  Playtest and validate the core cooperation loop
