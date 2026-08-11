@@ -78,7 +78,7 @@ namespace OneWayTogether.Characters
                 _animator.runtimeAnimatorController = _data.AnimatorController;
 
             // Register with CheckpointManager so it can teleport us on reset.
-            CheckpointManager cm = FindFirstObjectByType<CheckpointManager>();
+            CheckpointManager cm = FindAnyObjectByType<CheckpointManager>();
             cm?.RegisterCharacter(CharacterType, transform, transform.position);
         }
 
@@ -110,21 +110,20 @@ namespace OneWayTogether.Characters
         }
 
         // ── Input System callbacks ────────────────────────────────────────────────
-        // Unity's New Input System calls these via the PlayerInput component
-        // Send Messages or Invoke Unity Events mode.
+        // PlayerInput SendMessages mode calls these with InputValue parameter.
 
-        /// <summary>Receives Move action from PlayerInput.</summary>
-        public virtual void OnMove(InputAction.CallbackContext context)
+        /// <summary>Receives Move action from PlayerInput (SendMessages).</summary>
+        public virtual void OnMove(InputValue value)
         {
             if (!IsControllable) return;
-            _moveInput = context.ReadValue<Vector2>();
+            _moveInput = value.Get<Vector2>();
         }
 
-        /// <summary>Receives Jump action from PlayerInput.</summary>
-        public virtual void OnJump(InputAction.CallbackContext context)
+        /// <summary>Receives Jump action from PlayerInput (SendMessages).</summary>
+        public virtual void OnJump(InputValue value)
         {
             if (!IsControllable) return;
-            if (context.performed && _isGrounded)
+            if (value.isPressed && _isGrounded)
                 _jumpQueued = true;
         }
 
@@ -198,9 +197,9 @@ namespace OneWayTogether.Characters
         private void Flip()
         {
             _isFacingRight = !_isFacingRight;
-            Vector3 scale = transform.localScale;
-            scale.x *= -1f;
-            transform.localScale = scale;
+            // 3D models use Y-rotation to face directions rather than scale mirroring.
+            // Scale mirroring inverts normals and causes lighting artifacts on 3D meshes.
+            transform.Rotate(0f, 180f, 0f);
         }
 
         /// <summary>

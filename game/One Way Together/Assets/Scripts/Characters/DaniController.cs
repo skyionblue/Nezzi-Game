@@ -111,20 +111,21 @@ namespace OneWayTogether.Characters
 
         // ── Input System callbacks ────────────────────────────────────────────────
 
-        public override void OnMove(InputAction.CallbackContext context)
+        public override void OnMove(InputValue value)
         {
-            _moveInput = context.ReadValue<Vector2>();
-            base.OnMove(context);
+            base.OnMove(value);
 
             // Toggle crawl based on downward input while grounded.
             if (IsGrounded && !_isClimbing)
                 SetCrawl(_moveInput.y < -0.5f);
         }
 
+        public override void OnJump(InputValue value) => base.OnJump(value);
+
         /// <summary>Interact action — picks up objects, activates switches.</summary>
-        public void OnInteract(InputAction.CallbackContext context)
+        public void OnInteract(InputValue value)
         {
-            if (!IsControllable || !context.performed) return;
+            if (!IsControllable || !value.isPressed) return;
 
             if (_isCarrying)
             {

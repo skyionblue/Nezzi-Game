@@ -41,7 +41,7 @@ namespace OneWayTogether.Puzzle
                 _characterLayer = LayerMask.NameToLayer("Character");
 
             GetComponent<Collider2D>().isTrigger = true;
-            _checkpointManager = FindFirstObjectByType<CheckpointManager>();
+            _checkpointManager = FindAnyObjectByType<CheckpointManager>();
         }
 
         private void OnTriggerEnter2D(Collider2D other)

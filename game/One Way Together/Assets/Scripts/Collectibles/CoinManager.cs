@@ -49,7 +49,7 @@ namespace OneWayTogether.Collectibles
 
             Instance = this;
             _audioSource = GetComponent<AudioSource>();
-            _checkpointManager = FindFirstObjectByType<CheckpointManager>();
+            _checkpointManager = FindAnyObjectByType<CheckpointManager>();
         }
 
         private void OnDestroy()

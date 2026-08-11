@@ -69,7 +69,7 @@ namespace OneWayTogether.UI
 
         private void OnCheckpointPressed()
         {
-            CheckpointManager cm = FindFirstObjectByType<CheckpointManager>();
+            CheckpointManager cm = FindAnyObjectByType<CheckpointManager>();
             cm?.ResetToCheckpoint();
             _panelRoot?.SetActive(false);
         }
