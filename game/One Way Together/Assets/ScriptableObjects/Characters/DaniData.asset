@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f983dc3bc4124c1fb607fbafdf47fd5, type: 3}
+  m_Name: DaniData
+  m_EditorClassIdentifier: OneWayTogether::OneWayTogether.Data.CharacterData
+  _characterType: 0
+  _displayName: 
+  _moveSpeed: 5
+  _jumpForce: 10
+  _fallMultiplier: 2.5
+  _lowJumpMultiplier: 2
+  _groundCheckRadius: 0.15
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  _animatorController: {fileID: 9100000, guid: 61d4e0c1ea575487f9bb4ba42c98f7ad, type: 2}
