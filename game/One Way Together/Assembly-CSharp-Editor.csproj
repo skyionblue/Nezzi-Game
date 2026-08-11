@@ -1625,6 +1625,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp.csproj" />
     <ProjectReference Include="MCPForUnity.Runtime.csproj" />
     <ProjectReference Include="MCPForUnity.Editor.csproj" />
     <ProjectReference Include="OneWayTogether.csproj" />

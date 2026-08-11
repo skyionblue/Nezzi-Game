@@ -39,7 +39,7 @@ namespace OneWayTogether.Characters
 
         // ── State ─────────────────────────────────────────────────────────────────
 
-        private Vector2 _moveInput;
+        protected Vector2 _moveInput;
         private bool _jumpQueued;
         private bool _isGrounded;
         private bool _isFacingRight = true;

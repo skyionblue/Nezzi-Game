@@ -67,7 +67,7 @@ namespace OneWayTogether.Characters
         // Climbing: reference to current rope trigger
         private Rigidbody2D _climbAnchor;
         private float _liftLaunchForce;
-        private Vector2 _moveInput; // shadows base-class private for climb use
+
 
         // Animator hashes
         private static readonly int AnimCrawl  = Animator.StringToHash("Crawl");
