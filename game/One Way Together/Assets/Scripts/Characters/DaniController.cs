@@ -109,23 +109,20 @@ namespace OneWayTogether.Characters
             UpdateCrawlCollider();
         }
 
-        // ── Input System callbacks ────────────────────────────────────────────────
+        // ── Input API ────────────────────────────────────────────────────────────
 
-        public override void OnMove(InputValue value)
+        public override void ReceiveMove(Vector2 move)
         {
-            base.OnMove(value);
+            base.ReceiveMove(move);
 
             // Toggle crawl based on downward input while grounded.
             if (IsGrounded && !_isClimbing)
                 SetCrawl(_moveInput.y < -0.5f);
         }
 
-        public override void OnJump(InputValue value) => base.OnJump(value);
-
-        /// <summary>Interact action — picks up objects, activates switches.</summary>
-        public void OnInteract(InputValue value)
+        public override void ReceiveInteract()
         {
-            if (!IsControllable || !value.isPressed) return;
+            if (!IsControllable) return;
 
             if (_isCarrying)
             {
@@ -133,7 +130,6 @@ namespace OneWayTogether.Characters
                 return;
             }
 
-            // Priority: switches first, then stackables.
             if (!TryActivateSwitch())
                 TryPickUpObject();
         }

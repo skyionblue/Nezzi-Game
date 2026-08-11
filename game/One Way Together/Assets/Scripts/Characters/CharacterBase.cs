@@ -1,9 +1,7 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 using OneWayTogether.Core;
 using OneWayTogether.Data;
 using OneWayTogether.Events;
-using OneWayTogether.Input;
 
 namespace OneWayTogether.Characters
 {
@@ -27,9 +25,6 @@ namespace OneWayTogether.Characters
         [Tooltip("Transform positioned at the character's feet for ground overlap check.")]
         [SerializeField] protected Transform _groundCheck;
 
-        [Header("Dependencies")]
-        [Tooltip("Reference to the scene's InputRouter. Assign in the Inspector.")]
-        [SerializeField] private InputRouter _inputRouter;
 
         // ── Cached components ─────────────────────────────────────────────────────
 
@@ -109,34 +104,28 @@ namespace OneWayTogether.Characters
             DriveAnimator();
         }
 
-        // ── Input System callbacks ────────────────────────────────────────────────
-        // PlayerInput SendMessages mode calls these with InputValue parameter.
+        // ── Input API (called by InputRouter) ────────────────────────────────────
+        // InputRouter owns the InputActions and routes directly to the active
+        // character — no PlayerInput SendMessages on characters.
 
-        /// <summary>Receives Move action from PlayerInput (SendMessages).</summary>
-        public virtual void OnMove(InputValue value)
+        public virtual void ReceiveMove(Vector2 move)
         {
             if (!IsControllable) return;
-            _moveInput = value.Get<Vector2>();
+            _moveInput = move;
         }
 
-        /// <summary>Receives Jump action from PlayerInput (SendMessages).</summary>
-        public virtual void OnJump(InputValue value)
+        public virtual void ReceiveJump(bool pressed)
         {
             if (!IsControllable) return;
-            if (value.isPressed && _isGrounded)
+            if (pressed && _isGrounded)
                 _jumpQueued = true;
         }
 
-        /// <summary>
-        /// Receives SwitchCharacter action from PlayerInput (SendMessages).
-        /// Relays to InputRouter since SendMessages can't cross GameObjects.
-        /// Only the currently active character processes the switch to prevent
-        /// both PlayerInputs firing simultaneously and cancelling each other out.
-        /// </summary>
-        public void OnSwitchCharacter(InputValue value)
+        public virtual void ReceiveInteract() { }
+
+        public virtual void ReceiveStopMove()
         {
-            if (value.isPressed && IsControllable)
-                _inputRouter?.TrySwitchCharacter();
+            _moveInput = Vector2.zero;
         }
 
         // ── Protected API for subclasses ──────────────────────────────────────────
@@ -160,6 +149,7 @@ namespace OneWayTogether.Characters
                 _data.GroundCheckRadius,
                 _data.GroundLayer);
         }
+
 
         private void ApplyMovement()
         {

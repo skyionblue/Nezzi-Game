@@ -45,21 +45,11 @@ namespace OneWayTogether.Characters
         /// <inheritdoc/>
         public override CharacterType CharacterType => CharacterType.Scarlet;
 
-        // ── Input System callbacks ────────────────────────────────────────────────
+        // ── Input API ────────────────────────────────────────────────────────────
 
-        // Explicit overrides required so Unity's Input System SendMessages reflection
-        // finds the methods directly on this type (not only on CharacterBase).
-        public override void OnMove(InputValue value) => base.OnMove(value);
-        public override void OnJump(InputValue value) => base.OnJump(value);
-
-        /// <summary>
-        /// Receives the Interact action. In single-player, this is always wired.
-        /// In co-op Scarlet's PlayerInput fires this on Player 1's device.
-        /// </summary>
-        public void OnInteract(InputValue value)
+        public override void ReceiveInteract()
         {
             if (!IsControllable) return;
-            if (!value.isPressed) return;
 
             if (_isHoldingDani)
                 ReleaseDani();

@@ -257,7 +257,6 @@ GameObject:
   - component: {fileID: 153647515}
   - component: {fileID: 153647514}
   - component: {fileID: 153647513}
-  - component: {fileID: 153647512}
   m_Layer: 8
   m_Name: Dani
   m_TagString: Dani
@@ -265,36 +264,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &153647512
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 153647511}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
-  m_Actions: {fileID: -944628639613478452, guid: b6cb1079340d44101b2766b9fc720d24, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Gameplay
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!114 &153647513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,7 +278,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: OneWayTogether::OneWayTogether.Characters.DaniController
   _data: {fileID: 11400000, guid: 117225f02bd3b4fbb85c0ff77daa002a, type: 2}
   _groundCheck: {fileID: 2000173759}
-  _inputRouter: {fileID: 483316812}
   _crawlHeightFraction: 0.5
   _climbSpeed: 4
   _carryOffset: {x: 0, y: 0.8, z: 0}
@@ -586,7 +554,6 @@ GameObject:
   - component: {fileID: 318519185}
   - component: {fileID: 318519184}
   - component: {fileID: 318519183}
-  - component: {fileID: 318519182}
   m_Layer: 8
   m_Name: Scarlet
   m_TagString: Scarlet
@@ -611,36 +578,6 @@ Transform:
   - {fileID: 1420291783}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &318519182
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 318519180}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
-  m_Actions: {fileID: -944628639613478452, guid: b6cb1079340d44101b2766b9fc720d24, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Gameplay
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!114 &318519183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -655,7 +592,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: OneWayTogether::OneWayTogether.Characters.ScarletController
   _data: {fileID: 11400000, guid: 689b3aca9b0e94c4787e3b66c5f13561, type: 2}
   _groundCheck: {fileID: 344774434}
-  _inputRouter: {fileID: 483316812}
   _liftOffset: {x: 0, y: 1.2, z: 0}
   _liftRange: 1
   _daniLayer:
@@ -808,8 +744,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3434f22f82cea4432844d447e18900a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: OneWayTogether::OneWayTogether.Input.InputRouter
-  _scarletInput: {fileID: 318519182}
-  _daniInput: {fileID: 153647512}
+  _scarlet: {fileID: 318519183}
+  _dani: {fileID: 153647513}
+  _actionAsset: {fileID: -944628639613478452, guid: b6cb1079340d44101b2766b9fc720d24, type: 3}
   _defaultActiveCharacter: 0
 --- !u!4 &483316814
 Transform:
