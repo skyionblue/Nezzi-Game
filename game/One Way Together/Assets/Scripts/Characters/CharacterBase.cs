@@ -161,9 +161,11 @@ namespace OneWayTogether.Characters
 
             if (_jumpQueued)
             {
+                // Signal the animator first so the transition evaluates this frame,
+                // before physics launches the character on the same FixedUpdate.
+                _animator.SetTrigger(AnimJump);
                 _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, 0f);
                 _rb.AddForce(Vector2.up * _data.JumpForce, ForceMode2D.Impulse);
-                _animator.SetTrigger(AnimJump);
                 _jumpQueued = false;
             }
 
