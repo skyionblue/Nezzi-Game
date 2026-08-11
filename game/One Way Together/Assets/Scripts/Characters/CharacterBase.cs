@@ -130,10 +130,12 @@ namespace OneWayTogether.Characters
         /// <summary>
         /// Receives SwitchCharacter action from PlayerInput (SendMessages).
         /// Relays to InputRouter since SendMessages can't cross GameObjects.
+        /// Only the currently active character processes the switch to prevent
+        /// both PlayerInputs firing simultaneously and cancelling each other out.
         /// </summary>
         public void OnSwitchCharacter(InputValue value)
         {
-            if (value.isPressed)
+            if (value.isPressed && IsControllable)
                 _inputRouter?.TrySwitchCharacter();
         }
 
