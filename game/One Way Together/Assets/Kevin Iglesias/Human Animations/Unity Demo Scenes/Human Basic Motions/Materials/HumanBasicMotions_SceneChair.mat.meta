@@ -1,16 +1,3 @@
-fileFormatVersion: 2
-guid: ce54d9f3bc9c6f54a925b28db7f669c6
-NativeFormatImporter:
-  externalObjects: {}
-  mainObjectFileID: 2100000
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 154271
-  packageName: Human Basic Motions FREE
-  packageVersion: 2.4.2
-  assetPath: Assets/Kevin Iglesias/Human Animations/Unity Demo Scenes/Human Basic
-    Motions/Materials/HumanBasicMotions_SceneChair.mat
-  uploadId: 908942
+version https://git-lfs.github.com/spec/v1
+oid sha256:2ef1a244e867b5b66aa48922954cd1ac53f3c0565f08a25830678bf5cfe4af23
+size 464

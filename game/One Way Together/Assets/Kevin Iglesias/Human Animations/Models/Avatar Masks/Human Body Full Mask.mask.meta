@@ -1,16 +1,3 @@
-fileFormatVersion: 2
-guid: 89527f5525238ee44b3182458d85143a
-NativeFormatImporter:
-  externalObjects: {}
-  mainObjectFileID: 31900000
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 154271
-  packageName: Human Basic Motions FREE
-  packageVersion: 2.4.2
-  assetPath: Assets/Kevin Iglesias/Human Animations/Models/Avatar Masks/Human Body
-    Full Mask.mask
-  uploadId: 908942
+version https://git-lfs.github.com/spec/v1
+oid sha256:3e6fcff8b3df6f09951d58787a755a87ee7045b20d263ff15540dbaa8145cfc1
+size 430
