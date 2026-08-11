@@ -127,6 +127,16 @@ namespace OneWayTogether.Characters
                 _jumpQueued = true;
         }
 
+        /// <summary>
+        /// Receives SwitchCharacter action from PlayerInput (SendMessages).
+        /// Relays to InputRouter since SendMessages can't cross GameObjects.
+        /// </summary>
+        public void OnSwitchCharacter(InputValue value)
+        {
+            if (value.isPressed)
+                _inputRouter?.TrySwitchCharacter();
+        }
+
         // ── Protected API for subclasses ──────────────────────────────────────────
 
         /// <summary>

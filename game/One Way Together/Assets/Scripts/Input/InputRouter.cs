@@ -58,13 +58,12 @@ namespace OneWayTogether.Input
         // ── Public API ────────────────────────────────────────────────────────────
 
         /// <summary>
-        /// Called via Send Messages by either character's PlayerInput when the
-        /// SwitchCharacter action fires. Only meaningful in single-player.
+        /// Called by CharacterBase.OnSwitchCharacter when the SwitchCharacter
+        /// action fires on either character's PlayerInput.
         /// </summary>
-        public void OnSwitchCharacter(InputAction.CallbackContext context)
+        public void TrySwitchCharacter()
         {
-            if (!context.performed) return;
-            if (IsCoopActive) return; // Switching disabled in co-op.
+            if (IsCoopActive) return;
 
             ActiveCharacter = ActiveCharacter == CharacterType.Scarlet
                 ? CharacterType.Dani
