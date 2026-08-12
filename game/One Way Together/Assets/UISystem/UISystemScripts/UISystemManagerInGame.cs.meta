@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: f01aa603e4144934688da68438407d93
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295480
+  packageName: Modular UI System
+  packageVersion: 1.0.0
+  assetPath: Assets/UISystem/UISystemScripts/UISystemManagerInGame.cs
+  uploadId: 692062

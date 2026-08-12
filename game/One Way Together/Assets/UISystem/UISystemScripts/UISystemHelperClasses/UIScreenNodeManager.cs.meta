@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: f9df6dc9ba3e4570a3cc02b4d4368c72
+timeCreated: 1724771508
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295480
+  packageName: Modular UI System
+  packageVersion: 1.0.0
+  assetPath: Assets/UISystem/UISystemScripts/UISystemHelperClasses/UIScreenNodeManager.cs
+  uploadId: 692062

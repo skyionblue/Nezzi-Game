@@ -98,16 +98,17 @@ namespace OneWayTogether.Core
             foreach (LevelObjectData def in _levelData.objects)
             {
                 // Position is already a full Vector3 — use it directly.
-                Vector3 pos = def.position;
+                Vector3    pos = def.position;
+                Quaternion rot = Quaternion.Euler(0f, def.yRotation, 0f);
 
                 switch (def.type)
                 {
                     case LevelObjectType.Gate:
-                        SpawnGate(pos, def.id, def.gateOpenOffset);
+                        SpawnGate(pos, rot, def.id, def.gateOpenOffset);
                         break;
 
                     case LevelObjectType.Lever:
-                        SpawnLever(pos, def.id, def.oneShot);
+                        SpawnLever(pos, rot, def.id, def.oneShot);
                         break;
 
                     case LevelObjectType.Coin:
@@ -115,15 +116,15 @@ namespace OneWayTogether.Core
                         break;
 
                     case LevelObjectType.ReunionTrigger:
-                        SpawnReunionTrigger(pos, def.triggerSize);
+                        SpawnReunionTrigger(pos, rot, def.triggerSize);
                         break;
 
                     case LevelObjectType.Checkpoint:
-                        SpawnCheckpoint(pos);
+                        SpawnCheckpoint(pos, rot);
                         break;
 
                     case LevelObjectType.RopeTrigger:
-                        SpawnRopeTrigger(pos);
+                        SpawnRopeTrigger(pos, rot);
                         break;
 
                     // Scarlet/Dani are handled by PlaceCharacters — skip here.
@@ -162,7 +163,7 @@ namespace OneWayTogether.Core
 
         // ── Spawners ──────────────────────────────────────────────────────────
 
-        private void SpawnGate(Vector3 pos, string id, Vector3 openOffset)
+        private void SpawnGate(Vector3 pos, Quaternion rot, string id, Vector3 openOffset)
         {
             if (_prefabs.gatePrefab == null)
             {
@@ -175,13 +176,13 @@ namespace OneWayTogether.Core
                 ? new Vector3(0f, 2.5f, 0f)
                 : openOffset;
 
-            GameObject go   = Instantiate(_prefabs.gatePrefab, pos, Quaternion.identity, _objectContainer);
+            GameObject go   = Instantiate(_prefabs.gatePrefab, pos, rot, _objectContainer);
             Gate       gate = go.GetComponent<Gate>();
             if (gate != null)
                 gate.Init(id, id, effectiveOffset);
         }
 
-        private void SpawnLever(Vector3 pos, string id, bool oneShot)
+        private void SpawnLever(Vector3 pos, Quaternion rot, string id, bool oneShot)
         {
             if (_prefabs.leverPrefab == null)
             {
@@ -189,7 +190,7 @@ namespace OneWayTogether.Core
                 return;
             }
 
-            GameObject go    = Instantiate(_prefabs.leverPrefab, pos, Quaternion.identity, _objectContainer);
+            GameObject go    = Instantiate(_prefabs.leverPrefab, pos, rot, _objectContainer);
             Lever      lever = go.GetComponent<Lever>();
             if (lever != null)
                 lever.Init(id, oneShot);
@@ -207,7 +208,7 @@ namespace OneWayTogether.Core
             go.transform.localScale = Vector3.one * 0.25f;
         }
 
-        private void SpawnReunionTrigger(Vector3 pos, Vector2 triggerSize)
+        private void SpawnReunionTrigger(Vector3 pos, Quaternion rot, Vector2 triggerSize)
         {
             if (_prefabs.reunionTriggerPrefab == null)
             {
@@ -215,7 +216,7 @@ namespace OneWayTogether.Core
                 return;
             }
 
-            GameObject go = Instantiate(_prefabs.reunionTriggerPrefab, pos, Quaternion.identity, _objectContainer);
+            GameObject go = Instantiate(_prefabs.reunionTriggerPrefab, pos, rot, _objectContainer);
 
             // Try 3D BoxCollider first (isometric), fall back to BoxCollider2D for legacy prefabs.
             if (triggerSize != Vector2.zero)
@@ -232,7 +233,7 @@ namespace OneWayTogether.Core
             }
         }
 
-        private void SpawnCheckpoint(Vector3 pos)
+        private void SpawnCheckpoint(Vector3 pos, Quaternion rot)
         {
             if (_prefabs.checkpointPrefab == null)
             {
@@ -240,10 +241,10 @@ namespace OneWayTogether.Core
                 return;
             }
 
-            Instantiate(_prefabs.checkpointPrefab, pos, Quaternion.identity, _objectContainer);
+            Instantiate(_prefabs.checkpointPrefab, pos, rot, _objectContainer);
         }
 
-        private void SpawnRopeTrigger(Vector3 pos)
+        private void SpawnRopeTrigger(Vector3 pos, Quaternion rot)
         {
             if (_prefabs.ropeTriggerPrefab == null)
             {
@@ -251,7 +252,7 @@ namespace OneWayTogether.Core
                 return;
             }
 
-            Instantiate(_prefabs.ropeTriggerPrefab, pos, Quaternion.identity, _objectContainer);
+            Instantiate(_prefabs.ropeTriggerPrefab, pos, rot, _objectContainer);
         }
 
         // ── Helpers ───────────────────────────────────────────────────────────

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 7a509b5b280ce684988e604a5ba883eb
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295480
+  packageName: Modular UI System
+  packageVersion: 1.0.0
+  assetPath: Assets/UISystem/UISystemScripts/UISystemScreens/UISystemSubScreenSound.cs
+  uploadId: 692062

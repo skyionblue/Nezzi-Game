@@ -68,7 +68,20 @@ namespace OneWayTogether.Input
             GameEvents.RaiseActiveCharacterChanged(ActiveCharacter);
         }
 
-        // ── Public API ────────────────────────────────────────────────────────────
+        // ── Public API (also called by the mobile touch bridge) ────────────────────
+
+        /// <summary>Feeds a movement vector to the active character. Called by the
+        /// on-screen joystick bridge each frame.</summary>
+        public void SetMoveInput(Vector2 dir)
+        {
+            Active()?.ReceiveMove(dir);
+        }
+
+        /// <summary>Wire this to the on-screen Interact button's OnClick.</summary>
+        public void TriggerInteract()
+        {
+            Active()?.ReceiveInteract();
+        }
 
         public void TrySwitchCharacter()
         {

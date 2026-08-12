@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 5631f5b2cc8fc1249a64678dbc2ed9af
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295480
+  packageName: Modular UI System
+  packageVersion: 1.0.0
+  assetPath: Assets/UISystem/UISystemPrefabs/UISystemMainMenu.prefab
+  uploadId: 692062

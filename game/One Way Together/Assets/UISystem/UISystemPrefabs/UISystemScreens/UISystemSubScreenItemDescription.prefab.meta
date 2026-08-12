@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: d7f6bd6c7cf4c004380b0e4cfbf18d91
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295480
+  packageName: Modular UI System
+  packageVersion: 1.0.0
+  assetPath: Assets/UISystem/UISystemPrefabs/UISystemScreens/UISystemSubScreenItemDescription.prefab
+  uploadId: 692062

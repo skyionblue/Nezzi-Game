@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c0e5c18337e37124f91b1687ccfbb9de
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295480
+  packageName: Modular UI System
+  packageVersion: 1.0.0
+  assetPath: Assets/UISystem/UISystemPrefabs/UISystemBaseObjects/UISystemBaseButtonX.prefab
+  uploadId: 692062

@@ -35,6 +35,9 @@ namespace OneWayTogether.Data
         [Tooltip("World-space position for this object (XZ floor plane, Y = floor height).")]
         public Vector3 position;
 
+        [Tooltip("Y-axis rotation (degrees) applied at spawn. Lets one prefab face any direction — e.g. a Gate rotated 90 to span a Z-oriented wall gap.")]
+        public float yRotation = 0f;
+
         [Tooltip("Shared ID linking a Gate to its controlling Lever/PressurePlate. Must match on both entries.")]
         public string id;
 

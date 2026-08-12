@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: daacb6852d041d745af6c7c62b2a0341
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295480
+  packageName: Modular UI System
+  packageVersion: 1.0.0
+  assetPath: Assets/UISystem/UISystemScriptableObjects/UISystemMainScreenMap.asset
+  uploadId: 692062

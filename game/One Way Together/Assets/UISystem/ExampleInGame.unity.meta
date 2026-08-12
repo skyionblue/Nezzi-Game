@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 75e053c4832c19c4f9520db9b1f73d9c
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295480
+  packageName: Modular UI System
+  packageVersion: 1.0.0
+  assetPath: Assets/UISystem/ExampleInGame.unity
+  uploadId: 692062

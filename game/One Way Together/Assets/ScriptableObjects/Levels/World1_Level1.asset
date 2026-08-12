@@ -903,10 +903,11 @@ MonoBehaviour:
   objects:
   - type: 2
     position: {x: 0, y: 0, z: 0}
+    yRotation: 90
     id: gate1
     oneShot: 0
     triggerSize: {x: 0, y: 0}
-    gateOpenOffset: {x: 0, y: 3, z: 0}
+    gateOpenOffset: {x: 0, y: 3.7, z: 0}
   - type: 3
     position: {x: 9, y: 0, z: 3}
     id: gate1

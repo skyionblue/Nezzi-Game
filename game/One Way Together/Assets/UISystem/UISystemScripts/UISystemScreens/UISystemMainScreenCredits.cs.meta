@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 2a01d737b7248ca43a376e1cbd2717af
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295480
+  packageName: Modular UI System
+  packageVersion: 1.0.0
+  assetPath: Assets/UISystem/UISystemScripts/UISystemScreens/UISystemMainScreenCredits.cs
+  uploadId: 692062

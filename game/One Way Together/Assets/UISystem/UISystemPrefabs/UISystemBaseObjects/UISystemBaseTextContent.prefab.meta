@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 4cd1707709f708248adf507a36186adb
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295480
+  packageName: Modular UI System
+  packageVersion: 1.0.0
+  assetPath: Assets/UISystem/UISystemPrefabs/UISystemBaseObjects/UISystemBaseTextContent.prefab
+  uploadId: 692062

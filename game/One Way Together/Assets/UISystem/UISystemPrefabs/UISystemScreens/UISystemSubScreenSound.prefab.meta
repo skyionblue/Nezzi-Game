@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 935b6ff7064808d408dcbe296d55f132
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295480
+  packageName: Modular UI System
+  packageVersion: 1.0.0
+  assetPath: Assets/UISystem/UISystemPrefabs/UISystemScreens/UISystemSubScreenSound.prefab
+  uploadId: 692062

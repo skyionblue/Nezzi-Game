@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c50939dd77a93c840969040e3a63ca32
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295480
+  packageName: Modular UI System
+  packageVersion: 1.0.0
+  assetPath: Assets/UISystem/UISystemPrefabs/UISystemBaseObjects/UISystemBaseBackground.prefab
+  uploadId: 692062

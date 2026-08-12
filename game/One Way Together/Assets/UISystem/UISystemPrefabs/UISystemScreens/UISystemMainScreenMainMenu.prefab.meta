@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 62a30a20e7582b14a96bc2c3f1bbb0fe
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295480
+  packageName: Modular UI System
+  packageVersion: 1.0.0
+  assetPath: Assets/UISystem/UISystemPrefabs/UISystemScreens/UISystemMainScreenMainMenu.prefab
+  uploadId: 692062

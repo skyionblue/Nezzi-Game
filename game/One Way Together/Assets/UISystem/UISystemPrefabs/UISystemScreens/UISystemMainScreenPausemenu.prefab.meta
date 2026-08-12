@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c71752adafc733140b9cb394d2a4a576
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295480
+  packageName: Modular UI System
+  packageVersion: 1.0.0
+  assetPath: Assets/UISystem/UISystemPrefabs/UISystemScreens/UISystemMainScreenPausemenu.prefab
+  uploadId: 692062

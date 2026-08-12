@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 7b79c57252359d843a907d8849c6c54c
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295480
+  packageName: Modular UI System
+  packageVersion: 1.0.0
+  assetPath: Assets/UISystem/UISystemPrefabs/UISystemBaseObjects/UISystemBaseDraggableArea.prefab
+  uploadId: 692062

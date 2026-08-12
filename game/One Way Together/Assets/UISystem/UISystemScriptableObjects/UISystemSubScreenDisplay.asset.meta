@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b8e562ca8779eb245a6cc6336599172b
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295480
+  packageName: Modular UI System
+  packageVersion: 1.0.0
+  assetPath: Assets/UISystem/UISystemScriptableObjects/UISystemSubScreenDisplay.asset
+  uploadId: 692062

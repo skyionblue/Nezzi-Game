@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 058f8f76b7ee9ae40a447c6df1af170b
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295480
+  packageName: Modular UI System
+  packageVersion: 1.0.0
+  assetPath: Assets/UISystem/ExampleMainMenu.unity
+  uploadId: 692062

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ef12c03fbda20b44eaeec831fcc6e170
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295480
+  packageName: Modular UI System
+  packageVersion: 1.0.0
+  assetPath: Assets/UISystem/UISystemPrefabs/UISystemBaseObjects/UISystemBaseCanvas.prefab
+  uploadId: 692062

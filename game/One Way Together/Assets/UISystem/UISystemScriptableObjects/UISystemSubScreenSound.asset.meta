@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 63d968b11bdd48a4a8b7756143f7adbf
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295480
+  packageName: Modular UI System
+  packageVersion: 1.0.0
+  assetPath: Assets/UISystem/UISystemScriptableObjects/UISystemSubScreenSound.asset
+  uploadId: 692062

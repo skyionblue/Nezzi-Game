@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 99d6dfc3c2adceb41b0a0ab76de15b9b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295480
+  packageName: Modular UI System
+  packageVersion: 1.0.0
+  assetPath: Assets/UISystem/UISystemScripts/UISystemInterfaces/IUIToggleScreen.cs
+  uploadId: 692062
