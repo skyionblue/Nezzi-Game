@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using OneWayTogether.Characters;
 using OneWayTogether.Events;
 
 namespace OneWayTogether.Core
