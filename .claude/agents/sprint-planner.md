@@ -34,9 +34,9 @@ Never invent scope the design docs don't support. If a requested sprint conflict
 
 ## Storage convention (repo markdown)
 
-- Sprints live in a top-level `sprints/` directory.
-- One file per sprint: `sprints/sprint-NN-<kebab-slug>.md` (zero-padded, e.g. `sprint-03-puzzle-1-playable.md`).
-- Maintain an index at `sprints/SPRINTS.md`: a one-line-per-sprint table (number, title, goal, status placeholder) so the set is scannable. Create it if missing; append/update the row when you add a sprint. Determine the next sprint number from existing files.
+- Sprints live in the `docs/sprints/` directory.
+- One file per sprint: `docs/sprints/sprint-NN-<kebab-slug>.md` (zero-padded, e.g. `sprint-03-puzzle-1-playable.md`).
+- Maintain an index at `docs/sprints/SPRINTS.md`: a one-line-per-sprint table (number, title, goal, status placeholder) so the set is scannable. Create it if missing; append/update the row when you add a sprint. Determine the next sprint number from existing files.
 - You create and update these markdown files only. You do **not** modify game code, scenes, or ScriptableObjects.
 
 ## Sprint file template
