@@ -61,10 +61,12 @@ namespace OneWayTogether.Core
         /// </summary>
         public void BuildLevel()
         {
-            // Platforms and objects must exist before characters are positioned so
-            // their colliders are registered when the CharacterController first moves.
             BuildPlatforms();
             PlaceObjects();
+            // Force the physics engine to register all newly instantiated colliders
+            // before characters are placed, so CharacterController.isGrounded is true
+            // on the very first frame and characters don't fall through the floor.
+            Physics.SyncTransforms();
             PlaceCharacters();
             ApplyCamera();
         }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: World1_Puzzle2
   m_EditorClassIdentifier: OneWayTogether::OneWayTogether.Data.LevelData
   levelName: "World 1 - Puzzle 2 — The Gap"
-  scarletStart: {x: -9, y: 0, z: 0}
+  scarletStart: {x: -15, y: 0, z: 15}
   daniStart: {x: 9, y: 0, z: 0}
   platforms:
   - type: 3
@@ -849,15 +849,15 @@ MonoBehaviour:
     triggerSize: {x: 0, y: 0}
     gateOpenOffset: {x: 0, y: 0, z: 0}
   - type: 6
-    position: {x: -12, y: 0, z: 0}
+    position: {x: -15, y: 0, z: 15}
     yRotation: 0
     id:
     oneShot: 0
     triggerSize: {x: 0, y: 0}
     gateOpenOffset: {x: 0, y: 0, z: 0}
   - type: 3
-    position: {x: 6, y: 0, z: 3}
-    yRotation: 0
+    position: {x: 12, y: 0, z: -6}
+    yRotation: 180
     id: bridge1
     oneShot: 1
     triggerSize: {x: 0, y: 0}

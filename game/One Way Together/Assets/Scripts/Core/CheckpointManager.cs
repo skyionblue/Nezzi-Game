@@ -95,13 +95,10 @@ namespace OneWayTogether.Core
 
         private void HandleCheckpointActivated(Vector3 position)
         {
-            // Store independent positions for each character.
-            // CheckpointTrigger provides the authoritative position; each character's
-            // actual position offset is calculated from the trigger's stored offsets.
-            // For now, store the same position — CheckpointTrigger sets per-character
-            // positions via RegisterCheckpoint.
-            _scarletCheckpoint = position;
-            _daniCheckpoint = position;
+            // Intentional no-op. CheckpointTrigger.Activate() calls RegisterCheckpoint()
+            // for each character individually with per-character spawn offsets BEFORE
+            // raising this event, so the positions are already correctly set.
+            // Writing position here would overwrite both to the same value.
         }
 
         /// <summary>

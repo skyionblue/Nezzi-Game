@@ -8,13 +8,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 81dc6b90e21da46dc9f10ed9616cf29a
+    buildIndex: 0
   - enabled: 1
     path: Assets/Scenes/World1_Puzzle1.unity
     guid: fa92f2750f8ef4f3bb7534ae630c48fd
+    buildIndex: 1
   - enabled: 1
     path: Assets/Scenes/World1_Puzzle2.unity
     guid: 31778a17b99a3415fb285bd423297fd9
-  - enabled: 1
-    path: Assets/Scenes/World1_Level1.unity
-    guid: 9e57e140180574ee6bea8888fc2e6c62
+    buildIndex: 2
   m_configObjects: {}

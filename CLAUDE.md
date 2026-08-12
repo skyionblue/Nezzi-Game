@@ -6,7 +6,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Commit Policy
 
-**Never create a git commit without explicit user authorization.** Stage changes, summarize what would be committed, and wait for the user to say "commit" or "commit and push" before running `git commit`. The same applies to `git push`.
+**HARD RULE — NO EXCEPTIONS:** Do not run `git commit` or `git push` under any circumstances until the user explicitly says "commit", "commit and push", or "push". This applies to all work, all sessions, all agents, and all automated scripts.
+
+- Do NOT commit "to save progress"
+- Do NOT commit after fixing a bug
+- Do NOT commit after an agent completes work
+- Do NOT commit as part of a multi-step task unless that step was explicitly authorized
+
+When changes are ready: stage them, describe what will be committed, and **stop**. Wait for explicit user authorization before running `git commit`.
 
 ---
 
