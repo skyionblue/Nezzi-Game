@@ -21,12 +21,28 @@ public class MobileInputBridge : MonoBehaviour
     [Tooltip("Below this magnitude the joystick is treated as released.")]
     [SerializeField, Range(0.05f, 0.5f)] private float _deadzone = 0.15f;
 
+    // Tracks whether we fed movement last frame, so we can send a single stop
+    // when the joystick is released — without constantly zeroing keyboard input
+    // on desktop (where the joystick is never touched).
+    private bool _wasActive;
+
     private void Update()
     {
         if (_joystick == null || _inputRouter == null) return;
 
         Vector2 dir = _joystick.Direction;
-        if (dir.sqrMagnitude > _deadzone * _deadzone)
+        bool active = dir.sqrMagnitude > _deadzone * _deadzone;
+
+        if (active)
+        {
             _inputRouter.SetMoveInput(dir);
+            _wasActive = true;
+        }
+        else if (_wasActive)
+        {
+            // Joystick just released this frame — stop the character once.
+            _inputRouter.SetMoveInput(Vector2.zero);
+            _wasActive = false;
+        }
     }
 }
