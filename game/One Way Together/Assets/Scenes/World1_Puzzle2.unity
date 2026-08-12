@@ -456,6 +456,11 @@ GameObject:
   - component: {fileID: 153647514}
   - component: {fileID: 153647513}
   - component: {fileID: 153647518}
+  - component: {fileID: 153647523}
+  - component: {fileID: 153647522}
+  - component: {fileID: 153647521}
+  - component: {fileID: 153647519}
+  - component: {fileID: 153647520}
   m_Layer: 8
   m_Name: Dani
   m_TagString: Dani
@@ -476,6 +481,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: OneWayTogether::OneWayTogether.Characters.DaniController
   _data: {fileID: 11400000, guid: 117225f02bd3b4fbb85c0ff77daa002a, type: 2}
+  _stepHeightController: {fileID: 153647519}
   _carryOffset: {x: 0, y: 0.8, z: 0}
   _interactRange: 1.5
   _stackableLayer:
@@ -529,7 +535,7 @@ CharacterController:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 153647511}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2093188589}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -547,6 +553,80 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.65, z: 0}
+--- !u!114 &153647519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153647511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b6f835613078ab4f99d34c84437db9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: StepHeightSystem::LB.Player.Movement.StepHeight.StepHeightController
+  stepHeight: 0.6
+  stepUpSmoothFactor: 4.5
+  stepUpAngleThreshold: 65
+  layersToIgnore:
+    serializedVersion: 2
+    m_Bits: 64
+  disableStepHeight: 0
+  debugLog: 0
+  debugLogWarning: 0
+  debugLogError: 1
+  debugVisualization: 0
+--- !u!114 &153647520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153647511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a20da8876bb74ccaa0cdaac26d7fe2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OneWayTogether::OneWayTogether.Characters.StepHeight.StepHeightBootstrapper
+--- !u!114 &153647521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153647511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98ff113e3dded440d9723464cc4a3771, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OneWayTogether::OneWayTogether.Characters.StepHeight.CCColliderManager
+  _layersToIgnore:
+    serializedVersion: 2
+    m_Bits: 64
+--- !u!114 &153647522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153647511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b676def85077e43e0b1ce355e2478c1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OneWayTogether::OneWayTogether.Characters.StepHeight.CCMovementInputManager
+--- !u!114 &153647523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153647511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbb599831043c417bb124ce82cbded3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OneWayTogether::OneWayTogether.Characters.StepHeight.CCRigidbodyWrapper
 --- !u!1 &193379909
 GameObject:
   m_ObjectHideFlags: 0
@@ -910,6 +990,11 @@ GameObject:
   - component: {fileID: 318519184}
   - component: {fileID: 318519183}
   - component: {fileID: 318519185}
+  - component: {fileID: 318519190}
+  - component: {fileID: 318519189}
+  - component: {fileID: 318519188}
+  - component: {fileID: 318519186}
+  - component: {fileID: 318519187}
   m_Layer: 8
   m_Name: Scarlet
   m_TagString: Scarlet
@@ -946,6 +1031,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: OneWayTogether::OneWayTogether.Characters.ScarletController
   _data: {fileID: 11400000, guid: 689b3aca9b0e94c4787e3b66c5f13561, type: 2}
+  _stepHeightController: {fileID: 318519186}
   _liftOffset: {x: 0, y: 1.2, z: 0}
   _liftRange: 1
   _daniLayer:
@@ -981,7 +1067,7 @@ CharacterController:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 318519180}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 641194572}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -999,6 +1085,80 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!114 &318519186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 318519180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b6f835613078ab4f99d34c84437db9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: StepHeightSystem::LB.Player.Movement.StepHeight.StepHeightController
+  stepHeight: 0.6
+  stepUpSmoothFactor: 4.5
+  stepUpAngleThreshold: 65
+  layersToIgnore:
+    serializedVersion: 2
+    m_Bits: 64
+  disableStepHeight: 0
+  debugLog: 0
+  debugLogWarning: 0
+  debugLogError: 1
+  debugVisualization: 0
+--- !u!114 &318519187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 318519180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a20da8876bb74ccaa0cdaac26d7fe2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OneWayTogether::OneWayTogether.Characters.StepHeight.StepHeightBootstrapper
+--- !u!114 &318519188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 318519180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98ff113e3dded440d9723464cc4a3771, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OneWayTogether::OneWayTogether.Characters.StepHeight.CCColliderManager
+  _layersToIgnore:
+    serializedVersion: 2
+    m_Bits: 64
+--- !u!114 &318519189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 318519180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b676def85077e43e0b1ce355e2478c1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OneWayTogether::OneWayTogether.Characters.StepHeight.CCMovementInputManager
+--- !u!114 &318519190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 318519180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbb599831043c417bb124ce82cbded3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OneWayTogether::OneWayTogether.Characters.StepHeight.CCRigidbodyWrapper
 --- !u!1 &371992610
 GameObject:
   m_ObjectHideFlags: 0
@@ -1751,6 +1911,19 @@ MonoBehaviour:
   _coinCountText: {fileID: 131242625}
   _scarletIndicator: {fileID: 0}
   _daniIndicator: {fileID: 0}
+--- !u!134 &641194572
+PhysicsMaterial:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 2
+  m_DynamicFriction: 0.6
+  m_StaticFriction: 0.6
+  m_Bounciness: 0
+  m_FrictionCombine: 0
+  m_BounceCombine: 0
 --- !u!1 &701840401
 GameObject:
   m_ObjectHideFlags: 0
@@ -3953,6 +4126,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2012558023}
   m_CullTransparentMesh: 1
+--- !u!134 &2093188589
+PhysicsMaterial:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 2
+  m_DynamicFriction: 0.6
+  m_StaticFriction: 0.6
+  m_Bounciness: 0
+  m_FrictionCombine: 0
+  m_BounceCombine: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

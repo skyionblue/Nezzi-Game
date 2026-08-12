@@ -1,11 +1,8 @@
 {
-    "name": "OneWayTogether",
-    "rootNamespace": "OneWayTogether",
+    "name": "StepHeightSystem",
+    "rootNamespace": "LB.Player.Movement.StepHeight",
     "references": [
-        "Unity.InputSystem",
-        "Unity.TextMeshPro",
-        "Unity.Cinemachine",
-        "StepHeightSystem"
+        "Unity.InputSystem"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
