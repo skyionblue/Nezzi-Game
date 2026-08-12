@@ -7,6 +7,9 @@ namespace OneWayTogether.Data
     /// ScriptableObject that holds all tunable configuration for a single character.
     /// Create one asset for Scarlet and one for Dani via
     /// Assets > Create > OneWayTogether > Character Data.
+    ///
+    /// Jump, fall multiplier, ground check, and ground layer fields have been removed —
+    /// the game uses top-down free XY movement with no gravity.
     /// </summary>
     [CreateAssetMenu(fileName = "NewCharacterData", menuName = "OneWayTogether/Character Data")]
     public class CharacterData : ScriptableObject
@@ -19,24 +22,8 @@ namespace OneWayTogether.Data
         [SerializeField] private string _displayName;
 
         [Header("Movement")]
-        [Tooltip("Horizontal movement speed in units per second.")]
+        [Tooltip("Movement speed in units per second. Applied to the normalized input vector so diagonal movement is not faster than cardinal.")]
         [SerializeField, Range(1f, 20f)] private float _moveSpeed = 5f;
-
-        [Tooltip("Jump force applied as an instantaneous velocity.")]
-        [SerializeField, Range(1f, 30f)] private float _jumpForce = 10f;
-
-        [Tooltip("Extra downward gravity multiplier applied when the character is falling.")]
-        [SerializeField, Range(1f, 5f)] private float _fallMultiplier = 2.5f;
-
-        [Tooltip("Gravity multiplier applied when the jump button is released early (short hop).")]
-        [SerializeField, Range(1f, 5f)] private float _lowJumpMultiplier = 2f;
-
-        [Header("Ground Detection")]
-        [Tooltip("Radius of the OverlapCircle used to detect ground contact.")]
-        [SerializeField, Range(0.05f, 0.5f)] private float _groundCheckRadius = 0.15f;
-
-        [Tooltip("Layer mask that counts as ground.")]
-        [SerializeField] private LayerMask _groundLayer;
 
         [Header("Animation")]
         [Tooltip("Animator Controller to use for this character.")]
@@ -44,14 +31,9 @@ namespace OneWayTogether.Data
 
         // ── Public accessors ─────────────────────────────────────────────────────
 
-        public CharacterType CharacterType => _characterType;
-        public string DisplayName => _displayName;
-        public float MoveSpeed => _moveSpeed;
-        public float JumpForce => _jumpForce;
-        public float FallMultiplier => _fallMultiplier;
-        public float LowJumpMultiplier => _lowJumpMultiplier;
-        public float GroundCheckRadius => _groundCheckRadius;
-        public LayerMask GroundLayer => _groundLayer;
+        public CharacterType CharacterType     => _characterType;
+        public string        DisplayName       => _displayName;
+        public float         MoveSpeed         => _moveSpeed;
         public RuntimeAnimatorController AnimatorController => _animatorController;
     }
 }
