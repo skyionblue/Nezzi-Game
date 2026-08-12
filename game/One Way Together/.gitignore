@@ -26,3 +26,7 @@ Thumbs.db
 # Asset meta files for ignored folders
 Library.meta
 Temp.meta
+
+# Editor screenshots
+Assets/Screenshots/
+Assets/Screenshots.meta

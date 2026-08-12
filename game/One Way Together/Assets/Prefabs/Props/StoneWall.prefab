@@ -1,20 +1,64 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &1883168037940194073
+--- !u!1 &1649217463373944392
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2137206680846732530}
+  m_Layer: 9
+  m_Name: StoneWall
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2137206680846732530
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649217463373944392}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1617527067345792617}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1294825786477693314
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 2137206680846732530}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 1c060c1cae7e24d24a83ca08bd5a7efd, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 157.89474
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1c060c1cae7e24d24a83ca08bd5a7efd, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 157.89473
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1c060c1cae7e24d24a83ca08bd5a7efd, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 157.89473
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1c060c1cae7e24d24a83ca08bd5a7efd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1c060c1cae7e24d24a83ca08bd5a7efd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1c060c1cae7e24d24a83ca08bd5a7efd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -30,7 +74,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1c060c1cae7e24d24a83ca08bd5a7efd, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1c060c1cae7e24d24a83ca08bd5a7efd, type: 3}
       propertyPath: m_LocalRotation.z
@@ -66,20 +110,25 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1c060c1cae7e24d24a83ca08bd5a7efd, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2993071331095798343}
+      addedObject: {fileID: 8527583881066243013}
   m_SourcePrefab: {fileID: 100100000, guid: 1c060c1cae7e24d24a83ca08bd5a7efd, type: 3}
---- !u!1 &1649217463373944392 stripped
+--- !u!4 &1617527067345792617 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1c060c1cae7e24d24a83ca08bd5a7efd, type: 3}
+  m_PrefabInstance: {fileID: 1294825786477693314}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2105798828631913683 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1c060c1cae7e24d24a83ca08bd5a7efd, type: 3}
-  m_PrefabInstance: {fileID: 1883168037940194073}
+  m_PrefabInstance: {fileID: 1294825786477693314}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &2993071331095798343
+--- !u!65 &8527583881066243013
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1649217463373944392}
+  m_GameObject: {fileID: 2105798828631913683}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -92,5 +141,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.00555, y: 0.00516, z: 0.01903}
-  m_Center: {x: -0.000014553079, y: 0.000036129255, z: -0.0000047166823}
+  m_Size: {x: 0.019, y: 0.019, z: 0.019}
+  m_Center: {x: 0, y: 0, z: 0}

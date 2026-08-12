@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LevelPrefabRegistry
   m_EditorClassIdentifier: OneWayTogether::OneWayTogether.Data.LevelPrefabRegistry
   forestPlatformPrefab: {fileID: 342671067029898321, guid: c59544e8c50634a4b87fc7d0f36839b0, type: 3}
-  stoneWallPrefab: {fileID: 1649217463373944392, guid: f579ce1ff50084f358e9965ccc6415ad, type: 3}
+  stoneWallPrefab: {fileID: 4601918314967128819, guid: 7f3284f1bddcd49f8a21c3210119eea6, type: 3}
   backgroundWallPrefab: {fileID: 1897526723447177428, guid: f93f5b653f6e6464faea44a48853e03f, type: 3}
   rpgFloorCoveredPrefab: {fileID: 605680911520812344, guid: 4c138002398975e46891e2025595d146, type: 3}
   rpgFloorDirtPrefab: {fileID: 8593301090965940156, guid: 8d1820413e3163448a31464b35c929aa, type: 3}
