@@ -22,8 +22,11 @@ namespace OneWayTogether.Data
         [SerializeField] private string _displayName;
 
         [Header("Movement")]
-        [Tooltip("Movement speed in units per second. Applied to the normalized input vector so diagonal movement is not faster than cardinal.")]
+        [Tooltip("Walk speed — used when the joystick is pushed gently (magnitude < 0.5).")]
         [SerializeField, Range(1f, 20f)] private float _moveSpeed = 5f;
+
+        [Tooltip("Run speed — used when the joystick is pushed fully (magnitude >= 0.5). Set higher than MoveSpeed.")]
+        [SerializeField, Range(1f, 30f)] private float _runSpeed = 10f;
 
         [Header("Animation")]
         [Tooltip("Animator Controller to use for this character.")]
@@ -34,6 +37,7 @@ namespace OneWayTogether.Data
         public CharacterType CharacterType     => _characterType;
         public string        DisplayName       => _displayName;
         public float         MoveSpeed         => _moveSpeed;
+        public float         RunSpeed          => _runSpeed;
         public RuntimeAnimatorController AnimatorController => _animatorController;
     }
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: World1_Puzzle2
   m_EditorClassIdentifier: OneWayTogether::OneWayTogether.Data.LevelData
   levelName: "World 1 - Puzzle 2 — The Gap"
-  scarletStart: {x: -12, y: 0, z: 0}
+  scarletStart: {x: -9, y: 0, z: 0}
   daniStart: {x: 9, y: 0, z: 0}
   platforms:
   - type: 3
@@ -648,46 +648,6 @@ MonoBehaviour:
     position: {x: 21, y: 0, z: 15}
     scale: {x: 1, y: 1, z: 1}
     yRotation: 0
-  - type: 8
-    position: {x: -15, y: 0, z: -9}
-    scale: {x: 1, y: 1, z: 1}
-    yRotation: 270
-  - type: 16
-    position: {x: -15, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
-    yRotation: 315
-  - type: 8
-    position: {x: -15, y: 0, z: 9}
-    scale: {x: 1, y: 1, z: 1}
-    yRotation: 30
-  - type: 8
-    position: {x: 15, y: 0, z: -9}
-    scale: {x: 1, y: 1, z: 1}
-    yRotation: 340
-  - type: 16
-    position: {x: 15, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
-    yRotation: 20
-  - type: 8
-    position: {x: 15, y: 0, z: 9}
-    scale: {x: 1, y: 1, z: 1}
-    yRotation: 60
-  - type: 8
-    position: {x: -15, y: 0, z: -12}
-    scale: {x: 1, y: 1, z: 1}
-    yRotation: 130
-  - type: 16
-    position: {x: -15, y: 0, z: 12}
-    scale: {x: 1, y: 1, z: 1}
-    yRotation: 180
-  - type: 8
-    position: {x: -12, y: 0, z: -9}
-    scale: {x: 1, y: 1, z: 1}
-    yRotation: 230
-  - type: 16
-    position: {x: -12, y: 0, z: 9}
-    scale: {x: 1, y: 1, z: 1}
-    yRotation: 280
   - type: 11
     position: {x: -18, y: 0, z: -12}
     scale: {x: 1, y: 1, z: 1}
@@ -724,22 +684,6 @@ MonoBehaviour:
     position: {x: -18, y: 0, z: 3}
     scale: {x: 1, y: 1, z: 1}
     yRotation: 180
-  - type: 8
-    position: {x: 15, y: 0, z: -12}
-    scale: {x: 1, y: 1, z: 1}
-    yRotation: 150
-  - type: 16
-    position: {x: 15, y: 0, z: 12}
-    scale: {x: 1, y: 1, z: 1}
-    yRotation: 200
-  - type: 8
-    position: {x: 12, y: 0, z: -9}
-    scale: {x: 1, y: 1, z: 1}
-    yRotation: 250
-  - type: 16
-    position: {x: 12, y: 0, z: 9}
-    scale: {x: 1, y: 1, z: 1}
-    yRotation: 300
   - type: 11
     position: {x: 18, y: 0, z: -12}
     scale: {x: 1, y: 1, z: 1}

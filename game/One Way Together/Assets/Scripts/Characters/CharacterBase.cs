@@ -119,8 +119,12 @@ namespace OneWayTogether.Characters
 
             // Camera at (52,0,0): screen-right = world +X, screen-up = world +Z.
             // Input X → world X, Input Y → world +Z.
-            Vector3 move = IsControllable
-                ? new Vector3(_moveInput.x, 0f, _moveInput.y).normalized * _data.MoveSpeed
+            // Joystick magnitude drives walk/run: < 0.5 = walk, >= 0.5 = run.
+            Vector3 rawInput  = new Vector3(_moveInput.x, 0f, _moveInput.y);
+            float   inputMag  = Mathf.Clamp01(rawInput.magnitude);
+            float   speed     = inputMag >= 0.5f ? _data.RunSpeed : _data.MoveSpeed;
+            Vector3 move      = IsControllable && inputMag > 0.01f
+                ? rawInput.normalized * speed
                 : Vector3.zero;
 
             // Apply gravity so the character stays pressed to the floor.
