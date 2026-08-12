@@ -142,11 +142,25 @@ namespace OneWayTogether.Core
 
         private void TeleportToCheckpoints()
         {
-            if (_scarletTransform != null)
-                _scarletTransform.position = _scarletCheckpoint;
+            Teleport(_scarletTransform, _scarletCheckpoint);
+            Teleport(_daniTransform, _daniCheckpoint);
+        }
 
-            if (_daniTransform != null)
-                _daniTransform.position = _daniCheckpoint;
+        private void Teleport(Transform t, Vector3 position)
+        {
+            if (t == null) return;
+
+            // CharacterController fights direct position changes while enabled.
+            // Disable → set position → re-enable to guarantee the teleport sticks.
+            CharacterController cc = t.GetComponent<CharacterController>();
+            if (cc != null) cc.enabled = false;
+            t.position = position;
+            if (cc != null) cc.enabled = true;
+
+            // Clear accumulated fall velocity so the character doesn't immediately
+            // re-fall after being placed on solid ground.
+            CharacterBase cb = t.GetComponent<CharacterBase>();
+            if (cb != null) cb.ResetVelocity();
         }
     }
 }

@@ -39,6 +39,9 @@ namespace OneWayTogether.Characters
         // pressed against the floor and doesn't float after stepping off ledges.
         private float _verticalVelocity;
 
+        /// <summary>Clears accumulated fall velocity so a checkpoint teleport doesn't immediately re-fall.</summary>
+        public void ResetVelocity() => _verticalVelocity = 0f;
+
         // Animator parameter IDs — cached to avoid per-frame string hashing.
         private static readonly int AnimSpeed = Animator.StringToHash("Speed");
 
