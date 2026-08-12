@@ -127,6 +127,10 @@ namespace OneWayTogether.Core
                         SpawnRopeTrigger(pos, rot);
                         break;
 
+                    case LevelObjectType.Bridge:
+                        SpawnBridge(pos, rot, def.id);
+                        break;
+
                     // Scarlet/Dani are handled by PlaceCharacters — skip here.
                     case LevelObjectType.Scarlet:
                     case LevelObjectType.Dani:
@@ -253,6 +257,20 @@ namespace OneWayTogether.Core
             }
 
             Instantiate(_prefabs.ropeTriggerPrefab, pos, rot, _objectContainer);
+        }
+
+        private void SpawnBridge(Vector3 pos, Quaternion rot, string plateId)
+        {
+            if (_prefabs.bridgePrefab == null)
+            {
+                Debug.LogWarning("[LevelBuilder] bridgePrefab is not assigned in LevelPrefabRegistry.", this);
+                return;
+            }
+
+            GameObject go     = Instantiate(_prefabs.bridgePrefab, pos, rot, _objectContainer);
+            Bridge     bridge = go.GetComponent<Bridge>();
+            if (bridge != null)
+                bridge.Init(plateId);
         }
 
         // ── Helpers ───────────────────────────────────────────────────────────

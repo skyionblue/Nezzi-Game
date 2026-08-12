@@ -8,14 +8,15 @@ namespace OneWayTogether.Data
     /// </summary>
     public enum LevelObjectType
     {
-        Scarlet,
-        Dani,
-        Gate,
-        Lever,
-        Coin,
-        ReunionTrigger,
-        Checkpoint,
-        RopeTrigger,
+        Scarlet        = 0,
+        Dani           = 1,
+        Gate           = 2,
+        Lever          = 3,
+        Coin           = 4,
+        ReunionTrigger = 5,
+        Checkpoint     = 6,
+        RopeTrigger    = 7,
+        Bridge         = 8,
     }
 
     /// <summary>

@@ -60,6 +60,9 @@ namespace OneWayTogether.Data
         [Tooltip("RopeTrigger prefab — must have RopeTrigger.cs attached.")]
         public GameObject ropeTriggerPrefab;
 
+        [Tooltip("Bridge prefab — must have Bridge.cs attached.")]
+        public GameObject bridgePrefab;
+
         [Header("Collectibles")]
         [Tooltip("Coin pickup prefab — must have CoinPickup.cs attached.")]
         public GameObject coinPrefab;

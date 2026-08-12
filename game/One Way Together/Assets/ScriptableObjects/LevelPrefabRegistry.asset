@@ -33,4 +33,5 @@ MonoBehaviour:
   reunionTriggerPrefab: {fileID: 1132471707918468657, guid: fafc9a4ea1abc4872b68e0fa81e28500, type: 3}
   checkpointPrefab: {fileID: 3922985179993278851, guid: f581e526c38f64400bac118290b78159, type: 3}
   ropeTriggerPrefab: {fileID: 0}
+  bridgePrefab: {fileID: 2237964585787368525, guid: 0320b8742263b4c198cde20bea27677d, type: 3}
   coinPrefab: {fileID: 718130947656893199, guid: 3a59e741dc6ad47a0baf3cda100dc1c2, type: 3}
