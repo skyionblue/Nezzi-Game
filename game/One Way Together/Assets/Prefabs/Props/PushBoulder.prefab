@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4377915058471323872}
   - component: {fileID: 152722696827018053}
+  - component: {fileID: 729416857234918001}
   m_Layer: 0
   m_Name: PushBoulder
   m_TagString: Untagged
@@ -33,6 +34,33 @@ Transform:
   - {fileID: 5453144036229194378}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &729416857234918001
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6994596613884693936}
+  serializedVersion: 4
+  m_Mass: 2
+  m_Drag: 6
+  m_AngularDrag: 5
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRensorRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 116
+  m_CollisionDetectionMode: 0
 --- !u!65 &152722696827018053
 BoxCollider:
   m_ObjectHideFlags: 0

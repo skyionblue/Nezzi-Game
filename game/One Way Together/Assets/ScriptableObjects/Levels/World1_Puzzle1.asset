@@ -890,16 +890,23 @@ MonoBehaviour:
     oneShot: 0
     triggerSize: {x: 0, y: 0}
     gateOpenOffset: {x: 0, y: 0, z: 0}
+  - type: 9
+    position: {x: 15, y: 0, z: 0}
+    yRotation: 0
+    id:
+    oneShot: 0
+    triggerSize: {x: 0, y: 0}
+    gateOpenOffset: {x: 0, y: 0, z: 0}
   - type: 5
     position: {x: 15, y: 0, z: 0}
     yRotation: 0
     id:
     oneShot: 0
-    triggerSize: {x: 5, y: 5}
+    triggerSize: {x: 2, y: 2}
     gateOpenOffset: {x: 0, y: 0, z: 0}
   hints:
-  - "Walk both siblings to the glowing golden spot."
-  - "Switch between Scarlet and Dani with the SWAP button — move both to the gold circle."
-  - "Move Scarlet to the gold circle, then switch to Dani and walk her there too. Stand together."
+  - "A boulder blocks the golden circle. Only Scarlet is strong enough to move it."
+  - "Walk Scarlet into the boulder to push it out of the way. Then bring both siblings to the gold circle."
+  - "Push the boulder aside with Scarlet, then walk both Scarlet and Dani onto the gold circle at the same time."
   skyColor: {r: 0.55, g: 0.75, b: 0.85, a: 1}
   orthographicSize: 8

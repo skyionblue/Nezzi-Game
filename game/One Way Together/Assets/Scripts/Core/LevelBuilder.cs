@@ -152,6 +152,10 @@ namespace OneWayTogether.Core
                         SpawnBridge(pos, rot, def.id);
                         break;
 
+                    case LevelObjectType.PushBoulder:
+                        SpawnPushBoulder(pos);
+                        break;
+
                     // Scarlet/Dani are handled by PlaceCharacters — skip here.
                     case LevelObjectType.Scarlet:
                     case LevelObjectType.Dani:
@@ -278,6 +282,16 @@ namespace OneWayTogether.Core
             }
 
             Instantiate(_prefabs.ropeTriggerPrefab, pos, rot, _objectContainer);
+        }
+
+        private void SpawnPushBoulder(Vector3 pos)
+        {
+            if (_prefabs.pushBoulderPrefab == null)
+            {
+                Debug.LogWarning("[LevelBuilder] pushBoulderPrefab not assigned in LevelPrefabRegistry.", this);
+                return;
+            }
+            Instantiate(_prefabs.pushBoulderPrefab, pos, Quaternion.identity, _objectContainer);
         }
 
         private void SpawnBridge(Vector3 pos, Quaternion rot, string plateId)

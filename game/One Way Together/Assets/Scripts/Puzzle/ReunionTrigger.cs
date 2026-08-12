@@ -55,7 +55,7 @@ namespace OneWayTogether.Puzzle
             marker.name = "GoalMarker";
             marker.transform.SetParent(transform);
             marker.transform.localPosition = new Vector3(0f, 0.02f, 0f);
-            marker.transform.localScale    = new Vector3(5f, 0.01f, 5f);
+            marker.transform.localScale    = new Vector3(2f, 0.01f, 2f);
 
             // Remove the capsule collider — the parent trigger handles detection.
             Destroy(marker.GetComponent<Collider>());

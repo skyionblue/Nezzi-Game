@@ -67,6 +67,10 @@ namespace OneWayTogether.Data
         [Tooltip("Bridge prefab — must have Bridge.cs attached.")]
         public GameObject bridgePrefab;
 
+        [Header("Props")]
+        [Tooltip("Pushable boulder — must have a Rigidbody and be on the Stackable layer.")]
+        public GameObject pushBoulderPrefab;
+
         [Header("Collectibles")]
         [Tooltip("Coin pickup prefab — must have CoinPickup.cs attached.")]
         public GameObject coinPrefab;

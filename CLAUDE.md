@@ -38,29 +38,34 @@ Nezzy's Game/
 ├── art/
 │   ├── characters/Scarlet/          ← Blender pipeline files + processed FBX
 │   └── characters/Dani/             ← Blender pipeline files + processed FBX
+├── docs/
+│   ├── sprints/                     ← SPRINTS.md index + sprint-NN-*.md files
+│   └── meshy-icon-loading-screen-prompts.md
 ├── game/One Way Together/           ← Unity project root
 │   └── Assets/
 │       ├── Scripts/                 ← all C# (namespace: OneWayTogether.*)
 │       ├── Art/Characters/          ← FBX + textures + materials
 │       ├── Art/Props/               ← prop FBX + textures + materials
-│       ├── Prefabs/Props/           ← ready-to-drag prefabs
+│       ├── Prefabs/Props/           ← ready-to-drag prefabs (PushBoulder, etc.)
+│       ├── Prefabs/Puzzle/          ← Gate, Lever, Bridge, Coin, etc.
 │       ├── Prefabs/Env/             ← environment prefabs (e.g. CrawlTunnelEntrance)
 │       ├── Animation/               ← ScarletAnimator.controller, DaniAnimator.controller
 │       ├── Input/                   ← OneWayTogetherControls.inputactions
-│       ├── Prefabs/Puzzle/          ← Gate, Lever, Coin, etc.
-│       ├── Scenes/                  ← MainMenu, World1_Level1
+│       ├── Scenes/                  ← MainMenu, World1_Puzzle1, World1_Puzzle2
+│       ├── StepHeightSystem/        ← Step Height Controller package (CharacterController adapters)
 │       └── ScriptableObjects/
 │           ├── Characters/          ← ScarletData.asset, DaniData.asset
 │           ├── Coins/               ← CoinSystemData.asset
-│           └── Levels/              ← World1_Level1.asset (LevelData) + LevelPrefabRegistry
-├── sprints/                         ← sprint backlog markdown (SPRINTS.md index + sprint-NN-*.md)
+│           └── Levels/              ← World1_Puzzle1.asset, World1_Puzzle2.asset, LevelPrefabRegistry
 └── .claude/
-    ├── agents/                      ← unity-senior-developer, unity-code-assistant, unity-code-reviewer, sprint-planner
+    ├── agents/                      ← unity-senior-developer, sprint-planner, etc.
     ├── foundational/                ← project-context.md, tech-standards.md
     └── skills/                      ← character-importer, asset-pipeline, level-design, profiling-workflow
 ```
 
 **Levels are data-driven, not hand-placed.** `LevelBuilder` (in `Scripts/Core/`) reads a `LevelData` ScriptableObject at `Awake` and instantiates the floor, walls, props, and puzzle objects from a `LevelPrefabRegistry`. Do not build levels by hand in the scene — author/edit the `LevelData` asset.
+
+**`LevelBuilder.BuildLevel()` order:** `BuildPlatforms()` → `PlaceObjects()` → `Physics.SyncTransforms()` → `PlaceCharacters()`. The `Physics.SyncTransforms()` call is critical — it forces floor colliders to register before characters spawn, preventing them from falling through on the first frame.
 
 ---
 
@@ -83,46 +88,62 @@ All runtime C#: `OneWayTogether.<SubNamespace>` (Core, Characters, Input, Camera
 ### Event Bus
 `GameEvents` (static class in `Events/`) is the only cross-system communication channel. Nothing polls or calls across systems directly — everything goes through events. Key raises:
 ```csharp
-GameEvents.RaiseActiveCharacterChanged(CharacterType)  // fires on Tab switch
+GameEvents.RaiseActiveCharacterChanged(CharacterType)  // fires on Tab/SWAP switch
 GameEvents.RaiseReunionAchieved()                      // puzzle complete
 GameEvents.RaisePressurePlateChanged(string id, bool)  // puzzle mechanics
 GameEvents.RaiseGateStateChanged(string id, bool)
+GameEvents.RaiseCheckpointReset()                      // after teleport to checkpoint
 ```
 
 ### Character System
-`CharacterBase` (abstract) owns: `CharacterController` movement on the XZ plane with **manually applied gravity** (no jump), facing rotation toward the move direction, animator driving, and `IsControllable` state. Characters receive input through `ReceiveMove(Vector2)`, `ReceiveInteract()`, and `ReceiveStopMove()` — they do **not** own `PlayerInput` components. Subclasses add character-specific abilities:
-- `ScarletController`: push boulders, hold pressure plates, lift Dani
-- `DaniController`: activate switches/levers, stack objects. **Climb (ropes/vines) is currently a stub** (`SetClimbingState` does nothing) pending a redesign for the isometric space.
+`CharacterBase` (abstract) owns: `CharacterController` movement on the XZ plane with **manually applied gravity** (no jump), facing rotation toward the move direction, walk/run speed blending from joystick magnitude, animator driving, and `IsControllable` state. Characters receive input through `ReceiveMove(Vector2)`, `ReceiveInteract()`, and `ReceiveStopMove()`.
 
-**Input flow:** `InputRouter` owns the `InputActionAsset` and subscribes to the `Move` / `Interact` / `SwitchCharacter` actions directly, then forwards to the active character via `ReceiveMove/ReceiveInteract`. On-screen mobile controls (`MobileInputBridge` + the joystick and SWAP/USE buttons on the `MobileControls` canvas) call the same `InputRouter` public methods (`SetMoveInput`, `TriggerInteract`, `TrySwitchCharacter`).
+**Walk/Run:** Joystick magnitude < 0.5 → `MoveSpeed` (walk). Magnitude ≥ 0.5 → `RunSpeed` (run). Both values live in `CharacterData`. The animator `Speed` parameter is passed raw so the Walk→Run transition at 5.5 u/s fires the Kevin Iglesias run animation.
 
-**Input is gated on game state:** `InputRouter` only forwards input while `GameState.Playing`, and stops both characters on any transition out of Playing (failure panel, pause, puzzle complete) so nobody keeps sliding.
+**Step Height:** Both characters have `StepHeightController` (from the StepHeightSystem package) with CC adapter components (`CCRigidbodyWrapper`, `CCMovementInputManager`, `CCColliderManager`, `StepHeightBootstrapper`). The bootstrapper uses reflection to inject these into the package's private fields. `stepHeight = 0.6`.
 
-### Input Router
-`InputRouter` holds direct serialised refs to the `_scarlet` and `_dani` `CharacterBase` objects plus the `_actionAsset`. It tracks `ActiveCharacter`, raises `GameEvents.RaiseActiveCharacterChanged` on switch, and debounces `TrySwitchCharacter()` per frame. There is one shared action asset — no per-character `PlayerInput` / device-pairing dance.
+Subclasses add character-specific abilities:
+- `ScarletController`: push boulders via `OnControllerColliderHit` (ForceMode.Force, `_pushForce = 15`), lift Dani
+- `DaniController`: activate switches/levers, stack objects. **Climb (ropes/vines) is a stub** (`SetClimbingState` does nothing).
+
+**Input flow:** `InputRouter` owns the `InputActionAsset` and forwards to the active character. On-screen mobile controls (`MobileInputBridge` + joystick and SWAP/USE buttons) call the same `InputRouter` public methods.
+
+**Input is gated on game state:** `InputRouter` only forwards input while `GameState.Playing`.
+
+### Checkpoint System
+`CheckpointManager` tracks per-character spawn positions. **`LevelBuilder.PlaceCharacters()` calls `cm.RegisterCharacter()` after moving characters** — this is the authoritative registration. `CheckpointTrigger.Activate()` also calls `RegisterCheckpoint()` per character with ±0.5 X offsets. `HandleCheckpointActivated` is intentionally a no-op (was previously overwriting both positions to the same point).
+
+`CheckpointManager.Teleport()` disables the CharacterController, sets position, re-enables, and calls `CharacterBase.ResetVelocity()` — all three steps are required to prevent falling through the floor after teleport.
 
 ### Puzzle System
-Puzzle objects use **3D trigger colliders** (characters are 3D `CharacterController` capsules — no 2D physics):
-- `PressurePlate` → broadcasts by `plateId` string → listened to by `Gate`
-- `Lever` (implements `IInteractable`) → toggles plate events
-- `ReunionTrigger` → completes the puzzle when Scarlet and Dani (by tag) are both inside simultaneously → raises `GameEvents.RaiseReunionAchieved`
-- `CheckpointTrigger` → registers spawn positions with `CheckpointManager`
-- `Hazard` → the "trap" failure cause: on character entry raises `GameEvents.RaiseCharacterFailed` → `GameManager` enters `GameState.Failure`
-- `RopeTrigger` → intended to enable Dani's climb state (climb itself is a stub — see Character System)
+Puzzle objects use **3D trigger colliders**:
+- `Gate` — swings open (rotation-based) on `OnPressurePlateChanged`
+- `Lever` (implements `IInteractable`) — Dani activates via overlap sphere on the Switch layer
+- `Bridge` — starts `_retractOffset` (default 20) units **above** its authored position; lowers smoothly at `_lowerSpeed` u/s when its plate ID activates. Uses a coroutine (`MoveTo`) not a snap.
+- `ReunionTrigger` — fires `RaiseReunionAchieved` when both Scarlet (tag) and Dani (tag) are inside simultaneously. Creates a gold floor disc marker in `Awake`. Trigger size set by `LevelData.triggerSize`.
+- `CheckpointTrigger` — one-shot; registers per-character spawn offsets with `CheckpointManager`
+- `Hazard` — `OnTriggerEnter` on Character layer → `RaiseCharacterFailed` → `GameState.Failure`
+- `PushBoulder` — a Rigidbody-based prop. Scarlet pushes it via `OnControllerColliderHit`. Has drag=6, constraints freeze Y position and all rotations.
+
+### Level Sequence
+`LevelSequenceController` (DontDestroyOnLoad, in `World1_Puzzle1` scene) listens for `OnReunionAchieved` and loads the next scene from its ordered `_levelScenes` array after a `_completionDelay` (2.5 s). After all puzzles, returns to MainMenu.
 
 ### Economy & UI Systems
-- **Coins** — `CoinPickup` → `CoinManager` (count, spend). Two sinks: **respawn-in-place** (`FailureUI`, costs `RespawnCost`) and **progressive hints** (`HintManager` + `HintUI`, tiers cost `Hint1/2/3Cost`).
-- **Hints** are authored per-level in `LevelData.hints` and revealed in order (vague → specific → full).
+- **Coins** — `CoinPickup` → `CoinManager` (DontDestroyOnLoad — coins persist across puzzle scenes). Two sinks: respawn-in-place and progressive hints.
+- **Hints** — authored per-level in `LevelData.hints` (3 tiers). `HintManager` must point to the correct scene's `LevelData` — verify after any scene duplication.
 - **UI uses legacy `UnityEngine.UI.Text`, not TextMeshPro** — see Project Gotchas.
+- **MainMenuController** builds its own Canvas entirely in code (no TMP dependency). Disables all pre-existing Canvas objects in `Awake` and creates its own EventSystem if none exists.
+- **PuzzleCompleteUI** also builds itself in code; attached to a plain GameObject in each puzzle scene (not DontDestroyOnLoad).
 
 ### Data Layer (ScriptableObjects)
-- `CharacterData`: CharacterType, DisplayName, MoveSpeed, AnimatorController (no jump/ground fields — removed for the isometric model)
+- `CharacterData`: CharacterType, DisplayName, MoveSpeed, RunSpeed, AnimatorController
 - `CoinSystemData`: RespawnCost, Hint1/2/3Cost
-- `LevelData`: scarletStart/daniStart (Vector3), `platforms` (`PlatformDef` list), `objects` (`LevelObjectData` list), `hints` (list of strings), skyColor
+- `LevelData`: scarletStart/daniStart (Vector3), `platforms` (`PlatformDef` list), `objects` (`LevelObjectData` list), `hints`, skyColor
+- `LevelObjectType` enum (in `LevelObjectData.cs`): Scarlet=0, Dani=1, Gate=2, Lever=3, Coin=4, ReunionTrigger=5, Checkpoint=6, RopeTrigger=7, Bridge=8, PushBoulder=9
 - `LevelPrefabRegistry`: maps platform/object types → prefabs for `LevelBuilder`
 
 ### Camera
-`Main Camera` uses `IsometricCameraFollow` to follow the active character at a fixed isometric offset, switching target on `GameEvents.OnActiveCharacterChanged`. `CameraController` + Cinemachine `SinglePlayerCam` / `CoopCam` also exist for co-op framing.
+`Main Camera` uses `IsometricCameraFollow` to follow the active character at a fixed isometric offset. Input mapping: screen-right = world +X, screen-up = world +Z.
 
 ---
 
@@ -130,16 +151,11 @@ Puzzle objects use **3D trigger colliders** (characters are 3D `CharacterControl
 
 ### Character Import (`/character-importer`)
 Raw Meshy ZIP → Blender (decimate to 20k tris, build 22-bone Humanoid rig, weight paint) → FBX export → Unity (Humanoid avatar, URP Lit material, Animator controller).
-- Output FBX: `art/characters/<Name>/<Name>_processed.fbx`
-- Unity: `Assets/Art/Characters/<Name>/`
-- Animator controllers: `Assets/Animation/<Name>/<Name>Animator.controller`
-- Characters face their move direction via `transform.rotation` in `CharacterBase` (isometric 3D) — no sprite flip.
-- Input is routed centrally by `InputRouter` (which uses `InputAction.CallbackContext`); characters have no `PlayerInput` component and no `InputValue` handlers.
+- Characters face their move direction via `transform.rotation` in `CharacterBase` — no sprite flip.
+- Kevin Iglesias **Human Basic Motions FREE** pack provides Idle, Walk, and Run animations. Run clips: `HumanF@Run01_Forward.fbx` (female), `HumanM@Run01_Forward.fbx` (male). Both Scarlet and Dani use the female run.
 
 ### Prop Import (`/asset-pipeline`)
-Raw Meshy ZIP → Blender (validate, decimate to ~1000 tris, fix Z-origin, export) → Unity (BoxCollider, URP Lit material, prefab).
-- Output: `art/props/<Name>/`, Unity prefab at `Assets/Prefabs/Props/<Name>.prefab`
-- FBX export settings (non-negotiable): `axis_forward='-Z'`, `axis_up='Y'`, `FBX_SCALE_ALL`, `bake_space_transform=True`
+Raw Meshy ZIP → Blender → Unity (BoxCollider, URP Lit material, prefab).
 
 ---
 
@@ -155,24 +171,27 @@ Raw Meshy ZIP → Blender (validate, decimate to ~1000 tris, fix Z-origin, expor
 
 ---
 
-## Key Scene: World1_Level1
+## Active Scenes
 
-The scene is a **data-driven shell** — `LevelBuilder` constructs the level at runtime from `Assets/ScriptableObjects/Levels/World1_Level1.asset`. To change layout, edit that `LevelData` asset, not the scene.
+| Scene | Purpose |
+|-------|---------|
+| `MainMenu` | Title screen — built entirely in code by `MainMenuController` |
+| `World1_Puzzle1` | Side by Side: push boulder off reunion spot, both characters step on it |
+| `World1_Puzzle2` | The Gap: Dani pulls lever → bridge falls from above → Scarlet crosses |
 
-- **Scarlet / Dani**: 3D `CharacterController` capsules on the `Character` layer, positioned at `LevelData.scarletStart` / `daniStart` (Vector3 on the XZ plane) by `LevelBuilder`.
-- **Ground / walls / props**: instantiated by `LevelBuilder` from `platforms` (floor tiles, stone walls, vegetation, rocks) — 3D meshes with 3D colliders, no tilemap.
-- **Puzzle objects**: instantiated from `LevelData.objects` (Gate, Lever, Coin, ReunionTrigger, Checkpoint, Hazard) by type + Vector3 position + `yRotation`.
-- **Managers present in-scene**: `GameManager`, `CheckpointManager`, `CoinManager`, `HintManager`, `InputRouter` (holds `_scarlet`/`_dani`/`_actionAsset`), `LevelBuilder`, and the `MobileControls` canvas (joystick, SWAP/USE buttons, coin counter, `FailureUI`, `HintUI`).
-- **Named layers** (registered in TagManager): `Character`, `Ground`, `Stackable`, `Switch`.
+All three scenes must be in **Build Settings** and the **Active Build Profile** for `SceneManager.LoadScene()` by name to work. Use `Tools/Add Scenes To Build` editor script if they disappear.
 
 ---
 
 ## Project Gotchas
 
-- **UI text: use legacy `UnityEngine.UI.Text`, not TextMeshPro.** The project's TMP font atlas renders as tofu (empty boxes) in the game view on this setup. The built-in `LegacyRuntime.ttf` always renders — assign it in code via `Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf")` when building UI through tooling (the serialized `font` property can't be set via MCP). `HUDController`, `FailureUI`, and `HintUI` all follow this pattern.
-- **URP pipeline gets cleared on asset-pack import.** Importing packs (Joystick Pack, UISystem, etc.) has repeatedly reset the URP Render Pipeline Asset in Project Settings, dropping rendering to Built-in (the board turns pink). Fix: reassign `Assets/Settings/UniversalRP.asset` in **Graphics** and all **Quality** tiers.
+- **UI text: use legacy `UnityEngine.UI.Text`, not TextMeshPro.** The TMP font atlas renders as tofu (black boxes) in game view. Use `Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf")` in code. All UI classes (`HUDController`, `FailureUI`, `HintUI`, `PuzzleCompleteUI`, `MainMenuController`) follow this pattern.
+- **URP pipeline gets cleared on asset-pack import.** Run `Tools/Fix URP Pipeline` (editor script) to reassign `Assets/Settings/UniversalRP.asset` to all Graphics + Quality tiers. Characters go pink when this happens.
+- **TagManager gets wiped on package import.** The StepHeight package import wiped all custom tags and layers. Required tags: `Dani`, `Scarlet`. Required layers: `Character` (8), `Ground` (9), `Stackable` (10), `Switch` (11). Verify after any new package import — if `LayerMask.NameToLayer("Character")` returns -1, coins, the ReunionTrigger, and Hazards silently stop working.
 - **`?.` on Unity Object fields is unsafe.** An unassigned serialized `Object` field is Unity "fake null" — `?.` does not short-circuit and throws. Use explicit `if (x != null)` checks.
-- **`CLAUDE.md` vs. code:** treat the **code as source of truth** for movement/physics. Earlier docs described a 2D Rigidbody2D/Tilemap/jump model that no longer exists.
+- **Character baked scene positions matter.** Characters have a scene-level Transform position that applies on the very first frame before `LevelBuilder.Awake()` runs. If that position is inside a Hazard trigger (e.g. the gap in Puzzle 2), the fail screen fires immediately. Always set the baked Transform to a safe position that matches `LevelData.scarletStart`/`daniStart`.
+- **`OnControllerColliderHit` is required for boulder push.** `CharacterController` does NOT automatically push Rigidbodies. `ScarletController.OnControllerColliderHit` applies `ForceMode.Force` per contact frame. Dani cannot push boulders — only `ScarletController` has this method.
+- **`Physics.SyncTransforms()` is required after `Instantiate`.** Floor tile colliders don't register with the physics engine until the next FixedUpdate unless `Physics.SyncTransforms()` is called. `LevelBuilder` calls it between `PlaceObjects()` and `PlaceCharacters()`.
 
 ---
 
