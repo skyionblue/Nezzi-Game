@@ -30,7 +30,17 @@ namespace OneWayTogether.Puzzle
         [Tooltip("When true, the lever starts in the activated state.")]
         [SerializeField] private bool _startsActivated = false;
 
-        [Header("Visuals")]
+        [Header("Handle Animation")]
+        [Tooltip("The handle transform that swings when the lever is thrown. Its pivot must sit at the hub.")]
+        [SerializeField] private Transform _handle;
+
+        [Tooltip("Local euler rotation added to the handle's rest pose when the lever is activated (thrown).")]
+        [SerializeField] private Vector3 _thrownEuler = new Vector3(-60f, 0f, 0f);
+
+        [Tooltip("How fast the handle swings between rest and thrown, in degrees/second.")]
+        [SerializeField, Range(30f, 720f)] private float _rotateSpeed = 300f;
+
+        [Header("Visuals (optional colour tint)")]
         [SerializeField] private Renderer _leverRenderer;
         [SerializeField] private Color _inactiveColor = new Color(0.6f, 0.6f, 0.6f);
         [SerializeField] private Color _activeColor   = new Color(0.2f, 1f, 0.2f);
@@ -40,6 +50,10 @@ namespace OneWayTogether.Puzzle
         private bool _isActivated;
         private bool _hasBeenUsed;
 
+        // Handle rest pose (captured at Awake) and the pose it is currently swinging toward.
+        private Quaternion _restRot = Quaternion.identity;
+        private Quaternion _targetRot = Quaternion.identity;
+
         private static readonly int ColorId = Shader.PropertyToID("_BaseColor");
 
         // ── Unity lifecycle ───────────────────────────────────────────────────────
@@ -48,7 +62,19 @@ namespace OneWayTogether.Puzzle
         {
             GetComponent<Collider>().isTrigger = true;
             _isActivated = _startsActivated;
+
+            if (_handle != null) _restRot = _handle.localRotation;
+
             RefreshVisual();
+            UpdateHandleTarget(instant: true);
+        }
+
+        private void Update()
+        {
+            if (_handle == null) return;
+            if (_handle.localRotation != _targetRot)
+                _handle.localRotation = Quaternion.RotateTowards(
+                    _handle.localRotation, _targetRot, _rotateSpeed * Time.deltaTime);
         }
 
         // ── IInteractable ─────────────────────────────────────────────────────────
@@ -67,6 +93,7 @@ namespace OneWayTogether.Puzzle
             _hasBeenUsed = true;
 
             RefreshVisual();
+            UpdateHandleTarget();
             GameEvents.RaisePressurePlateChanged(_plateId, _isActivated);
         }
 
@@ -84,6 +111,14 @@ namespace OneWayTogether.Puzzle
         }
 
         // ── Private ───────────────────────────────────────────────────────────────
+
+        /// <summary>Points the handle at its rest or thrown pose based on activation state.</summary>
+        private void UpdateHandleTarget(bool instant = false)
+        {
+            if (_handle == null) return;
+            _targetRot = _isActivated ? _restRot * Quaternion.Euler(_thrownEuler) : _restRot;
+            if (instant) _handle.localRotation = _targetRot;
+        }
 
         private void RefreshVisual()
         {
