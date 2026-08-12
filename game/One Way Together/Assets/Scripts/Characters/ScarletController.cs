@@ -1,22 +1,15 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 using OneWayTogether.Events;
 
 namespace OneWayTogether.Characters
 {
     /// <summary>
-    /// Scarlet-specific abilities: push/roll boulders and stone blocks, stand on
-    /// pressure plates, and lift Dani up to high ledges.
+    /// Scarlet-specific abilities for HD-2D isometric movement: lift Dani to
+    /// high ledges. Boulder-push is handled implicitly by the CharacterController
+    /// walking into a physics Rigidbody — no special code needed.
     ///
-    /// Push: detected via Rigidbody2D on the boulder. Scarlet walks into it and
-    /// the physics layer difference allows her to move it.
-    ///
-    /// Lift: when Dani is within the lift trigger zone and the Interact action fires,
-    /// Dani's transform is parented to Scarlet and positioned at the lift offset until
-    /// Dani jumps (at which point Dani is un-parented and given a launch impulse).
-    ///
-    /// Pressure plate: handled entirely by the PressurePlate scene component — Scarlet
-    /// does nothing special, just stands on it.
+    /// Pressure plate: handled entirely by the PressurePlate scene component —
+    /// Scarlet does nothing special, just stands on it.
     /// </summary>
     public class ScarletController : CharacterBase
     {
@@ -65,10 +58,10 @@ namespace OneWayTogether.Characters
         /// </summary>
         private void TryLiftDani()
         {
-            Collider2D hit = Physics2D.OverlapCircle(transform.position, _liftRange, _daniLayer);
-            if (hit == null) return;
+            Collider[] hits = Physics.OverlapSphere(transform.position, _liftRange, _daniLayer);
+            if (hits.Length == 0) return;
 
-            DaniController dani = hit.GetComponentInParent<DaniController>();
+            DaniController dani = hits[0].GetComponentInParent<DaniController>();
             if (dani == null) return;
 
             _heldDani = dani;
@@ -78,7 +71,7 @@ namespace OneWayTogether.Characters
         }
 
         /// <summary>
-        /// Releases Dani from the hold — she drops with normal gravity.
+        /// Releases Dani from the hold — she falls with gravity.
         /// Called when Interact fires a second time, or when Dani herself
         /// triggers a jump to reach a ledge.
         /// </summary>

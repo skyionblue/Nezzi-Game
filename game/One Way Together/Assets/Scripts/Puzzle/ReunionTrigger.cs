@@ -7,6 +7,10 @@ namespace OneWayTogether.Puzzle
     /// The win condition for every level. The level completes only when BOTH
     /// Scarlet and Dani are simultaneously inside this trigger zone.
     ///
+    /// Uses 3D trigger callbacks (OnTriggerEnter/Exit) because CharacterController
+    /// automatically creates a 3D CapsuleCollider — 2D physics is not used in
+    /// the HD-2D isometric build.
+    ///
     /// A single character entering does not trigger completion — they must
     /// physically be together. This mechanically reinforces the game's emotional
     /// core: reuniting is the goal, not reaching an exit.
@@ -14,7 +18,7 @@ namespace OneWayTogether.Puzzle
     /// Place one per level. The trigger should be clearly signposted in the scene
     /// (a warm glow, particle effect, or distinct tile) so players know the goal.
     /// </summary>
-    [RequireComponent(typeof(Collider2D))]
+    [RequireComponent(typeof(Collider))]
     public class ReunionTrigger : MonoBehaviour
     {
         [Header("Feedback")]
@@ -40,10 +44,10 @@ namespace OneWayTogether.Puzzle
             if (_characterLayer == -1)
                 _characterLayer = LayerMask.NameToLayer("Character");
 
-            GetComponent<Collider2D>().isTrigger = true;
+            GetComponent<Collider>().isTrigger = true;
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
+        private void OnTriggerEnter(Collider other)
         {
             if (_hasTriggered) return;
             if (other.gameObject.layer != _characterLayer) return;
@@ -54,7 +58,7 @@ namespace OneWayTogether.Puzzle
             CheckReunion();
         }
 
-        private void OnTriggerExit2D(Collider2D other)
+        private void OnTriggerExit(Collider other)
         {
             if (_hasTriggered) return;
             if (other.gameObject.layer != _characterLayer) return;
@@ -83,7 +87,11 @@ namespace OneWayTogether.Puzzle
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = new Color(1f, 0.9f, 0.2f, 0.5f);
-            Gizmos.DrawWireCube(transform.position, GetComponent<Collider2D>()?.bounds.size ?? Vector3.one);
+            Collider col = GetComponent<Collider>();
+            if (col != null)
+                Gizmos.DrawWireCube(transform.position, col.bounds.size);
+            else
+                Gizmos.DrawWireCube(transform.position, Vector3.one * 2f);
         }
     }
 }

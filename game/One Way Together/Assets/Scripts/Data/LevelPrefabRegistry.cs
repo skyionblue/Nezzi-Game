@@ -13,15 +13,36 @@ namespace OneWayTogether.Data
     [CreateAssetMenu(fileName = "LevelPrefabRegistry", menuName = "OneWayTogether/Level Prefab Registry")]
     public class LevelPrefabRegistry : ScriptableObject
     {
-        [Header("Environment Platforms (3D models)")]
-        [Tooltip("Forest dirt/wood platform prefab. Must have BoxCollider2D on the Ground layer.")]
+        [Header("Legacy Environment Platforms")]
+        [Tooltip("Forest dirt/wood platform prefab.")]
         public GameObject forestPlatformPrefab;
 
-        [Tooltip("Stone wall segment prefab. Must have BoxCollider2D on the Ground layer.")]
+        [Tooltip("Stone wall segment prefab.")]
         public GameObject stoneWallPrefab;
 
         [Tooltip("Decorative background wall — no collider needed.")]
         public GameObject backgroundWallPrefab;
+
+        [Header("Polyworks — RPG Tiles")]
+        public GameObject rpgFloorCoveredPrefab;
+        public GameObject rpgFloorDirtPrefab;
+        public GameObject rpgFloorStonePrefab;
+        public GameObject rpgFloorWaterPrefab;
+        public GameObject rpgRampCoveredPrefab;
+
+        [Header("Polyworks — Vegetation")]
+        public GameObject vegetationBushLargePrefab;
+        public GameObject vegetationBushSmallPrefab;
+        public GameObject vegetationFernPrefab;
+
+        [Header("Polyworks — Rocks")]
+        public GameObject rockBoulderPrefab;
+        public GameObject rockChunksPrefab;
+
+        [Header("Polyworks — Ruins")]
+        public GameObject ancientRuinsArchPrefab;
+        public GameObject ancientRuinsColumnPrefab;
+        public GameObject ancientRuinsWallPrefab;
 
         [Header("Puzzle Objects")]
         [Tooltip("Gate prefab — must have Gate.cs attached.")]

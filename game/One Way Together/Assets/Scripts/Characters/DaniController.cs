@@ -1,40 +1,26 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 using OneWayTogether.Events;
 
 namespace OneWayTogether.Characters
 {
     /// <summary>
-    /// Dani-specific abilities:
-    ///
-    /// - <b>Crawl</b>: reduces the collider height when crawl input is held while grounded.
-    ///   Narrow tunnel triggers can check <see cref="IsCrawling"/> to allow or block passage.
-    ///
-    /// - <b>Climb</b>: when overlapping a rope/vine trigger, vertical input drives
-    ///   Dani up or down at <see cref="_climbSpeed"/> and gravity is zeroed.
+    /// Dani-specific abilities for HD-2D isometric movement:
     ///
     /// - <b>Activate switch</b>: Interact action when overlapping a switch trigger
-    ///   fires the switch via <see cref="GameEvents.RaisePressurePlateChanged"/> or
-    ///   a direct interface call on the Interactable.
+    ///   fires the switch via a direct interface call on the Interactable.
     ///
     /// - <b>Stack objects</b>: Interact action while overlapping a stackable object
     ///   picks it up; it is then parented to Dani and follows her. Interact again
-    ///   on a valid stack zone drops it.
+    ///   drops it.
     ///
     /// - <b>Lifted state</b>: Scarlet calls <see cref="BeginLiftedState"/> to parent
     ///   Dani and <see cref="EndLiftedState"/> to release her.
+    ///
+    /// Note: Climb is deferred — ropes will be redesigned for the 3D isometric space.
     /// </summary>
     public class DaniController : CharacterBase
     {
         // ── Serialised ────────────────────────────────────────────────────────────
-
-        [Header("Crawl")]
-        [Tooltip("Fraction of full standing height used when crawling.")]
-        [SerializeField, Range(0.2f, 0.9f)] private float _crawlHeightFraction = 0.5f;
-
-        [Header("Climb")]
-        [Tooltip("Vertical speed while climbing a rope or vine.")]
-        [SerializeField, Range(1f, 10f)] private float _climbSpeed = 4f;
 
         [Header("Stack")]
         [Tooltip("Local-space offset above Dani's feet where carried objects are held.")]
@@ -49,64 +35,35 @@ namespace OneWayTogether.Characters
         [Tooltip("Layer mask for switches and levers.")]
         [SerializeField] private LayerMask _switchLayer;
 
-        // ── Cached ────────────────────────────────────────────────────────────────
-
-        private CapsuleCollider2D _capsuleCollider;
-        private Vector2 _standingColliderSize;
-
         // ── State ─────────────────────────────────────────────────────────────────
 
-        private bool _isCrawling;
-        private bool _isClimbing;
         private bool _isLifted;
 
         // Currently carried stackable object.
         private GameObject _carriedObject;
         private bool _isCarrying;
 
-        // Climbing: reference to current rope trigger
-        private Rigidbody2D _climbAnchor;
         private float _liftLaunchForce;
 
-
         // Animator hashes
-        private static readonly int AnimCrawl  = Animator.StringToHash("Crawl");
-        private static readonly int AnimClimb  = Animator.StringToHash("Climb");
-        private static readonly int AnimCarry  = Animator.StringToHash("Carry");
+        private static readonly int AnimCarry = Animator.StringToHash("Carry");
 
         // ── Properties ───────────────────────────────────────────────────────────
 
         /// <inheritdoc/>
         public override CharacterType CharacterType => CharacterType.Dani;
 
-        /// <summary>True when Dani is in a crouched crawl state.</summary>
-        public bool IsCrawling => _isCrawling;
-
-        /// <summary>True when Dani is currently climbing a rope or vine.</summary>
-        public bool IsClimbing => _isClimbing;
-
         // ── Unity lifecycle ───────────────────────────────────────────────────────
 
         protected override void Awake()
         {
             base.Awake();
-            _capsuleCollider = GetComponent<CapsuleCollider2D>();
-            if (_capsuleCollider != null)
-                _standingColliderSize = _capsuleCollider.size;
         }
 
-        protected override void FixedUpdate()
+        protected override void Update()
         {
             if (_isLifted) return; // Scarlet drives position while holding Dani.
-
-            if (_isClimbing)
-            {
-                HandleClimbPhysics();
-                return;
-            }
-
-            base.FixedUpdate();
-            UpdateCrawlCollider();
+            base.Update();
         }
 
         // ── Input API ────────────────────────────────────────────────────────────
@@ -114,10 +71,6 @@ namespace OneWayTogether.Characters
         public override void ReceiveMove(Vector2 move)
         {
             base.ReceiveMove(move);
-
-            // Toggle crawl based on downward input while grounded.
-            if (IsGrounded && !_isClimbing)
-                SetCrawl(_moveInput.y < -0.5f);
         }
 
         public override void ReceiveInteract()
@@ -137,7 +90,7 @@ namespace OneWayTogether.Characters
         // ── Lifted state (called by Scarlet) ──────────────────────────────────────
 
         /// <summary>
-        /// Puts Dani into a "held" state — disables her collider and physics,
+        /// Puts Dani into a "held" state — disables her CharacterController and
         /// parents her to Scarlet's hand position.
         /// </summary>
         public void BeginLiftedState(Transform scarletTransform, Vector3 liftOffset, float launchForce)
@@ -145,99 +98,37 @@ namespace OneWayTogether.Characters
             _isLifted = true;
             _liftLaunchForce = launchForce;
 
-            _rb.bodyType = RigidbodyType2D.Kinematic;
-            _rb.linearVelocity = Vector2.zero;
-            _col.enabled = false;
+            _cc.enabled = false;
 
             transform.SetParent(scarletTransform);
             transform.localPosition = liftOffset;
         }
 
         /// <summary>
-        /// Releases Dani from Scarlet's hold, restoring physics.
-        /// If Dani is jumping at release, a launch impulse is applied.
+        /// Releases Dani from Scarlet's hold, restoring the CharacterController.
         /// </summary>
         public void EndLiftedState()
         {
             _isLifted = false;
 
             transform.SetParent(null);
-            _col.enabled = true;
-            _rb.bodyType = RigidbodyType2D.Dynamic;
-
-            // Apply launch impulse upward so Dani reaches the ledge.
-            _rb.AddForce(Vector2.up * _liftLaunchForce, ForceMode2D.Impulse);
-        }
-
-        // ── Climb ─────────────────────────────────────────────────────────────────
-
-        /// <summary>
-        /// Called by a RopeTrigger (Trigger2D) when Dani enters / exits a climbable zone.
-        /// </summary>
-        public void SetClimbingState(bool canClimb)
-        {
-            if (canClimb && !_isClimbing)
-                StartClimbing();
-            else if (!canClimb && _isClimbing)
-                StopClimbing();
-        }
-
-        private void StartClimbing()
-        {
-            _isClimbing = true;
-            _rb.gravityScale = 0f;
-            _rb.linearVelocity = Vector2.zero;
-            _animator.SetBool(AnimClimb, true);
-        }
-
-        private void StopClimbing()
-        {
-            _isClimbing = false;
-            _rb.gravityScale = 1f;
-            _animator.SetBool(AnimClimb, false);
-        }
-
-        private void HandleClimbPhysics()
-        {
-            if (!IsControllable) return;
-            float verticalInput = _moveInput.y;
-            _rb.linearVelocity = new Vector2(0f, verticalInput * _climbSpeed);
-        }
-
-        // ── Crawl ─────────────────────────────────────────────────────────────────
-
-        private void SetCrawl(bool crawling)
-        {
-            if (_isCrawling == crawling) return;
-            _isCrawling = crawling;
-            _animator.SetBool(AnimCrawl, crawling);
-        }
-
-        private void UpdateCrawlCollider()
-        {
-            if (_capsuleCollider == null) return;
-
-            float targetHeight = _isCrawling
-                ? _standingColliderSize.y * _crawlHeightFraction
-                : _standingColliderSize.y;
-
-            _capsuleCollider.size = new Vector2(_standingColliderSize.x, targetHeight);
+            _cc.enabled = true;
         }
 
         // ── Stack objects ─────────────────────────────────────────────────────────
 
         private bool TryPickUpObject()
         {
-            Collider2D hit = Physics2D.OverlapCircle(transform.position, _interactRange, _stackableLayer);
-            if (hit == null) return false;
+            Collider[] hits = Physics.OverlapSphere(transform.position, _interactRange, _stackableLayer);
+            if (hits.Length == 0) return false;
 
-            _carriedObject = hit.gameObject;
+            _carriedObject = hits[0].gameObject;
             _isCarrying = true;
 
             // Disable the object's physics while carried.
-            Rigidbody2D objectRb = _carriedObject.GetComponent<Rigidbody2D>();
+            Rigidbody objectRb = _carriedObject.GetComponent<Rigidbody>();
             if (objectRb != null)
-                objectRb.bodyType = RigidbodyType2D.Kinematic;
+                objectRb.isKinematic = true;
 
             _carriedObject.transform.SetParent(transform);
             _carriedObject.transform.localPosition = _carryOffset;
@@ -252,9 +143,9 @@ namespace OneWayTogether.Characters
 
             _carriedObject.transform.SetParent(null);
 
-            Rigidbody2D objectRb = _carriedObject.GetComponent<Rigidbody2D>();
+            Rigidbody objectRb = _carriedObject.GetComponent<Rigidbody>();
             if (objectRb != null)
-                objectRb.bodyType = RigidbodyType2D.Dynamic;
+                objectRb.isKinematic = false;
 
             _carriedObject = null;
             _isCarrying = false;
@@ -265,12 +156,24 @@ namespace OneWayTogether.Characters
 
         private bool TryActivateSwitch()
         {
-            Collider2D hit = Physics2D.OverlapCircle(transform.position, _interactRange, _switchLayer);
-            if (hit == null) return false;
+            Collider[] hits = Physics.OverlapSphere(transform.position, _interactRange, _switchLayer);
+            if (hits.Length == 0) return false;
 
-            IInteractable interactable = hit.GetComponentInParent<IInteractable>();
+            IInteractable interactable = hits[0].GetComponentInParent<IInteractable>();
             interactable?.Interact(this);
             return true;
+        }
+
+        // ── Climb (deferred — kept as stub for RopeTrigger compatibility) ──────────
+
+        /// <summary>
+        /// Called by RopeTrigger when Dani enters or exits a climbable zone.
+        /// Climb mechanics will be redesigned for the 3D isometric space.
+        /// </summary>
+        public void SetClimbingState(bool canClimb)
+        {
+            // Stub — climb is not yet implemented for the HD-2D isometric build.
+            // RopeTrigger still calls this so the interface remains stable.
         }
 
         // ── Gizmos ────────────────────────────────────────────────────────────────

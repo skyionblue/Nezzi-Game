@@ -7,9 +7,8 @@ namespace OneWayTogether.Input
 {
     /// <summary>
     /// Owns the input action asset and routes actions to the correct character.
-    /// Replaces the PlayerInput-per-character approach which suffered from Unity's
-    /// device-pairing only targeting the first-initialised PlayerInput, silently
-    /// dropping all input for whichever character initialised second.
+    /// Top-down version: Jump action and handler have been removed — the game
+    /// uses gravity-free XY movement with no jump mechanic.
     /// </summary>
     public class InputRouter : MonoBehaviour
     {
@@ -27,7 +26,6 @@ namespace OneWayTogether.Input
         public bool IsCoopActive { get; private set; }
 
         private InputAction _move;
-        private InputAction _jump;
         private InputAction _interact;
         private InputAction _switchCharacter;
 
@@ -41,7 +39,6 @@ namespace OneWayTogether.Input
 
             var gameplay = _actionAsset.FindActionMap("Gameplay", throwIfNotFound: true);
             _move            = gameplay.FindAction("Move",            throwIfNotFound: true);
-            _jump            = gameplay.FindAction("Jump",            throwIfNotFound: true);
             _interact        = gameplay.FindAction("Interact",        throwIfNotFound: true);
             _switchCharacter = gameplay.FindAction("SwitchCharacter", throwIfNotFound: true);
         }
@@ -52,7 +49,6 @@ namespace OneWayTogether.Input
 
             _move.performed      += OnMove;
             _move.canceled       += OnMoveCanceled;
-            _jump.performed      += OnJump;
             _interact.performed  += OnInteract;
             _switchCharacter.performed += OnSwitchCharacter;
         }
@@ -61,7 +57,6 @@ namespace OneWayTogether.Input
         {
             _move.performed      -= OnMove;
             _move.canceled       -= OnMoveCanceled;
-            _jump.performed      -= OnJump;
             _interact.performed  -= OnInteract;
             _switchCharacter.performed -= OnSwitchCharacter;
 
@@ -98,9 +93,6 @@ namespace OneWayTogether.Input
 
         private void OnMoveCanceled(InputAction.CallbackContext ctx)
             => Active()?.ReceiveStopMove();
-
-        private void OnJump(InputAction.CallbackContext ctx)
-            => Active()?.ReceiveJump(true);
 
         private void OnInteract(InputAction.CallbackContext ctx)
             => Active()?.ReceiveInteract();

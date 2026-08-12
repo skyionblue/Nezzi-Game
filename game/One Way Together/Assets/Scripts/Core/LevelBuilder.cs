@@ -9,8 +9,8 @@ namespace OneWayTogether.Core
     /// Reads a LevelData ScriptableObject at Awake and constructs the level by
     /// instantiating 3D platform models and puzzle props. No tilemap is used.
     ///
-    /// Platform prefabs must have a BoxCollider2D on the Ground layer so that
-    /// characters' Rigidbody2D physics can stand on them.
+    /// All positions are in 3D world space. Characters and objects are placed on
+    /// the XZ floor plane (Y = 0 by default).
     ///
     /// Call order:
     ///   Awake → BuildLevel → PlaceCharacters, BuildPlatforms, PlaceObjects, ApplyCamera
@@ -70,10 +70,10 @@ namespace OneWayTogether.Core
         private void PlaceCharacters()
         {
             if (_scarletRoot != null)
-                _scarletRoot.position = new Vector3(_levelData.scarletStart.x, _levelData.scarletStart.y, 0f);
+                _scarletRoot.position = _levelData.scarletStart;
 
             if (_daniRoot != null)
-                _daniRoot.position = new Vector3(_levelData.daniStart.x, _levelData.daniStart.y, 0f);
+                _daniRoot.position = _levelData.daniStart;
         }
 
         private void BuildPlatforms()
@@ -97,7 +97,8 @@ namespace OneWayTogether.Core
         {
             foreach (LevelObjectData def in _levelData.objects)
             {
-                Vector3 pos = new Vector3(def.position.x, def.position.y, 0f);
+                // Position is already a full Vector3 — use it directly.
+                Vector3 pos = def.position;
 
                 switch (def.type)
                 {
@@ -144,17 +145,16 @@ namespace OneWayTogether.Core
 
             cam.backgroundColor = _levelData.skyColor;
 
-            // Set orthographic size on the SinglePlayerCam virtual camera.
-            // CoopCam framing is driven by CinemachineTargetGroup bounds, not
-            // a fixed ortho size, so we leave it untouched.
+            // Find the SinglePlayerCam and push the field of view.
+            // Orthographic size is ignored — camera is now perspective.
             CinemachineCamera[] vcams =
-                FindObjectsByType<CinemachineCamera>(FindObjectsSortMode.None);
+                FindObjectsByType<CinemachineCamera>(FindObjectsInactive.Exclude);
 
             foreach (CinemachineCamera v in vcams)
             {
                 if (v.name == "SinglePlayerCam")
                 {
-                    v.Lens.OrthographicSize = _levelData.orthographicSize;
+                    v.Lens.FieldOfView = 40f;
                     break;
                 }
             }
@@ -215,10 +215,21 @@ namespace OneWayTogether.Core
                 return;
             }
 
-            GameObject    go  = Instantiate(_prefabs.reunionTriggerPrefab, pos, Quaternion.identity, _objectContainer);
-            BoxCollider2D col = go.GetComponent<BoxCollider2D>();
-            if (col != null && triggerSize != Vector2.zero)
-                col.size = triggerSize;
+            GameObject go = Instantiate(_prefabs.reunionTriggerPrefab, pos, Quaternion.identity, _objectContainer);
+
+            // Try 3D BoxCollider first (isometric), fall back to BoxCollider2D for legacy prefabs.
+            if (triggerSize != Vector2.zero)
+            {
+                BoxCollider col3d = go.GetComponent<BoxCollider>();
+                if (col3d != null)
+                    col3d.size = new Vector3(triggerSize.x, 2f, triggerSize.y);
+                else
+                {
+                    BoxCollider2D col2d = go.GetComponent<BoxCollider2D>();
+                    if (col2d != null)
+                        col2d.size = triggerSize;
+                }
+            }
         }
 
         private void SpawnCheckpoint(Vector3 pos)
@@ -247,10 +258,28 @@ namespace OneWayTogether.Core
 
         private GameObject PrefabForPlatform(PlatformType t) => t switch
         {
-            PlatformType.ForestPlatform => _prefabs.forestPlatformPrefab,
-            PlatformType.StoneWall      => _prefabs.stoneWallPrefab,
-            PlatformType.BackgroundWall => _prefabs.backgroundWallPrefab,
-            _                           => null,
+            PlatformType.ForestPlatform        => _prefabs.forestPlatformPrefab,
+            PlatformType.StoneWall             => _prefabs.stoneWallPrefab,
+            PlatformType.BackgroundWall        => _prefabs.backgroundWallPrefab,
+
+            PlatformType.RPGFloorCovered       => _prefabs.rpgFloorCoveredPrefab,
+            PlatformType.RPGFloorDirt          => _prefabs.rpgFloorDirtPrefab,
+            PlatformType.RPGFloorStone         => _prefabs.rpgFloorStonePrefab,
+            PlatformType.RPGFloorWater         => _prefabs.rpgFloorWaterPrefab,
+            PlatformType.RPGRampCovered        => _prefabs.rpgRampCoveredPrefab,
+
+            PlatformType.VegetationBushLarge   => _prefabs.vegetationBushLargePrefab,
+            PlatformType.VegetationBushSmall   => _prefabs.vegetationBushSmallPrefab,
+            PlatformType.VegetationFern        => _prefabs.vegetationFernPrefab,
+
+            PlatformType.RockBoulder           => _prefabs.rockBoulderPrefab,
+            PlatformType.RockChunks            => _prefabs.rockChunksPrefab,
+
+            PlatformType.AncientRuinsArch      => _prefabs.ancientRuinsArchPrefab,
+            PlatformType.AncientRuinsColumn    => _prefabs.ancientRuinsColumnPrefab,
+            PlatformType.AncientRuinsWall      => _prefabs.ancientRuinsWallPrefab,
+
+            _                                  => null,
         };
     }
 }

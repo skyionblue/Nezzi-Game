@@ -9,7 +9,7 @@ namespace OneWayTogether.Collectibles
     /// a <see cref="GameEvents.OnSecretKeyCollected"/> event is raised,
     /// and the object is disabled so it cannot be collected twice in one session.
     /// </summary>
-    [RequireComponent(typeof(Collider2D))]
+    [RequireComponent(typeof(Collider))]
     public class SecretKeyPickup : MonoBehaviour
     {
         [Header("Identity")]
@@ -27,10 +27,10 @@ namespace OneWayTogether.Collectibles
             if (_characterLayer == -1)
                 _characterLayer = LayerMask.NameToLayer("Character");
 
-            GetComponent<Collider2D>().isTrigger = true;
+            GetComponent<Collider>().isTrigger = true;
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
+        private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.layer != _characterLayer) return;
 

@@ -78,6 +78,24 @@ namespace OneWayTogether.Puzzle
             GameEvents.RaiseGateStateChanged(_gateId, _isOpen);
         }
 
+        // ── Runtime configuration ─────────────────────────────────────────────────
+
+        /// <summary>
+        /// Configures the gate at runtime — call immediately after Instantiate, before
+        /// OnEnable fires the subscription. Safe to call before Awake because Awake
+        /// will not have run yet on a freshly instantiated object.
+        ///
+        /// <paramref name="gateId"/> is the unique ID published to GameEvents.
+        /// <paramref name="plateId"/> must match the Lever or PressurePlate that controls this gate.
+        /// <paramref name="openOffset"/> is the local-space position offset when open.
+        /// </summary>
+        public void Init(string gateId, string plateId, Vector3 openOffset)
+        {
+            _gateId         = gateId;
+            _triggerPlateId = plateId;
+            _openPosition   = openOffset;
+        }
+
         // ── Gizmos ────────────────────────────────────────────────────────────────
 
         private void OnDrawGizmosSelected()

@@ -7,7 +7,7 @@ namespace OneWayTogether.Collectibles
     /// <see cref="CoinManager"/> then disables itself. The CoinManager owns the
     /// economy; this component only signals the pickup event.
     /// </summary>
-    [RequireComponent(typeof(Collider2D))]
+    [RequireComponent(typeof(Collider))]
     public class CoinPickup : MonoBehaviour
     {
         [Header("Feedback")]
@@ -26,10 +26,10 @@ namespace OneWayTogether.Collectibles
                 _characterLayer = LayerMask.NameToLayer("Character");
 
             // Ensure the collider is a trigger.
-            GetComponent<Collider2D>().isTrigger = true;
+            GetComponent<Collider>().isTrigger = true;
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
+        private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.layer != _characterLayer) return;
 

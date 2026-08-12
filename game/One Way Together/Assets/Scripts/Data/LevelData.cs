@@ -11,6 +11,27 @@ namespace OneWayTogether.Data
         ForestPlatform,
         StoneWall,
         BackgroundWall,
+
+        // Polyworks RPG Tiles
+        RPGFloorCovered,    // grass-covered ground square
+        RPGFloorDirt,       // dirt ground square
+        RPGFloorStone,      // stone ground square
+        RPGFloorWater,      // water square
+        RPGRampCovered,     // grass ramp (for slopes)
+
+        // Polyworks vegetation
+        VegetationBushLarge,
+        VegetationBushSmall,
+        VegetationFern,
+
+        // Polyworks rocks
+        RockBoulder,
+        RockChunks,
+
+        // Polyworks ruins
+        AncientRuinsArch,
+        AncientRuinsColumn,
+        AncientRuinsWall,
     }
 
     // ── Platform definition ───────────────────────────────────────────────────
@@ -35,6 +56,9 @@ namespace OneWayTogether.Data
     /// Data-driven level definition. No tilemap — platforms are 3D prefab
     /// instances; interactive objects are placed by type with runtime config.
     ///
+    /// All positions are full 3D world-space Vector3 values matching the XZ
+    /// horizontal plane used by the HD-2D isometric camera.
+    ///
     /// Create via Assets > Create > OneWayTogether > Level Data.
     /// One asset per level; reference from the LevelBuilder component in the
     /// scene.
@@ -45,9 +69,9 @@ namespace OneWayTogether.Data
         [Header("Identity")]
         public string levelName = "Untitled Level";
 
-        [Header("Characters")]
-        public Vector2 scarletStart = new Vector2(-2f,  1.9f);
-        public Vector2 daniStart    = new Vector2(9f,   1.432f);
+        [Header("Characters — 3D world-space start positions (XZ floor plane)")]
+        public Vector3 scarletStart = new Vector3(-3f, 0f, 0f);
+        public Vector3 daniStart    = new Vector3(6f,  0f, 0f);
 
         [Header("Platforms (3D models)")]
         public List<PlatformDef> platforms = new List<PlatformDef>();
@@ -58,8 +82,8 @@ namespace OneWayTogether.Data
 
         [Header("Camera")]
         [Tooltip("Camera.backgroundColor applied at level load.")]
-        public Color skyColor         = new Color(0.15f, 0.2f, 0.15f, 1f);
-        [Tooltip("OrthographicSize pushed to the SinglePlayerCam virtual camera.")]
-        public float orthographicSize = 4f;
+        public Color skyColor         = new Color(0.1f, 0.15f, 0.1f, 1f);
+        [Tooltip("Unused in perspective mode — kept for legacy reference.")]
+        public float orthographicSize = 8f;
     }
 }

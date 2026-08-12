@@ -10,10 +10,13 @@ namespace OneWayTogether.Puzzle
     /// configured plate ID — gates listen to the same event regardless of whether it
     /// came from a pressure plate or a lever.
     ///
+    /// Uses a 3D Collider trigger for the proximity zone because CharacterController
+    /// creates 3D CapsuleColliders — 2D physics is not used in the HD-2D isometric build.
+    ///
     /// Levers are toggle-based by default; set <see cref="_oneShot"/> to make them
     /// single-use (e.g., a mechanism that fires only once and locks the bridge).
     /// </summary>
-    [RequireComponent(typeof(Collider2D))]
+    [RequireComponent(typeof(Collider))]
     public class Lever : MonoBehaviour, IInteractable
     {
         [Header("Identity")]
@@ -28,20 +31,22 @@ namespace OneWayTogether.Puzzle
         [SerializeField] private bool _startsActivated = false;
 
         [Header("Visuals")]
-        [SerializeField] private Sprite _inactiveSprite;
-        [SerializeField] private Sprite _activeSprite;
-        [SerializeField] private SpriteRenderer _leverRenderer;
+        [SerializeField] private Renderer _leverRenderer;
+        [SerializeField] private Color _inactiveColor = new Color(0.6f, 0.6f, 0.6f);
+        [SerializeField] private Color _activeColor   = new Color(0.2f, 1f, 0.2f);
 
         // ── State ─────────────────────────────────────────────────────────────────
 
         private bool _isActivated;
         private bool _hasBeenUsed;
 
+        private static readonly int ColorId = Shader.PropertyToID("_BaseColor");
+
         // ── Unity lifecycle ───────────────────────────────────────────────────────
 
         private void Awake()
         {
-            GetComponent<Collider2D>().isTrigger = true;
+            GetComponent<Collider>().isTrigger = true;
             _isActivated = _startsActivated;
             RefreshVisual();
         }
@@ -65,12 +70,28 @@ namespace OneWayTogether.Puzzle
             GameEvents.RaisePressurePlateChanged(_plateId, _isActivated);
         }
 
+        // ── Runtime configuration ─────────────────────────────────────────────────
+
+        /// <summary>
+        /// Configures the lever at runtime — call immediately after Instantiate.
+        /// <paramref name="plateId"/> must match the <see cref="Gate._triggerPlateId"/> on
+        /// the gate this lever should control.
+        /// </summary>
+        public void Init(string plateId, bool oneShot = false)
+        {
+            _plateId = plateId;
+            _oneShot = oneShot;
+        }
+
         // ── Private ───────────────────────────────────────────────────────────────
 
         private void RefreshVisual()
         {
             if (_leverRenderer == null) return;
-            _leverRenderer.sprite = _isActivated ? _activeSprite : _inactiveSprite;
+            MaterialPropertyBlock block = new MaterialPropertyBlock();
+            _leverRenderer.GetPropertyBlock(block);
+            block.SetColor(ColorId, _isActivated ? _activeColor : _inactiveColor);
+            _leverRenderer.SetPropertyBlock(block);
         }
     }
 }

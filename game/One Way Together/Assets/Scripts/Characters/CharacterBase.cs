@@ -6,14 +6,19 @@ using OneWayTogether.Events;
 namespace OneWayTogether.Characters
 {
     /// <summary>
-    /// Shared foundation for Scarlet and Dani. Owns movement, jump, ground detection,
-    /// and animation state. Subclasses add character-specific abilities.
+    /// Shared foundation for Scarlet and Dani. Owns HD-2D isometric movement on
+    /// the XZ horizontal plane, facing direction, and animation state.
+    /// Subclasses add character-specific abilities.
+    ///
+    /// Physics model: Unity CharacterController. Gravity is applied manually so
+    /// the character stays grounded on the XZ floor. Input X maps to world X;
+    /// input Y (forward/back stick) maps to world -Z (screen-down = world -Z for
+    /// a camera pitched ~52° from above looking south).
     ///
     /// Attach <see cref="CharacterData"/> to drive all tunable values from a ScriptableObject.
     /// </summary>
-    [RequireComponent(typeof(Rigidbody2D))]
+    [RequireComponent(typeof(CharacterController))]
     [RequireComponent(typeof(Animator))]
-    [RequireComponent(typeof(Collider2D))]
     public abstract class CharacterBase : MonoBehaviour
     {
         // ── Serialised ────────────────────────────────────────────────────────────
@@ -21,39 +26,26 @@ namespace OneWayTogether.Characters
         [Header("Character Configuration")]
         [SerializeField] protected CharacterData _data;
 
-        [Header("Ground Detection")]
-        [Tooltip("Transform positioned at the character's feet for ground overlap check.")]
-        [SerializeField] protected Transform _groundCheck;
-
-
         // ── Cached components ─────────────────────────────────────────────────────
 
-        protected Rigidbody2D _rb;
+        protected CharacterController _cc;
         protected Animator _animator;
-        protected Collider2D _col;
 
         // ── State ─────────────────────────────────────────────────────────────────
 
         protected Vector2 _moveInput;
-        private bool _jumpQueued;
-        private bool _isGrounded;
-        private bool _isFacingRight = true;
+
+        // Accumulated vertical velocity — used for gravity so the character stays
+        // pressed against the floor and doesn't float after stepping off ledges.
+        private float _verticalVelocity;
 
         // Animator parameter IDs — cached to avoid per-frame string hashing.
-        private static readonly int AnimSpeed   = Animator.StringToHash("Speed");
-        private static readonly int AnimGrounded = Animator.StringToHash("Grounded");
-        private static readonly int AnimJump     = Animator.StringToHash("Jump");
+        private static readonly int AnimSpeed = Animator.StringToHash("Speed");
 
         // ── Properties ────────────────────────────────────────────────────────────
 
         /// <summary>Identifies which sibling this is — set by the concrete subclass.</summary>
         public abstract CharacterType CharacterType { get; }
-
-        /// <summary>True when the character is standing on ground this frame.</summary>
-        public bool IsGrounded => _isGrounded;
-
-        /// <summary>Current world-space velocity from the Rigidbody.</summary>
-        public Vector2 Velocity => _rb.linearVelocity;
 
         /// <summary>
         /// True when input is being forwarded to this character. False for the
@@ -65,9 +57,8 @@ namespace OneWayTogether.Characters
 
         protected virtual void Awake()
         {
-            _rb       = GetComponent<Rigidbody2D>();
+            _cc       = GetComponent<CharacterController>();
             _animator = GetComponent<Animator>();
-            _col      = GetComponent<Collider2D>();
 
             if (_data != null && _data.AnimatorController != null)
                 _animator.runtimeAnimatorController = _data.AnimatorController;
@@ -96,29 +87,18 @@ namespace OneWayTogether.Characters
             GameEvents.OnGameStateChanged       -= HandleGameStateChanged;
         }
 
-        protected virtual void FixedUpdate()
+        protected virtual void Update()
         {
-            CheckGrounded();
             ApplyMovement();
-            ApplyBetterJumpGravity();
             DriveAnimator();
         }
 
         // ── Input API (called by InputRouter) ────────────────────────────────────
-        // InputRouter owns the InputActions and routes directly to the active
-        // character — no PlayerInput SendMessages on characters.
 
         public virtual void ReceiveMove(Vector2 move)
         {
             if (!IsControllable) return;
             _moveInput = move;
-        }
-
-        public virtual void ReceiveJump(bool pressed)
-        {
-            if (!IsControllable) return;
-            if (pressed && _isGrounded)
-                _jumpQueued = true;
         }
 
         public virtual void ReceiveInteract() { }
@@ -128,94 +108,41 @@ namespace OneWayTogether.Characters
             _moveInput = Vector2.zero;
         }
 
-        // ── Protected API for subclasses ──────────────────────────────────────────
-
-        /// <summary>
-        /// Subclasses can call this to apply an instantaneous velocity impulse,
-        /// e.g. when Scarlet is thrown or Dani uses a rope launch.
-        /// </summary>
-        protected void ApplyImpulse(Vector2 force)
-        {
-            _rb.AddForce(force, ForceMode2D.Impulse);
-        }
-
         // ── Private: physics ──────────────────────────────────────────────────────
-
-        private void CheckGrounded()
-        {
-            if (_groundCheck == null || _data == null) return;
-            _isGrounded = Physics2D.OverlapCircle(
-                _groundCheck.position,
-                _data.GroundCheckRadius,
-                _data.GroundLayer);
-        }
-
 
         private void ApplyMovement()
         {
             if (_data == null) return;
 
-            float targetVelocityX = IsControllable
-                ? _moveInput.x * _data.MoveSpeed
-                : 0f;
+            // Input X = strafe left/right → world X
+            // Input Y = forward/back stick → world -Z (isometric: up-screen is -Z)
+            Vector3 move = IsControllable
+                ? new Vector3(_moveInput.x, 0f, -_moveInput.y).normalized * _data.MoveSpeed
+                : Vector3.zero;
 
-            _rb.linearVelocity = new Vector2(targetVelocityX, _rb.linearVelocity.y);
+            // Apply gravity so the character stays pressed to the floor.
+            if (_cc.isGrounded)
+                _verticalVelocity = -2f; // small constant keeps grounded flag reliable
+            else
+                _verticalVelocity += Physics.gravity.y * Time.deltaTime;
 
-            if (_jumpQueued)
+            Vector3 totalMotion = move + Vector3.up * _verticalVelocity;
+            _cc.Move(totalMotion * Time.deltaTime);
+
+            // Rotate to face movement direction in the XZ plane.
+            if (move.magnitude > 0.01f)
             {
-                // Signal the animator first so the transition evaluates this frame,
-                // before physics launches the character on the same FixedUpdate.
-                _animator.SetTrigger(AnimJump);
-                _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, 0f);
-                _rb.AddForce(Vector2.up * _data.JumpForce, ForceMode2D.Impulse);
-                _jumpQueued = false;
-            }
-
-            // Flip sprite to face direction of travel.
-            if (_moveInput.x > 0.01f && !_isFacingRight) Flip();
-            else if (_moveInput.x < -0.01f && _isFacingRight) Flip();
-        }
-
-        private void ApplyBetterJumpGravity()
-        {
-            if (_data == null) return;
-
-            if (_rb.linearVelocity.y < 0f)
-            {
-                // Falling — add extra downward force for snappy arc.
-                _rb.linearVelocity += Vector2.up * (Physics2D.gravity.y * (_data.FallMultiplier - 1f) * Time.fixedDeltaTime);
-            }
-            else if (_rb.linearVelocity.y > 0f && !IsJumpHeld())
-            {
-                // Jump button released early — truncate rise for short hop.
-                _rb.linearVelocity += Vector2.up * (Physics2D.gravity.y * (_data.LowJumpMultiplier - 1f) * Time.fixedDeltaTime);
+                float angle = Mathf.Atan2(move.x, move.z) * Mathf.Rad2Deg;
+                transform.rotation = Quaternion.Euler(0f, angle, 0f);
             }
         }
 
         private void DriveAnimator()
         {
-            _animator.SetFloat(AnimSpeed, Mathf.Abs(_rb.linearVelocity.x));
-            _animator.SetBool(AnimGrounded, _isGrounded);
-        }
-
-        private void Flip()
-        {
-            _isFacingRight = !_isFacingRight;
-            // 3D models use Y-rotation to face directions rather than scale mirroring.
-            // Scale mirroring inverts normals and causes lighting artifacts on 3D meshes.
-            transform.Rotate(0f, 180f, 0f);
-        }
-
-        /// <summary>
-        /// Queries the current jump action state from the Input System.
-        /// Subclasses may override if they handle input differently.
-        /// </summary>
-        protected virtual bool IsJumpHeld()
-        {
-            // Default: the Input System low-level API is not directly accessible here
-            // without a reference to the action. Subclasses with a PlayerInput reference
-            // should override this to read the action's IsPressed() state.
-            return false;
+            // XZ speed only — ignores vertical fall velocity.
+            Vector3 v = _cc.velocity;
+            float speed = new Vector2(v.x, v.z).magnitude;
+            _animator.SetFloat(AnimSpeed, speed);
         }
 
         // ── Event handlers ────────────────────────────────────────────────────────

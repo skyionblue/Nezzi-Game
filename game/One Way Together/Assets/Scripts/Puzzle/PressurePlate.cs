@@ -8,11 +8,15 @@ namespace OneWayTogether.Puzzle
     /// Broadcasts state changes through <see cref="GameEvents.OnPressurePlateChanged"/>
     /// so gates and other listeners can respond without direct references.
     ///
+    /// Uses 3D trigger callbacks (OnTriggerEnter/Exit) because CharacterController
+    /// automatically creates a 3D CapsuleCollider — 2D physics is not used in
+    /// the HD-2D isometric build.
+    ///
     /// A plate stays active as long as the activating collider is inside the trigger.
     /// When it exits, the plate deactivates unless <see cref="_lockable"/> is true
     /// and it has been locked by a lever/switch.
     /// </summary>
-    [RequireComponent(typeof(Collider2D))]
+    [RequireComponent(typeof(Collider))]
     public class PressurePlate : MonoBehaviour
     {
         [Header("Identity")]
@@ -25,7 +29,7 @@ namespace OneWayTogether.Puzzle
 
         [Header("Visuals")]
         [Tooltip("Renderer whose material colour changes to show activation state.")]
-        [SerializeField] private SpriteRenderer _indicator;
+        [SerializeField] private Renderer _indicator;
         [SerializeField] private Color _activeColor   = new Color(0.2f, 1f, 0.2f);
         [SerializeField] private Color _inactiveColor = new Color(0.6f, 0.6f, 0.6f);
 
@@ -34,6 +38,8 @@ namespace OneWayTogether.Puzzle
         private int _overlappingObjects;
         private bool _isActive;
         private bool _isLocked;
+
+        private static readonly int ColorId = Shader.PropertyToID("_BaseColor");
 
         // ── Public API ────────────────────────────────────────────────────────────
 
@@ -55,18 +61,18 @@ namespace OneWayTogether.Puzzle
 
         private void Awake()
         {
-            GetComponent<Collider2D>().isTrigger = true;
+            GetComponent<Collider>().isTrigger = true;
             RefreshVisual();
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
+        private void OnTriggerEnter(Collider other)
         {
             if (_isLocked) return;
             _overlappingObjects++;
             if (_overlappingObjects == 1) SetActive(true);
         }
 
-        private void OnTriggerExit2D(Collider2D other)
+        private void OnTriggerExit(Collider other)
         {
             if (_isLocked) return;
             _overlappingObjects = Mathf.Max(0, _overlappingObjects - 1);
@@ -86,7 +92,11 @@ namespace OneWayTogether.Puzzle
         private void RefreshVisual()
         {
             if (_indicator == null) return;
-            _indicator.color = _isActive ? _activeColor : _inactiveColor;
+            // Use MaterialPropertyBlock to avoid creating material instances.
+            MaterialPropertyBlock block = new MaterialPropertyBlock();
+            _indicator.GetPropertyBlock(block);
+            block.SetColor(ColorId, _isActive ? _activeColor : _inactiveColor);
+            _indicator.SetPropertyBlock(block);
         }
     }
 }
