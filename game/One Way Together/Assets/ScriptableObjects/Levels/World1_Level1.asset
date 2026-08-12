@@ -916,13 +916,103 @@ MonoBehaviour:
     gateOpenOffset: {x: 0, y: 0, z: 0}
   - type: 4
     position: {x: -12, y: 0, z: -6}
-    id: 
+    id:
     oneShot: 0
     triggerSize: {x: 0, y: 0}
     gateOpenOffset: {x: 0, y: 0, z: 0}
   - type: 4
     position: {x: 12, y: 0, z: 6}
-    id: 
+    id:
+    oneShot: 0
+    triggerSize: {x: 0, y: 0}
+    gateOpenOffset: {x: 0, y: 0, z: 0}
+  - type: 4
+    position: {x: -9, y: 0, z: 9}
+    id:
+    oneShot: 0
+    triggerSize: {x: 0, y: 0}
+    gateOpenOffset: {x: 0, y: 0, z: 0}
+  - type: 4
+    position: {x: -9, y: 0, z: -9}
+    id:
+    oneShot: 0
+    triggerSize: {x: 0, y: 0}
+    gateOpenOffset: {x: 0, y: 0, z: 0}
+  - type: 4
+    position: {x: -15, y: 0, z: 6}
+    id:
+    oneShot: 0
+    triggerSize: {x: 0, y: 0}
+    gateOpenOffset: {x: 0, y: 0, z: 0}
+  - type: 4
+    position: {x: -15, y: 0, z: -6}
+    id:
+    oneShot: 0
+    triggerSize: {x: 0, y: 0}
+    gateOpenOffset: {x: 0, y: 0, z: 0}
+  - type: 4
+    position: {x: 9, y: 0, z: -9}
+    id:
+    oneShot: 0
+    triggerSize: {x: 0, y: 0}
+    gateOpenOffset: {x: 0, y: 0, z: 0}
+  - type: 4
+    position: {x: 9, y: 0, z: 9}
+    id:
+    oneShot: 0
+    triggerSize: {x: 0, y: 0}
+    gateOpenOffset: {x: 0, y: 0, z: 0}
+  - type: 4
+    position: {x: 15, y: 0, z: -6}
+    id:
+    oneShot: 0
+    triggerSize: {x: 0, y: 0}
+    gateOpenOffset: {x: 0, y: 0, z: 0}
+  - type: 4
+    position: {x: 15, y: 0, z: 6}
+    id:
+    oneShot: 0
+    triggerSize: {x: 0, y: 0}
+    gateOpenOffset: {x: 0, y: 0, z: 0}
+  - type: 4
+    position: {x: -6, y: 0, z: 12}
+    id:
+    oneShot: 0
+    triggerSize: {x: 0, y: 0}
+    gateOpenOffset: {x: 0, y: 0, z: 0}
+  - type: 4
+    position: {x: -6, y: 0, z: -12}
+    id:
+    oneShot: 0
+    triggerSize: {x: 0, y: 0}
+    gateOpenOffset: {x: 0, y: 0, z: 0}
+  - type: 4
+    position: {x: 6, y: 0, z: 12}
+    id:
+    oneShot: 0
+    triggerSize: {x: 0, y: 0}
+    gateOpenOffset: {x: 0, y: 0, z: 0}
+  - type: 4
+    position: {x: 6, y: 0, z: -12}
+    id:
+    oneShot: 0
+    triggerSize: {x: 0, y: 0}
+    gateOpenOffset: {x: 0, y: 0, z: 0}
+  - type: 4
+    position: {x: -18, y: 0, z: 0}
+    id:
+    oneShot: 0
+    triggerSize: {x: 0, y: 0}
+    gateOpenOffset: {x: 0, y: 0, z: 0}
+  - type: 4
+    position: {x: 18, y: 0, z: 0}
+    id:
+    oneShot: 0
+    triggerSize: {x: 0, y: 0}
+    gateOpenOffset: {x: 0, y: 0, z: 0}
+  - type: 4
+    position: {x: -3, y: 0, z: 15}
+    id:
     oneShot: 0
     triggerSize: {x: 0, y: 0}
     gateOpenOffset: {x: 0, y: 0, z: 0}

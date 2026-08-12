@@ -45,6 +45,28 @@ namespace OneWayTogether.Puzzle
                 _characterLayer = LayerMask.NameToLayer("Character");
 
             GetComponent<Collider>().isTrigger = true;
+            CreateFloorMarker();
+        }
+
+        private void CreateFloorMarker()
+        {
+            // Flat disc on the floor so players can see the goal without a separate art asset.
+            GameObject marker = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+            marker.name = "GoalMarker";
+            marker.transform.SetParent(transform);
+            marker.transform.localPosition = new Vector3(0f, 0.02f, 0f);
+            marker.transform.localScale    = new Vector3(5f, 0.01f, 5f);
+
+            // Remove the capsule collider — the parent trigger handles detection.
+            Destroy(marker.GetComponent<Collider>());
+
+            // Warm golden glow — clearly distinct from the environment.
+            MeshRenderer mr = marker.GetComponent<MeshRenderer>();
+            Material mat = new Material(Shader.Find("Universal Render Pipeline/Lit"));
+            mat.color             = new Color(1f, 0.85f, 0.1f, 1f);
+            mat.SetFloat("_Metallic",  0f);
+            mat.SetFloat("_Smoothness", 0.8f);
+            mr.material = mat;
         }
 
         private void OnTriggerEnter(Collider other)
