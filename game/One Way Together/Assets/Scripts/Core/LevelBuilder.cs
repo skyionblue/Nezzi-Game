@@ -61,9 +61,11 @@ namespace OneWayTogether.Core
         /// </summary>
         public void BuildLevel()
         {
-            PlaceCharacters();
+            // Platforms and objects must exist before characters are positioned so
+            // their colliders are registered when the CharacterController first moves.
             BuildPlatforms();
             PlaceObjects();
+            PlaceCharacters();
             ApplyCamera();
         }
 
@@ -71,11 +73,15 @@ namespace OneWayTogether.Core
 
         private void PlaceCharacters()
         {
+            // Spawn slightly above the authored Y so the CharacterController falls
+            // onto the tile surface rather than starting inside it.
+            Vector3 spawnOffset = Vector3.up * 0.5f;
+
             if (_scarletRoot != null)
-                _scarletRoot.position = _levelData.scarletStart;
+                _scarletRoot.position = _levelData.scarletStart + spawnOffset;
 
             if (_daniRoot != null)
-                _daniRoot.position = _levelData.daniStart;
+                _daniRoot.position = _levelData.daniStart + spawnOffset;
 
             // Re-register after moving so CheckpointManager holds the correct start positions.
             // CharacterBase.Awake() may have registered stale scene positions before LevelBuilder ran.
