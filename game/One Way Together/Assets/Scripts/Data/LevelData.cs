@@ -32,6 +32,10 @@ namespace OneWayTogether.Data
         AncientRuinsArch,
         AncientRuinsColumn,
         AncientRuinsWall,
+
+        // Polyworks tall trees
+        VegetationTreePine,     // tall conical pine/summer tree
+        VegetationTreeAlpine,   // tall dark conical alpine/fir tree
     }
 
     // ── Platform definition ───────────────────────────────────────────────────

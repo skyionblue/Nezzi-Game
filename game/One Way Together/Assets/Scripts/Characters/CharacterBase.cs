@@ -1,7 +1,9 @@
-using UnityEngine;
+using LB.Player.Movement.StepHeight;
+using OneWayTogether.Characters.StepHeight;
 using OneWayTogether.Core;
 using OneWayTogether.Data;
 using OneWayTogether.Events;
+using UnityEngine;
 
 namespace OneWayTogether.Characters
 {
@@ -26,10 +28,16 @@ namespace OneWayTogether.Characters
         [Header("Character Configuration")]
         [SerializeField] protected CharacterData _data;
 
+        [Header("Step Height (optional)")]
+        [Tooltip("Assign the StepHeightController on this GameObject to enable automatic " +
+                 "step-up over low ledges. Leave null to disable the feature.")]
+        [SerializeField] private StepHeightController _stepHeightController;
+
         // ── Cached components ─────────────────────────────────────────────────────
 
         protected CharacterController _cc;
         protected Animator _animator;
+        private CCMovementInputManager _inputManager;
 
         // ── State ─────────────────────────────────────────────────────────────────
 
@@ -38,6 +46,9 @@ namespace OneWayTogether.Characters
         // Accumulated vertical velocity — used for gravity so the character stays
         // pressed against the floor and doesn't float after stepping off ledges.
         private float _verticalVelocity;
+
+        /// <summary>Clears accumulated fall velocity so a checkpoint teleport doesn't immediately re-fall.</summary>
+        public void ResetVelocity() => _verticalVelocity = 0f;
 
         // Animator parameter IDs — cached to avoid per-frame string hashing.
         private static readonly int AnimSpeed = Animator.StringToHash("Speed");
@@ -57,8 +68,9 @@ namespace OneWayTogether.Characters
 
         protected virtual void Awake()
         {
-            _cc       = GetComponent<CharacterController>();
-            _animator = GetComponent<Animator>();
+            _cc           = GetComponent<CharacterController>();
+            _animator     = GetComponent<Animator>();
+            _inputManager = GetComponent<CCMovementInputManager>();
 
             if (_data != null && _data.AnimatorController != null)
                 _animator.runtimeAnimatorController = _data.AnimatorController;
@@ -99,6 +111,7 @@ namespace OneWayTogether.Characters
         {
             if (!IsControllable) return;
             _moveInput = move;
+            _inputManager?.NotifyMove(move);
         }
 
         public virtual void ReceiveInteract() { }
@@ -106,6 +119,7 @@ namespace OneWayTogether.Characters
         public virtual void ReceiveStopMove()
         {
             _moveInput = Vector2.zero;
+            _inputManager?.NotifyStop();
         }
 
         // ── Private: physics ──────────────────────────────────────────────────────
@@ -116,8 +130,12 @@ namespace OneWayTogether.Characters
 
             // Camera at (52,0,0): screen-right = world +X, screen-up = world +Z.
             // Input X → world X, Input Y → world +Z.
-            Vector3 move = IsControllable
-                ? new Vector3(_moveInput.x, 0f, _moveInput.y).normalized * _data.MoveSpeed
+            // Joystick magnitude drives walk/run: < 0.5 = walk, >= 0.5 = run.
+            Vector3 rawInput  = new Vector3(_moveInput.x, 0f, _moveInput.y);
+            float   inputMag  = Mathf.Clamp01(rawInput.magnitude);
+            float   speed     = inputMag >= 0.5f ? _data.RunSpeed : _data.MoveSpeed;
+            Vector3 move      = IsControllable && inputMag > 0.01f
+                ? rawInput.normalized * speed
                 : Vector3.zero;
 
             // Apply gravity so the character stays pressed to the floor.
@@ -125,6 +143,14 @@ namespace OneWayTogether.Characters
                 _verticalVelocity = -2f;
             else
                 _verticalVelocity += Physics.gravity.y * Time.deltaTime;
+
+            // Step-height assist: let StepHeightController teleport the character up
+            // a low ledge before CharacterController tries to push through it.
+            // Only fires when grounded and moving to avoid spurious step checks on
+            // airborne or stationary frames. StepHeightController internally guards
+            // against re-entrant steps via its own isStepping flag.
+            if (_cc.isGrounded && move.magnitude > 0.01f && _stepHeightController != null)
+                _stepHeightController.CheckForStep();
 
             _cc.Move((move + Vector3.up * _verticalVelocity) * Time.deltaTime);
 
@@ -140,6 +166,8 @@ namespace OneWayTogether.Characters
         private void DriveAnimator()
         {
             // XZ speed only — ignores vertical fall velocity.
+            // Pass raw speed so the animator's Walk/Run thresholds (0.1 / 5.5) can
+            // select the correct clip. Walk clips play at 0.1–5.5, Run at 5.5+.
             Vector3 v = _cc.velocity;
             float speed = new Vector2(v.x, v.z).magnitude;
             _animator.SetFloat(AnimSpeed, speed);

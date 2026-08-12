@@ -44,6 +44,10 @@ namespace OneWayTogether.Data
         public GameObject ancientRuinsColumnPrefab;
         public GameObject ancientRuinsWallPrefab;
 
+        [Header("Polyworks — Tall Trees")]
+        public GameObject vegetationTreePinePrefab;
+        public GameObject vegetationTreeAlpinePrefab;
+
         [Header("Puzzle Objects")]
         [Tooltip("Gate prefab — must have Gate.cs attached.")]
         public GameObject gatePrefab;
@@ -59,6 +63,13 @@ namespace OneWayTogether.Data
 
         [Tooltip("RopeTrigger prefab — must have RopeTrigger.cs attached.")]
         public GameObject ropeTriggerPrefab;
+
+        [Tooltip("Bridge prefab — must have Bridge.cs attached.")]
+        public GameObject bridgePrefab;
+
+        [Header("Props")]
+        [Tooltip("Pushable boulder — must have a Rigidbody and be on the Stackable layer.")]
+        public GameObject pushBoulderPrefab;
 
         [Header("Collectibles")]
         [Tooltip("Coin pickup prefab — must have CoinPickup.cs attached.")]

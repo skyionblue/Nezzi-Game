@@ -456,6 +456,11 @@ GameObject:
   - component: {fileID: 153647514}
   - component: {fileID: 153647513}
   - component: {fileID: 153647518}
+  - component: {fileID: 153647523}
+  - component: {fileID: 153647522}
+  - component: {fileID: 153647521}
+  - component: {fileID: 153647519}
+  - component: {fileID: 153647520}
   m_Layer: 8
   m_Name: Dani
   m_TagString: Dani
@@ -476,6 +481,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: OneWayTogether::OneWayTogether.Characters.DaniController
   _data: {fileID: 11400000, guid: 117225f02bd3b4fbb85c0ff77daa002a, type: 2}
+  _stepHeightController: {fileID: 153647519}
   _carryOffset: {x: 0, y: 0.8, z: 0}
   _interactRange: 1.5
   _stackableLayer:
@@ -529,7 +535,7 @@ CharacterController:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 153647511}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2093188589}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -547,6 +553,80 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.65, z: 0}
+--- !u!114 &153647519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153647511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b6f835613078ab4f99d34c84437db9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: StepHeightSystem::LB.Player.Movement.StepHeight.StepHeightController
+  stepHeight: 0.6
+  stepUpSmoothFactor: 4.5
+  stepUpAngleThreshold: 65
+  layersToIgnore:
+    serializedVersion: 2
+    m_Bits: 64
+  disableStepHeight: 0
+  debugLog: 0
+  debugLogWarning: 0
+  debugLogError: 1
+  debugVisualization: 0
+--- !u!114 &153647520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153647511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a20da8876bb74ccaa0cdaac26d7fe2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OneWayTogether::OneWayTogether.Characters.StepHeight.StepHeightBootstrapper
+--- !u!114 &153647521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153647511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98ff113e3dded440d9723464cc4a3771, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OneWayTogether::OneWayTogether.Characters.StepHeight.CCColliderManager
+  _layersToIgnore:
+    serializedVersion: 2
+    m_Bits: 64
+--- !u!114 &153647522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153647511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b676def85077e43e0b1ce355e2478c1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OneWayTogether::OneWayTogether.Characters.StepHeight.CCMovementInputManager
+--- !u!114 &153647523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153647511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbb599831043c417bb124ce82cbded3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OneWayTogether::OneWayTogether.Characters.StepHeight.CCRigidbodyWrapper
 --- !u!1 &193379909
 GameObject:
   m_ObjectHideFlags: 0
@@ -576,7 +656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f77198b1c53b403395c5e4771b7b0b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: OneWayTogether::OneWayTogether.Core.HintManager
-  _levelData: {fileID: 11400000, guid: db9c94ce5b38e4bacba3e0f3ed93fbda, type: 2}
+  _levelData: {fileID: 11400000, guid: 339eff4177d84424d83b15d4ceacee2d, type: 2}
 --- !u!4 &193379911
 Transform:
   m_ObjectHideFlags: 0
@@ -910,6 +990,11 @@ GameObject:
   - component: {fileID: 318519184}
   - component: {fileID: 318519183}
   - component: {fileID: 318519185}
+  - component: {fileID: 318519190}
+  - component: {fileID: 318519189}
+  - component: {fileID: 318519188}
+  - component: {fileID: 318519186}
+  - component: {fileID: 318519187}
   m_Layer: 8
   m_Name: Scarlet
   m_TagString: Scarlet
@@ -926,7 +1011,7 @@ Transform:
   m_GameObject: {fileID: 318519180}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4, y: 0, z: 0}
+  m_LocalPosition: {x: -15, y: 0, z: 15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -946,6 +1031,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: OneWayTogether::OneWayTogether.Characters.ScarletController
   _data: {fileID: 11400000, guid: 689b3aca9b0e94c4787e3b66c5f13561, type: 2}
+  _stepHeightController: {fileID: 318519186}
   _liftOffset: {x: 0, y: 1.2, z: 0}
   _liftRange: 1
   _daniLayer:
@@ -981,7 +1067,7 @@ CharacterController:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 318519180}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 641194572}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -999,6 +1085,80 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!114 &318519186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 318519180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b6f835613078ab4f99d34c84437db9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: StepHeightSystem::LB.Player.Movement.StepHeight.StepHeightController
+  stepHeight: 0.6
+  stepUpSmoothFactor: 4.5
+  stepUpAngleThreshold: 65
+  layersToIgnore:
+    serializedVersion: 2
+    m_Bits: 64
+  disableStepHeight: 0
+  debugLog: 0
+  debugLogWarning: 0
+  debugLogError: 1
+  debugVisualization: 0
+--- !u!114 &318519187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 318519180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a20da8876bb74ccaa0cdaac26d7fe2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OneWayTogether::OneWayTogether.Characters.StepHeight.StepHeightBootstrapper
+--- !u!114 &318519188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 318519180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98ff113e3dded440d9723464cc4a3771, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OneWayTogether::OneWayTogether.Characters.StepHeight.CCColliderManager
+  _layersToIgnore:
+    serializedVersion: 2
+    m_Bits: 64
+--- !u!114 &318519189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 318519180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b676def85077e43e0b1ce355e2478c1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OneWayTogether::OneWayTogether.Characters.StepHeight.CCMovementInputManager
+--- !u!114 &318519190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 318519180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbb599831043c417bb124ce82cbded3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OneWayTogether::OneWayTogether.Characters.StepHeight.CCRigidbodyWrapper
 --- !u!1 &371992610
 GameObject:
   m_ObjectHideFlags: 0
@@ -1240,7 +1400,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 434224138}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.40821794, y: -0.23456973, z: 0.10938166, w: 0.8754261}
+  m_LocalRotation: {x: 0.36955, y: 0.17861, z: -0.07465, w: 0.90963}
   m_LocalPosition: {x: 0, y: 10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1751,6 +1911,72 @@ MonoBehaviour:
   _coinCountText: {fileID: 131242625}
   _scarletIndicator: {fileID: 0}
   _daniIndicator: {fileID: 0}
+--- !u!134 &641194572
+PhysicsMaterial:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 2
+  m_DynamicFriction: 0.6
+  m_StaticFriction: 0.6
+  m_Bounciness: 0
+  m_FrictionCombine: 0
+  m_BounceCombine: 0
+--- !u!1 &701840401
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 701840403}
+  - component: {fileID: 701840402}
+  m_Layer: 0
+  m_Name: GroundPlane
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &701840402
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701840401}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 100, y: 1, z: 100}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &701840403
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701840401}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -10, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &819216310
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2192,6 +2418,73 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &955397557
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 955397560}
+  - component: {fileID: 955397559}
+  - component: {fileID: 955397558}
+  m_Layer: 0
+  m_Name: GapHazard
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &955397558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 955397557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6df6a4026812c4334bc24d60970e2b4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OneWayTogether::OneWayTogether.Puzzle.Hazard
+  _armed: 1
+--- !u!65 &955397559
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 955397557}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 15, y: 8, z: 50}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &955397560
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 955397557}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1019685478
 GameObject:
   m_ObjectHideFlags: 0
@@ -2969,7 +3262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41f4b4852ad904c858c5228077c4fa05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: OneWayTogether::OneWayTogether.Core.LevelBuilder
-  _levelData: {fileID: 11400000, guid: db9c94ce5b38e4bacba3e0f3ed93fbda, type: 2}
+  _levelData: {fileID: 11400000, guid: 339eff4177d84424d83b15d4ceacee2d, type: 2}
   _prefabs: {fileID: 11400000, guid: d953b62d68f144a03a70bf918d019b96, type: 2}
   _scarletRoot: {fileID: 318519181}
   _daniRoot: {fileID: 153647517}
@@ -3833,59 +4126,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2012558023}
   m_CullTransparentMesh: 1
---- !u!1 &2070971594
-GameObject:
+--- !u!134 &2093188589
+PhysicsMaterial:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2070971596}
-  - component: {fileID: 2070971595}
-  m_Layer: 0
-  m_Name: GroundPlane
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!65 &2070971595
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2070971594}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 100, y: 0.1, z: 100}
-  m_Center: {x: 0, y: -0.05, z: 0}
---- !u!4 &2070971596
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2070971594}
+  m_Name: 
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_DynamicFriction: 0.6
+  m_StaticFriction: 0.6
+  m_Bounciness: 0
+  m_FrictionCombine: 0
+  m_BounceCombine: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -3903,10 +4156,11 @@ SceneRoots:
   - {fileID: 1794426821}
   - {fileID: 469781245}
   - {fileID: 1545952632}
-  - {fileID: 2070971596}
   - {fileID: 434224141}
   - {fileID: 1024773786}
   - {fileID: 942564877}
   - {fileID: 893705787}
   - {fileID: 193379911}
   - {fileID: 1603058486}
+  - {fileID: 955397560}
+  - {fileID: 701840403}

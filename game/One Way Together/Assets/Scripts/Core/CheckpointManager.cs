@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using OneWayTogether.Characters;
 using OneWayTogether.Events;
 
 namespace OneWayTogether.Core
@@ -94,13 +95,10 @@ namespace OneWayTogether.Core
 
         private void HandleCheckpointActivated(Vector3 position)
         {
-            // Store independent positions for each character.
-            // CheckpointTrigger provides the authoritative position; each character's
-            // actual position offset is calculated from the trigger's stored offsets.
-            // For now, store the same position — CheckpointTrigger sets per-character
-            // positions via RegisterCheckpoint.
-            _scarletCheckpoint = position;
-            _daniCheckpoint = position;
+            // Intentional no-op. CheckpointTrigger.Activate() calls RegisterCheckpoint()
+            // for each character individually with per-character spawn offsets BEFORE
+            // raising this event, so the positions are already correctly set.
+            // Writing position here would overwrite both to the same value.
         }
 
         /// <summary>
@@ -142,11 +140,25 @@ namespace OneWayTogether.Core
 
         private void TeleportToCheckpoints()
         {
-            if (_scarletTransform != null)
-                _scarletTransform.position = _scarletCheckpoint;
+            Teleport(_scarletTransform, _scarletCheckpoint);
+            Teleport(_daniTransform, _daniCheckpoint);
+        }
 
-            if (_daniTransform != null)
-                _daniTransform.position = _daniCheckpoint;
+        private void Teleport(Transform t, Vector3 position)
+        {
+            if (t == null) return;
+
+            // CharacterController fights direct position changes while enabled.
+            // Disable → set position → re-enable to guarantee the teleport sticks.
+            CharacterController cc = t.GetComponent<CharacterController>();
+            if (cc != null) cc.enabled = false;
+            t.position = position;
+            if (cc != null) cc.enabled = true;
+
+            // Clear accumulated fall velocity so the character doesn't immediately
+            // re-fall after being placed on solid ground.
+            CharacterBase cb = t.GetComponent<CharacterBase>();
+            if (cb != null) cb.ResetVelocity();
         }
     }
 }

@@ -4,9 +4,8 @@ using OneWayTogether.Events;
 namespace OneWayTogether.Characters
 {
     /// <summary>
-    /// Scarlet-specific abilities for HD-2D isometric movement: lift Dani to
-    /// high ledges. Boulder-push is handled implicitly by the CharacterController
-    /// walking into a physics Rigidbody — no special code needed.
+    /// Scarlet-specific abilities for HD-2D isometric movement: push boulders
+    /// via OnControllerColliderHit, lift Dani to high ledges.
     ///
     /// Pressure plate: handled entirely by the PressurePlate scene component —
     /// Scarlet does nothing special, just stands on it.
@@ -14,6 +13,10 @@ namespace OneWayTogether.Characters
     public class ScarletController : CharacterBase
     {
         // ── Serialised ────────────────────────────────────────────────────────────
+
+        [Header("Boulder Push")]
+        [Tooltip("Force applied to Rigidbodies Scarlet walks into (ForceMode.Force, per-frame).")]
+        [SerializeField, Range(1f, 50f)] private float _pushForce = 15f;
 
         [Header("Lift Settings")]
         [Tooltip("Local-space offset where Dani sits when being held.")]
@@ -48,6 +51,18 @@ namespace OneWayTogether.Characters
                 ReleaseDani();
             else
                 TryLiftDani();
+        }
+
+        // ── Boulder push ─────────────────────────────────────────────────────────
+
+        private void OnControllerColliderHit(ControllerColliderHit hit)
+        {
+            Rigidbody rb = hit.collider.attachedRigidbody;
+            if (rb == null || rb.isKinematic) return;
+            if (hit.moveDirection.y < -0.3f) return; // don't push objects downward
+
+            Vector3 pushDir = new Vector3(hit.moveDirection.x, 0f, hit.moveDirection.z);
+            rb.AddForce(pushDir * _pushForce, ForceMode.Force);
         }
 
         // ── Lift mechanics ────────────────────────────────────────────────────────

@@ -1,6 +1,8 @@
 using UnityEngine;
 using Unity.Cinemachine;
 using OneWayTogether.Data;
+using OneWayTogether.Characters;
+using OneWayTogether.Events;
 using OneWayTogether.Puzzle;
 
 namespace OneWayTogether.Core
@@ -59,9 +61,13 @@ namespace OneWayTogether.Core
         /// </summary>
         public void BuildLevel()
         {
-            PlaceCharacters();
             BuildPlatforms();
             PlaceObjects();
+            // Force the physics engine to register all newly instantiated colliders
+            // before characters are placed, so CharacterController.isGrounded is true
+            // on the very first frame and characters don't fall through the floor.
+            Physics.SyncTransforms();
+            PlaceCharacters();
             ApplyCamera();
         }
 
@@ -69,11 +75,26 @@ namespace OneWayTogether.Core
 
         private void PlaceCharacters()
         {
+            // Spawn slightly above the authored Y so the CharacterController falls
+            // onto the tile surface rather than starting inside it.
+            Vector3 spawnOffset = Vector3.up * 0.5f;
+
             if (_scarletRoot != null)
-                _scarletRoot.position = _levelData.scarletStart;
+                _scarletRoot.position = _levelData.scarletStart + spawnOffset;
 
             if (_daniRoot != null)
-                _daniRoot.position = _levelData.daniStart;
+                _daniRoot.position = _levelData.daniStart + spawnOffset;
+
+            // Re-register after moving so CheckpointManager holds the correct start positions.
+            // CharacterBase.Awake() may have registered stale scene positions before LevelBuilder ran.
+            CheckpointManager cm = FindAnyObjectByType<CheckpointManager>();
+            if (cm != null)
+            {
+                if (_scarletRoot != null)
+                    cm.RegisterCharacter(CharacterType.Scarlet, _scarletRoot, _levelData.scarletStart);
+                if (_daniRoot != null)
+                    cm.RegisterCharacter(CharacterType.Dani, _daniRoot, _levelData.daniStart);
+            }
         }
 
         private void BuildPlatforms()
@@ -125,6 +146,14 @@ namespace OneWayTogether.Core
 
                     case LevelObjectType.RopeTrigger:
                         SpawnRopeTrigger(pos, rot);
+                        break;
+
+                    case LevelObjectType.Bridge:
+                        SpawnBridge(pos, rot, def.id);
+                        break;
+
+                    case LevelObjectType.PushBoulder:
+                        SpawnPushBoulder(pos);
                         break;
 
                     // Scarlet/Dani are handled by PlaceCharacters — skip here.
@@ -255,6 +284,30 @@ namespace OneWayTogether.Core
             Instantiate(_prefabs.ropeTriggerPrefab, pos, rot, _objectContainer);
         }
 
+        private void SpawnPushBoulder(Vector3 pos)
+        {
+            if (_prefabs.pushBoulderPrefab == null)
+            {
+                Debug.LogWarning("[LevelBuilder] pushBoulderPrefab not assigned in LevelPrefabRegistry.", this);
+                return;
+            }
+            Instantiate(_prefabs.pushBoulderPrefab, pos, Quaternion.identity, _objectContainer);
+        }
+
+        private void SpawnBridge(Vector3 pos, Quaternion rot, string plateId)
+        {
+            if (_prefabs.bridgePrefab == null)
+            {
+                Debug.LogWarning("[LevelBuilder] bridgePrefab is not assigned in LevelPrefabRegistry.", this);
+                return;
+            }
+
+            GameObject go     = Instantiate(_prefabs.bridgePrefab, pos, rot, _objectContainer);
+            Bridge     bridge = go.GetComponent<Bridge>();
+            if (bridge != null)
+                bridge.Init(plateId);
+        }
+
         // ── Helpers ───────────────────────────────────────────────────────────
 
         private GameObject PrefabForPlatform(PlatformType t) => t switch
@@ -279,6 +332,9 @@ namespace OneWayTogether.Core
             PlatformType.AncientRuinsArch      => _prefabs.ancientRuinsArchPrefab,
             PlatformType.AncientRuinsColumn    => _prefabs.ancientRuinsColumnPrefab,
             PlatformType.AncientRuinsWall      => _prefabs.ancientRuinsWallPrefab,
+
+            PlatformType.VegetationTreePine    => _prefabs.vegetationTreePinePrefab,
+            PlatformType.VegetationTreeAlpine  => _prefabs.vegetationTreeAlpinePrefab,
 
             _                                  => null,
         };

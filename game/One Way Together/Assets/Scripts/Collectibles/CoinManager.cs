@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using OneWayTogether.Core;
 using OneWayTogether.Data;
 using OneWayTogether.Events;
@@ -54,7 +55,23 @@ namespace OneWayTogether.Collectibles
             }
 
             Instance = this;
+            DontDestroyOnLoad(gameObject);
             _audioSource = GetComponent<AudioSource>();
+            // CheckpointManager is scene-scoped; re-cached on every scene load via OnSceneLoaded.
+        }
+
+        private void OnEnable()
+        {
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+
+        private void OnDisable()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
+
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
             _checkpointManager = FindAnyObjectByType<CheckpointManager>();
         }
 
