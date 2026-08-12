@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: World1_Level1
   m_EditorClassIdentifier: OneWayTogether::OneWayTogether.Data.LevelData
   levelName: World 1 - Level 1
-  scarletStart: {x: -3, y: 0, z: 0}
-  daniStart: {x: 7, y: 0, z: 2}
+  scarletStart: {x: -3, y: 3, z: 0}
+  daniStart: {x: 7, y: 3, z: 2}
   platforms:
   - type: 3
     position: {x: -5, y: 0, z: -4}
@@ -629,194 +629,194 @@ MonoBehaviour:
     scale: {x: 1, y: 1, z: 1}
     yRotation: 0
   - type: 1
-    position: {x: -6, y: 0, z: 0}
+    position: {x: -6, y: 3, z: 0}
     scale: {x: 1, y: 1, z: 11}
     yRotation: 0
   - type: 1
-    position: {x: 13, y: 0, z: 0}
+    position: {x: 13, y: 3, z: 0}
     scale: {x: 1, y: 1, z: 11}
     yRotation: 0
   - type: 1
-    position: {x: 3.5, y: 0, z: -5}
+    position: {x: 3.5, y: 3, z: -5}
     scale: {x: 20, y: 1, z: 1}
     yRotation: 0
   - type: 1
-    position: {x: 3.5, y: 0, z: 5}
+    position: {x: 3.5, y: 3, z: 5}
     scale: {x: 20, y: 1, z: 1}
     yRotation: 0
   - type: 1
-    position: {x: 1, y: 0, z: 0}
+    position: {x: 1, y: 3, z: 0}
     scale: {x: 1, y: 1, z: 9}
     yRotation: 0
   - type: 8
-    position: {x: -5, y: 0, z: -4}
+    position: {x: -5, y: 3, z: -4}
     scale: {x: 1, y: 1, z: 1}
     yRotation: 0
   - type: 8
-    position: {x: -5, y: 0, z: -2}
+    position: {x: -5, y: 3, z: -2}
     scale: {x: 1, y: 1, z: 1}
     yRotation: 0
   - type: 8
-    position: {x: -5, y: 0, z: 2}
+    position: {x: -5, y: 3, z: 2}
     scale: {x: 1, y: 1, z: 1}
     yRotation: 0
   - type: 8
-    position: {x: -5, y: 0, z: 4}
+    position: {x: -5, y: 3, z: 4}
     scale: {x: 1, y: 1, z: 1}
     yRotation: 0
   - type: 8
-    position: {x: 12, y: 0, z: -4}
+    position: {x: 12, y: 3, z: -4}
     scale: {x: 1, y: 1, z: 1}
     yRotation: 0
   - type: 8
-    position: {x: 12, y: 0, z: -2}
+    position: {x: 12, y: 3, z: -2}
     scale: {x: 1, y: 1, z: 1}
     yRotation: 0
   - type: 8
-    position: {x: 12, y: 0, z: 2}
+    position: {x: 12, y: 3, z: 2}
     scale: {x: 1, y: 1, z: 1}
     yRotation: 0
   - type: 8
-    position: {x: 12, y: 0, z: 4}
+    position: {x: 12, y: 3, z: 4}
     scale: {x: 1, y: 1, z: 1}
     yRotation: 0
   - type: 8
-    position: {x: -3, y: 0, z: -4}
+    position: {x: -3, y: 3, z: -4}
     scale: {x: 1, y: 1, z: 1}
     yRotation: 0
   - type: 8
-    position: {x: 0, y: 0, z: -4}
+    position: {x: 0, y: 3, z: -4}
     scale: {x: 1, y: 1, z: 1}
     yRotation: 0
   - type: 8
-    position: {x: 6, y: 0, z: -4}
+    position: {x: 6, y: 3, z: -4}
     scale: {x: 1, y: 1, z: 1}
     yRotation: 0
   - type: 8
-    position: {x: 10, y: 0, z: -4}
+    position: {x: 10, y: 3, z: -4}
     scale: {x: 1, y: 1, z: 1}
     yRotation: 0
   - type: 8
-    position: {x: -3, y: 0, z: 4}
+    position: {x: -3, y: 3, z: 4}
     scale: {x: 1, y: 1, z: 1}
     yRotation: 0
   - type: 8
-    position: {x: 0, y: 0, z: 4}
+    position: {x: 0, y: 3, z: 4}
     scale: {x: 1, y: 1, z: 1}
     yRotation: 0
   - type: 8
-    position: {x: 8, y: 0, z: 4}
+    position: {x: 8, y: 3, z: 4}
     scale: {x: 1, y: 1, z: 1}
     yRotation: 0
   - type: 8
-    position: {x: 11, y: 0, z: 4}
+    position: {x: 11, y: 3, z: 4}
     scale: {x: 1, y: 1, z: 1}
     yRotation: 0
   - type: 10
-    position: {x: -4, y: 0, z: -3}
+    position: {x: -4, y: 3, z: -3}
     scale: {x: 1, y: 1, z: 1}
     yRotation: 0
   - type: 10
-    position: {x: -4, y: 0, z: 1}
+    position: {x: -4, y: 3, z: 1}
     scale: {x: 1, y: 1, z: 1}
     yRotation: 0
   - type: 10
-    position: {x: -2, y: 0, z: -3}
+    position: {x: -2, y: 3, z: -3}
     scale: {x: 1, y: 1, z: 1}
     yRotation: 0
   - type: 10
-    position: {x: -2, y: 0, z: 3}
+    position: {x: -2, y: 3, z: 3}
     scale: {x: 1, y: 1, z: 1}
     yRotation: 0
   - type: 10
-    position: {x: 3, y: 0, z: -3}
+    position: {x: 3, y: 3, z: -3}
     scale: {x: 1, y: 1, z: 1}
     yRotation: 0
   - type: 10
-    position: {x: 3, y: 0, z: 3}
+    position: {x: 3, y: 3, z: 3}
     scale: {x: 1, y: 1, z: 1}
     yRotation: 0
   - type: 10
-    position: {x: 5, y: 0, z: -3}
+    position: {x: 5, y: 3, z: -3}
     scale: {x: 1, y: 1, z: 1}
     yRotation: 0
   - type: 10
-    position: {x: 5, y: 0, z: 3}
+    position: {x: 5, y: 3, z: 3}
     scale: {x: 1, y: 1, z: 1}
     yRotation: 0
   - type: 10
-    position: {x: 9, y: 0, z: -3}
+    position: {x: 9, y: 3, z: -3}
     scale: {x: 1, y: 1, z: 1}
     yRotation: 0
   - type: 10
-    position: {x: 9, y: 0, z: 3}
+    position: {x: 9, y: 3, z: 3}
     scale: {x: 1, y: 1, z: 1}
     yRotation: 0
   - type: 10
-    position: {x: 11, y: 0, z: -2}
+    position: {x: 11, y: 3, z: -2}
     scale: {x: 1, y: 1, z: 1}
     yRotation: 0
   - type: 10
-    position: {x: 11, y: 0, z: 2}
+    position: {x: 11, y: 3, z: 2}
     scale: {x: 1, y: 1, z: 1}
     yRotation: 0
   - type: 11
-    position: {x: -4, y: 0, z: 0}
+    position: {x: -4, y: 3, z: 0}
     scale: {x: 1, y: 1, z: 1}
     yRotation: 0
   - type: 11
-    position: {x: -3, y: 0, z: -2}
+    position: {x: -3, y: 3, z: -2}
     scale: {x: 1, y: 1, z: 1}
     yRotation: 0
   - type: 11
-    position: {x: -3, y: 0, z: 2}
+    position: {x: -3, y: 3, z: 2}
     scale: {x: 1, y: 1, z: 1}
     yRotation: 0
   - type: 11
-    position: {x: 8, y: 0, z: -2}
+    position: {x: 8, y: 3, z: -2}
     scale: {x: 1, y: 1, z: 1}
     yRotation: 0
   - type: 11
-    position: {x: 8, y: 0, z: 2}
+    position: {x: 8, y: 3, z: 2}
     scale: {x: 1, y: 1, z: 1}
     yRotation: 0
   - type: 11
-    position: {x: 10, y: 0, z: 0}
+    position: {x: 10, y: 3, z: 0}
     scale: {x: 1, y: 1, z: 1}
     yRotation: 0
   objects:
   - type: 2
-    position: {x: 1, y: 0, z: 0}
+    position: {x: 1, y: 3, z: 0}
     id: gate1
     oneShot: 1
     triggerSize: {x: 0, y: 0}
     gateOpenOffset: {x: 0, y: 2.5, z: 0}
   - type: 3
-    position: {x: 7, y: 0, z: 0}
+    position: {x: 7, y: 3, z: 0}
     id: gate1
     oneShot: 1
     triggerSize: {x: 0, y: 0}
     gateOpenOffset: {x: 0, y: 0, z: 0}
   - type: 4
-    position: {x: -3, y: 0, z: -2}
+    position: {x: -3, y: 3, z: -2}
     id: 
     oneShot: 0
     triggerSize: {x: 0, y: 0}
     gateOpenOffset: {x: 0, y: 0, z: 0}
   - type: 4
-    position: {x: -3, y: 0, z: -2}
+    position: {x: -3, y: 3, z: -2}
     id: 
     oneShot: 0
     triggerSize: {x: 0, y: 0}
     gateOpenOffset: {x: 0, y: 0, z: 0}
   - type: 5
-    position: {x: 10, y: 0, z: 0}
+    position: {x: 10, y: 3, z: 0}
     id: 
     oneShot: 0
     triggerSize: {x: 4, y: 4}
     gateOpenOffset: {x: 0, y: 0, z: 0}
   - type: 6
-    position: {x: -4, y: 0, z: 0}
+    position: {x: -4, y: 3, z: 0}
     id: 
     oneShot: 0
     triggerSize: {x: 0, y: 0}

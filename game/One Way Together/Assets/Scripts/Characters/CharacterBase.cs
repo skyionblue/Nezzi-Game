@@ -114,22 +114,22 @@ namespace OneWayTogether.Characters
         {
             if (_data == null) return;
 
-            // Input X = strafe left/right → world X
-            // Input Y = forward/back stick → world -Z (isometric: up-screen is -Z)
+            // Camera at (52,0,0): screen-right = world +X, screen-up = world +Z.
+            // Input X → world X, Input Y → world +Z.
             Vector3 move = IsControllable
-                ? new Vector3(_moveInput.x, 0f, -_moveInput.y).normalized * _data.MoveSpeed
+                ? new Vector3(_moveInput.x, 0f, _moveInput.y).normalized * _data.MoveSpeed
                 : Vector3.zero;
 
             // Apply gravity so the character stays pressed to the floor.
             if (_cc.isGrounded)
-                _verticalVelocity = -2f; // small constant keeps grounded flag reliable
+                _verticalVelocity = -2f;
             else
                 _verticalVelocity += Physics.gravity.y * Time.deltaTime;
 
-            Vector3 totalMotion = move + Vector3.up * _verticalVelocity;
-            _cc.Move(totalMotion * Time.deltaTime);
+            _cc.Move((move + Vector3.up * _verticalVelocity) * Time.deltaTime);
 
-            // Rotate to face movement direction in the XZ plane.
+            // Rotate to face movement direction.
+            // Standard formula for a character whose mesh faces +Z at Y=0.
             if (move.magnitude > 0.01f)
             {
                 float angle = Mathf.Atan2(move.x, move.z) * Mathf.Rad2Deg;
