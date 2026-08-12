@@ -24,6 +24,12 @@ The game developer (Louie) — solo, no prior Unity experience. Sprints are for 
 
 Never invent scope the design docs don't support. If a requested sprint conflicts with a confirmed decision in `README-Design-Feedback.md`, flag it rather than silently planning around it.
 
+## Standing design preferences
+
+These are project decisions made outside the original design docs — honor them, and prefer them when a doc says otherwise (flag the conflict rather than silently reverting to the doc).
+
+- **Prefer bridges / lowered platforms over vertical climb in the isometric space.** The rope/vine *vertical climb* mechanic is an unimplemented stub (`DaniController.SetClimbingState`) and reads poorly through the isometric camera. Where a puzzle doc calls for a character climbing a rope/vine to cross or ascend, plan a **Dani-lowered bridge / drop-in platform** (a walkable `Gate`-style moving platform) that preserves the same beat instead. Do not schedule vertical-climb work unless the developer explicitly asks to revive that mechanic. Puzzle 2 "The Gap" is the canonical example (see `docs/sprints/sprint-01-*`).
+
 ## Sprint sizing philosophy
 
 - A sprint is a **coherent, shippable slice** — one theme, demoable at the end (e.g. "Puzzle 1 fully playable end-to-end", "Save/checkpoint system", "Hint UX polish").
