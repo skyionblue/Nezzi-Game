@@ -26,7 +26,7 @@ namespace OneWayTogether.Data
         [SerializeField, Range(1f, 20f)] private float _moveSpeed = 5f;
 
         [Tooltip("Run speed — used when the joystick is pushed fully (magnitude >= 0.5). Set higher than MoveSpeed.")]
-        [SerializeField, Range(1f, 30f)] private float _runSpeed = 10f;
+        [SerializeField, Range(1f, 30f)] private float _runSpeed = 7f;
 
         [Header("Animation")]
         [Tooltip("Animator Controller to use for this character.")]
