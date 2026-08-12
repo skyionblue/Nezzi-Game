@@ -576,7 +576,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f77198b1c53b403395c5e4771b7b0b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: OneWayTogether::OneWayTogether.Core.HintManager
-  _levelData: {fileID: 11400000, guid: 4ec569035c65645d8911ad6f20619bbf, type: 2}
+  _levelData: {fileID: 11400000, guid: db9c94ce5b38e4bacba3e0f3ed93fbda, type: 2}
 --- !u!4 &193379911
 Transform:
   m_ObjectHideFlags: 0
@@ -1240,7 +1240,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 434224138}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.40821794, y: -0.23456973, z: 0.10938166, w: 0.8754261}
+  m_LocalRotation: {x: 0.40821794, y: 0.23456973, z: -0.10938166, w: 0.8754261}
   m_LocalPosition: {x: 0, y: 10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

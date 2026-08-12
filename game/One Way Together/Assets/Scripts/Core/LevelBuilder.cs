@@ -1,6 +1,8 @@
 using UnityEngine;
 using Unity.Cinemachine;
 using OneWayTogether.Data;
+using OneWayTogether.Characters;
+using OneWayTogether.Events;
 using OneWayTogether.Puzzle;
 
 namespace OneWayTogether.Core
@@ -74,6 +76,17 @@ namespace OneWayTogether.Core
 
             if (_daniRoot != null)
                 _daniRoot.position = _levelData.daniStart;
+
+            // Re-register after moving so CheckpointManager holds the correct start positions.
+            // CharacterBase.Awake() may have registered stale scene positions before LevelBuilder ran.
+            CheckpointManager cm = FindAnyObjectByType<CheckpointManager>();
+            if (cm != null)
+            {
+                if (_scarletRoot != null)
+                    cm.RegisterCharacter(CharacterType.Scarlet, _scarletRoot, _levelData.scarletStart);
+                if (_daniRoot != null)
+                    cm.RegisterCharacter(CharacterType.Dani, _daniRoot, _levelData.daniStart);
+            }
         }
 
         private void BuildPlatforms()
@@ -297,6 +310,9 @@ namespace OneWayTogether.Core
             PlatformType.AncientRuinsArch      => _prefabs.ancientRuinsArchPrefab,
             PlatformType.AncientRuinsColumn    => _prefabs.ancientRuinsColumnPrefab,
             PlatformType.AncientRuinsWall      => _prefabs.ancientRuinsWallPrefab,
+
+            PlatformType.VegetationTreePine    => _prefabs.vegetationTreePinePrefab,
+            PlatformType.VegetationTreeAlpine  => _prefabs.vegetationTreeAlpinePrefab,
 
             _                                  => null,
         };

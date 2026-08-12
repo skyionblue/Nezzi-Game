@@ -44,6 +44,10 @@ namespace OneWayTogether.Data
         public GameObject ancientRuinsColumnPrefab;
         public GameObject ancientRuinsWallPrefab;
 
+        [Header("Polyworks — Tall Trees")]
+        public GameObject vegetationTreePinePrefab;
+        public GameObject vegetationTreeAlpinePrefab;
+
         [Header("Puzzle Objects")]
         [Tooltip("Gate prefab — must have Gate.cs attached.")]
         public GameObject gatePrefab;

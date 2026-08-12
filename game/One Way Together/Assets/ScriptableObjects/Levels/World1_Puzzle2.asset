@@ -17,444 +17,444 @@ MonoBehaviour:
   daniStart: {x: 9, y: 0, z: 0}
   platforms:
   - type: 3
-    position: {x: -18, y: -0.3, z: -15}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -18, y: -1.5, z: -15}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -18, y: -0.3, z: -12}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -18, y: -1.5, z: -12}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -18, y: -0.3, z: -9}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -18, y: -1.5, z: -9}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -18, y: -0.3, z: -6}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -18, y: -1.5, z: -6}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -18, y: -0.3, z: -3}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -18, y: -1.5, z: -3}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -18, y: -0.3, z: 0}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -18, y: -1.5, z: 0}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -18, y: -0.3, z: 3}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -18, y: -1.5, z: 3}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -18, y: -0.3, z: 6}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -18, y: -1.5, z: 6}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -18, y: -0.3, z: 9}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -18, y: -1.5, z: 9}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -18, y: -0.3, z: 12}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -18, y: -1.5, z: 12}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -18, y: -0.3, z: 15}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -18, y: -1.5, z: 15}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -15, y: -0.3, z: -15}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -15, y: -1.5, z: -15}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -15, y: -0.3, z: -12}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -15, y: -1.5, z: -12}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -15, y: -0.3, z: -9}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -15, y: -1.5, z: -9}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -15, y: -0.3, z: -6}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -15, y: -1.5, z: -6}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -15, y: -0.3, z: -3}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -15, y: -1.5, z: -3}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -15, y: -0.3, z: 0}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -15, y: -1.5, z: 0}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -15, y: -0.3, z: 3}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -15, y: -1.5, z: 3}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -15, y: -0.3, z: 6}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -15, y: -1.5, z: 6}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -15, y: -0.3, z: 9}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -15, y: -1.5, z: 9}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -15, y: -0.3, z: 12}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -15, y: -1.5, z: 12}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -15, y: -0.3, z: 15}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -15, y: -1.5, z: 15}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -12, y: -0.3, z: -15}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -12, y: -1.5, z: -15}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -12, y: -0.3, z: -12}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -12, y: -1.5, z: -12}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -12, y: -0.3, z: -9}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -12, y: -1.5, z: -9}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -12, y: -0.3, z: -6}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -12, y: -1.5, z: -6}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -12, y: -0.3, z: -3}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -12, y: -1.5, z: -3}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -12, y: -0.3, z: 0}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -12, y: -1.5, z: 0}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -12, y: -0.3, z: 3}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -12, y: -1.5, z: 3}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -12, y: -0.3, z: 6}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -12, y: -1.5, z: 6}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -12, y: -0.3, z: 9}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -12, y: -1.5, z: 9}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -12, y: -0.3, z: 12}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -12, y: -1.5, z: 12}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -12, y: -0.3, z: 15}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -12, y: -1.5, z: 15}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -9, y: -0.3, z: -15}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -9, y: -1.5, z: -15}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -9, y: -0.3, z: -12}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -9, y: -1.5, z: -12}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -9, y: -0.3, z: -9}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -9, y: -1.5, z: -9}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -9, y: -0.3, z: -6}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -9, y: -1.5, z: -6}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -9, y: -0.3, z: -3}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -9, y: -1.5, z: -3}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -9, y: -0.3, z: 0}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -9, y: -1.5, z: 0}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -9, y: -0.3, z: 3}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -9, y: -1.5, z: 3}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -9, y: -0.3, z: 6}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -9, y: -1.5, z: 6}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -9, y: -0.3, z: 9}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -9, y: -1.5, z: 9}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -9, y: -0.3, z: 12}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -9, y: -1.5, z: 12}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -9, y: -0.3, z: 15}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -9, y: -1.5, z: 15}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -6, y: -0.3, z: -15}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -6, y: -1.5, z: -15}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -6, y: -0.3, z: -12}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -6, y: -1.5, z: -12}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -6, y: -0.3, z: -9}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -6, y: -1.5, z: -9}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -6, y: -0.3, z: -6}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -6, y: -1.5, z: -6}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -6, y: -0.3, z: -3}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -6, y: -1.5, z: -3}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -6, y: -0.3, z: 0}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -6, y: -1.5, z: 0}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -6, y: -0.3, z: 3}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -6, y: -1.5, z: 3}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -6, y: -0.3, z: 6}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -6, y: -1.5, z: 6}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -6, y: -0.3, z: 9}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -6, y: -1.5, z: 9}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -6, y: -0.3, z: 12}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -6, y: -1.5, z: 12}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: -6, y: -0.3, z: 15}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: -6, y: -1.5, z: 15}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 6, y: -0.3, z: -15}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 6, y: -1.5, z: -15}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 6, y: -0.3, z: -12}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 6, y: -1.5, z: -12}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 6, y: -0.3, z: -9}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 6, y: -1.5, z: -9}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 6, y: -0.3, z: -6}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 6, y: -1.5, z: -6}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 6, y: -0.3, z: -3}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 6, y: -1.5, z: -3}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 6, y: -0.3, z: 0}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 6, y: -1.5, z: 0}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 6, y: -0.3, z: 3}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 6, y: -1.5, z: 3}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 6, y: -0.3, z: 6}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 6, y: -1.5, z: 6}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 6, y: -0.3, z: 9}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 6, y: -1.5, z: 9}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 6, y: -0.3, z: 12}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 6, y: -1.5, z: 12}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 6, y: -0.3, z: 15}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 6, y: -1.5, z: 15}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 9, y: -0.3, z: -15}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 9, y: -1.5, z: -15}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 9, y: -0.3, z: -12}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 9, y: -1.5, z: -12}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 9, y: -0.3, z: -9}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 9, y: -1.5, z: -9}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 9, y: -0.3, z: -6}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 9, y: -1.5, z: -6}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 9, y: -0.3, z: -3}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 9, y: -1.5, z: -3}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 9, y: -0.3, z: 0}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 9, y: -1.5, z: 0}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 9, y: -0.3, z: 3}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 9, y: -1.5, z: 3}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 9, y: -0.3, z: 6}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 9, y: -1.5, z: 6}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 9, y: -0.3, z: 9}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 9, y: -1.5, z: 9}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 9, y: -0.3, z: 12}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 9, y: -1.5, z: 12}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 9, y: -0.3, z: 15}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 9, y: -1.5, z: 15}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 12, y: -0.3, z: -15}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 12, y: -1.5, z: -15}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 12, y: -0.3, z: -12}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 12, y: -1.5, z: -12}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 12, y: -0.3, z: -9}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 12, y: -1.5, z: -9}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 12, y: -0.3, z: -6}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 12, y: -1.5, z: -6}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 12, y: -0.3, z: -3}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 12, y: -1.5, z: -3}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 12, y: -0.3, z: 0}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 12, y: -1.5, z: 0}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 12, y: -0.3, z: 3}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 12, y: -1.5, z: 3}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 12, y: -0.3, z: 6}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 12, y: -1.5, z: 6}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 12, y: -0.3, z: 9}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 12, y: -1.5, z: 9}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 12, y: -0.3, z: 12}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 12, y: -1.5, z: 12}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 12, y: -0.3, z: 15}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 12, y: -1.5, z: 15}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 15, y: -0.3, z: -15}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 15, y: -1.5, z: -15}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 15, y: -0.3, z: -12}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 15, y: -1.5, z: -12}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 15, y: -0.3, z: -9}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 15, y: -1.5, z: -9}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 15, y: -0.3, z: -6}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 15, y: -1.5, z: -6}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 15, y: -0.3, z: -3}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 15, y: -1.5, z: -3}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 15, y: -0.3, z: 0}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 15, y: -1.5, z: 0}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 15, y: -0.3, z: 3}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 15, y: -1.5, z: 3}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 15, y: -0.3, z: 6}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 15, y: -1.5, z: 6}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 15, y: -0.3, z: 9}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 15, y: -1.5, z: 9}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 15, y: -0.3, z: 12}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 15, y: -1.5, z: 12}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 15, y: -0.3, z: 15}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 15, y: -1.5, z: 15}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 18, y: -0.3, z: -15}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 18, y: -1.5, z: -15}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 18, y: -0.3, z: -12}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 18, y: -1.5, z: -12}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 18, y: -0.3, z: -9}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 18, y: -1.5, z: -9}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 18, y: -0.3, z: -6}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 18, y: -1.5, z: -6}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 18, y: -0.3, z: -3}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 18, y: -1.5, z: -3}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 18, y: -0.3, z: 0}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 18, y: -1.5, z: 0}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 18, y: -0.3, z: 3}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 18, y: -1.5, z: 3}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 18, y: -0.3, z: 6}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 18, y: -1.5, z: 6}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 18, y: -0.3, z: 9}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 18, y: -1.5, z: 9}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 18, y: -0.3, z: 12}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 18, y: -1.5, z: 12}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 3
-    position: {x: 18, y: -0.3, z: 15}
-    scale: {x: 1, y: 0.1, z: 1}
+    position: {x: 18, y: -1.5, z: 15}
+    scale: {x: 1, y: 0.5, z: 1}
     yRotation: 0
   - type: 1
     position: {x: -18, y: 0, z: -18}
@@ -668,10 +668,338 @@ MonoBehaviour:
     position: {x: -18, y: 0, z: -15}
     scale: {x: 1, y: 1, z: 1}
     yRotation: 0
-  - type: 8
+  - type: 16
     position: {x: 18, y: 0, z: 15}
     scale: {x: 1, y: 1, z: 1}
     yRotation: 0
+  - type: 17
+    position: {x: -18, y: 0, z: -15}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 0
+  - type: 16
+    position: {x: -18, y: 0, z: -9}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 45
+  - type: 8
+    position: {x: -18, y: 0, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 90
+  - type: 17
+    position: {x: -18, y: 0, z: 9}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 135
+  - type: 8
+    position: {x: -18, y: 0, z: 15}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 180
+  - type: 16
+    position: {x: -15, y: 0, z: -15}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 225
+  - type: 8
+    position: {x: -15, y: 0, z: -9}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 270
+  - type: 16
+    position: {x: -15, y: 0, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 315
+  - type: 8
+    position: {x: -15, y: 0, z: 9}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 30
+  - type: 17
+    position: {x: -15, y: 0, z: 15}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 60
+  - type: 8
+    position: {x: 18, y: 0, z: -15}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 100
+  - type: 16
+    position: {x: 18, y: 0, z: -9}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 140
+  - type: 17
+    position: {x: 18, y: 0, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 180
+  - type: 16
+    position: {x: 18, y: 0, z: 9}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 220
+  - type: 8
+    position: {x: 18, y: 0, z: 15}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 260
+  - type: 17
+    position: {x: 15, y: 0, z: -15}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 300
+  - type: 8
+    position: {x: 15, y: 0, z: -9}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 340
+  - type: 16
+    position: {x: 15, y: 0, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 20
+  - type: 8
+    position: {x: 15, y: 0, z: 9}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 60
+  - type: 16
+    position: {x: 15, y: 0, z: 15}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 100
+  - type: 8
+    position: {x: -9, y: 0, z: -15}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 0
+  - type: 17
+    position: {x: -6, y: 0, z: -15}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 45
+  - type: 8
+    position: {x: 6, y: 0, z: -15}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 90
+  - type: 16
+    position: {x: 9, y: 0, z: -15}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 135
+  - type: 17
+    position: {x: -9, y: 0, z: 15}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 180
+  - type: 16
+    position: {x: -6, y: 0, z: 15}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 225
+  - type: 8
+    position: {x: 6, y: 0, z: 15}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 270
+  - type: 17
+    position: {x: 9, y: 0, z: 15}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 315
+  - type: 8
+    position: {x: -15, y: 0, z: -12}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 130
+  - type: 16
+    position: {x: -15, y: 0, z: 12}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 180
+  - type: 8
+    position: {x: -12, y: 0, z: -9}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 230
+  - type: 16
+    position: {x: -12, y: 0, z: 9}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 280
+  - type: 9
+    position: {x: -18, y: 0, z: -6}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 20
+  - type: 9
+    position: {x: -18, y: 0, z: 6}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 70
+  - type: 9
+    position: {x: -15, y: 0, z: -9}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 120
+  - type: 9
+    position: {x: -15, y: 0, z: 9}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 170
+  - type: 9
+    position: {x: -9, y: 0, z: -12}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 220
+  - type: 9
+    position: {x: -9, y: 0, z: 12}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 270
+  - type: 9
+    position: {x: -9, y: 0, z: -6}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 320
+  - type: 9
+    position: {x: -9, y: 0, z: 6}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 10
+  - type: 10
+    position: {x: -15, y: 0, z: -6}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 0
+  - type: 10
+    position: {x: -12, y: 0, z: -6}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 120
+  - type: 10
+    position: {x: -12, y: 0, z: 6}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 180
+  - type: 10
+    position: {x: -9, y: 0, z: -9}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 240
+  - type: 10
+    position: {x: -9, y: 0, z: 9}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 300
+  - type: 10
+    position: {x: -6, y: 0, z: -9}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 30
+  - type: 10
+    position: {x: -6, y: 0, z: 9}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 90
+  - type: 11
+    position: {x: -18, y: 0, z: -12}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 45
+  - type: 11
+    position: {x: -18, y: 0, z: 12}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 135
+  - type: 11
+    position: {x: -6, y: 0, z: -12}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 225
+  - type: 11
+    position: {x: -6, y: 0, z: 12}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 315
+  - type: 12
+    position: {x: -15, y: 0, z: -3}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 0
+  - type: 12
+    position: {x: -15, y: 0, z: 3}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 120
+  - type: 12
+    position: {x: -9, y: 0, z: -3}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 240
+  - type: 14
+    position: {x: -18, y: 0, z: -3}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 0
+  - type: 14
+    position: {x: -18, y: 0, z: 3}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 180
+  - type: 8
+    position: {x: 15, y: 0, z: -12}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 150
+  - type: 16
+    position: {x: 15, y: 0, z: 12}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 200
+  - type: 8
+    position: {x: 12, y: 0, z: -9}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 250
+  - type: 16
+    position: {x: 12, y: 0, z: 9}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 300
+  - type: 9
+    position: {x: 18, y: 0, z: -6}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 40
+  - type: 9
+    position: {x: 18, y: 0, z: 6}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 90
+  - type: 9
+    position: {x: 15, y: 0, z: -9}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 140
+  - type: 9
+    position: {x: 15, y: 0, z: 9}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 190
+  - type: 9
+    position: {x: 12, y: 0, z: -6}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 240
+  - type: 9
+    position: {x: 12, y: 0, z: 6}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 290
+  - type: 9
+    position: {x: 9, y: 0, z: -9}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 340
+  - type: 9
+    position: {x: 9, y: 0, z: 9}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 30
+  - type: 10
+    position: {x: 15, y: 0, z: 6}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 70
+  - type: 10
+    position: {x: 12, y: 0, z: -3}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 130
+  - type: 10
+    position: {x: 12, y: 0, z: 3}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 190
+  - type: 10
+    position: {x: 9, y: 0, z: -6}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 250
+  - type: 10
+    position: {x: 9, y: 0, z: 6}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 310
+  - type: 10
+    position: {x: 6, y: 0, z: -6}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 50
+  - type: 10
+    position: {x: 6, y: 0, z: 6}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 110
+  - type: 11
+    position: {x: 18, y: 0, z: -12}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 55
+  - type: 11
+    position: {x: 18, y: 0, z: 12}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 145
+  - type: 11
+    position: {x: 6, y: 0, z: -12}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 235
+  - type: 11
+    position: {x: 6, y: 0, z: 12}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 325
+  - type: 12
+    position: {x: 15, y: 0, z: -3}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 20
+  - type: 12
+    position: {x: 15, y: 0, z: 3}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 140
+  - type: 12
+    position: {x: 9, y: 0, z: -3}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 260
   objects:
   - type: 6
     position: {x: -12, y: 0, z: 0}
@@ -705,5 +1033,5 @@ MonoBehaviour:
   - "Dani is already on the far side. Something on that side controls the crossing."
   - "Switch to Dani and pull the lever near her — it will raise a bridge for Scarlet."
   - "As Dani, pull the lever to raise the bridge. Then bring Scarlet across and stand together on the gold circle."
-  skyColor: {r: 0.08, g: 0.12, b: 0.16, a: 1}
+  skyColor: {r: 0.45, g: 0.65, b: 0.8, a: 1}
   orthographicSize: 8
