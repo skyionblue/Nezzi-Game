@@ -934,9 +934,16 @@ MonoBehaviour:
     gateOpenOffset: {x: 0, y: 0, z: 0}
   - type: 6
     position: {x: -12, y: 0, z: 0}
-    id: 
+    id:
     oneShot: 0
     triggerSize: {x: 0, y: 0}
     gateOpenOffset: {x: 0, y: 0, z: 0}
+  hints:
+  - "You can't reach the way home alone. Look for something only the smaller sibling
+    can reach."
+  - "Switch to Dani and pull the lever by the wall. It opens the gate blocking Scarlet's
+    path."
+  - "As Dani, pull the lever to open the gate. Then bring both siblings together onto
+    the glowing reunion spot to finish."
   skyColor: {r: 0.1, g: 0.15, b: 0.1, a: 1}
   orthographicSize: 8

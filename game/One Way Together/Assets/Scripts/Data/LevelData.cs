@@ -80,6 +80,11 @@ namespace OneWayTogether.Data
         [Tooltip("Gates, levers, coins, triggers — populated by type at runtime.")]
         public List<LevelObjectData> objects = new List<LevelObjectData>();
 
+        [Header("Hints (progressive — tier 1 vague → tier 3 full solution)")]
+        [Tooltip("Up to 3 hints for this puzzle, revealed in order for escalating coin cost.")]
+        [TextArea(2, 4)]
+        public List<string> hints = new List<string>();
+
         [Header("Camera")]
         [Tooltip("Camera.backgroundColor applied at level load.")]
         public Color skyColor         = new Color(0.1f, 0.15f, 0.1f, 1f);

@@ -61,6 +61,14 @@ namespace OneWayTogether.Events
         /// <summary>Fired when a secret key is collected. Payload: key identifier string.</summary>
         public static event Action<string> OnSecretKeyCollected;
 
+        // ── Hints ───────────────────────────────────────────────────────────────
+
+        /// <summary>Fired when a hint is purchased and revealed. Payload: hint text, tier (1-3).</summary>
+        public static event Action<string, int> OnHintRevealed;
+
+        /// <summary>Fired when a hint request is refused (none left, or not enough coins). Payload: reason.</summary>
+        public static event Action<string> OnHintDenied;
+
         // ── Input / Co-op ───────────────────────────────────────────────────────
 
         /// <summary>
@@ -109,6 +117,12 @@ namespace OneWayTogether.Events
 
         public static void RaiseSecretKeyCollected(string keyId) =>
             OnSecretKeyCollected?.Invoke(keyId);
+
+        public static void RaiseHintRevealed(string text, int tier) =>
+            OnHintRevealed?.Invoke(text, tier);
+
+        public static void RaiseHintDenied(string reason) =>
+            OnHintDenied?.Invoke(reason);
 
         public static void RaiseCoopPlayerJoined(CharacterType assignedType) =>
             OnCoopPlayerJoined?.Invoke(assignedType);

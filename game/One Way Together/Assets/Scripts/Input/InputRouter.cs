@@ -31,6 +31,10 @@ namespace OneWayTogether.Input
 
         private int _lastSwitchFrame = -1;
 
+        // Input is only forwarded to characters while the game is in the Playing state.
+        // During Failure / PuzzleComplete / Paused the characters must not move.
+        private bool _inputEnabled = true;
+
         // ── Unity lifecycle ───────────────────────────────────────────────────────
 
         private void Awake()
@@ -51,6 +55,8 @@ namespace OneWayTogether.Input
             _move.canceled       += OnMoveCanceled;
             _interact.performed  += OnInteract;
             _switchCharacter.performed += OnSwitchCharacter;
+
+            GameEvents.OnGameStateChanged += HandleGameStateChanged;
         }
 
         private void OnDisable()
@@ -59,6 +65,8 @@ namespace OneWayTogether.Input
             _move.canceled       -= OnMoveCanceled;
             _interact.performed  -= OnInteract;
             _switchCharacter.performed -= OnSwitchCharacter;
+
+            GameEvents.OnGameStateChanged -= HandleGameStateChanged;
 
             _actionAsset.Disable();
         }
@@ -74,17 +82,20 @@ namespace OneWayTogether.Input
         /// on-screen joystick bridge each frame.</summary>
         public void SetMoveInput(Vector2 dir)
         {
+            if (!_inputEnabled) return;
             Active()?.ReceiveMove(dir);
         }
 
         /// <summary>Wire this to the on-screen Interact button's OnClick.</summary>
         public void TriggerInteract()
         {
+            if (!_inputEnabled) return;
             Active()?.ReceiveInteract();
         }
 
         public void TrySwitchCharacter()
         {
+            if (!_inputEnabled) return;
             if (IsCoopActive) return;
             if (Time.frameCount == _lastSwitchFrame) return;
             _lastSwitchFrame = Time.frameCount;
@@ -102,16 +113,38 @@ namespace OneWayTogether.Input
         // ── Private input handlers ────────────────────────────────────────────────
 
         private void OnMove(InputAction.CallbackContext ctx)
-            => Active()?.ReceiveMove(ctx.ReadValue<Vector2>());
+        {
+            if (!_inputEnabled) return;
+            Active()?.ReceiveMove(ctx.ReadValue<Vector2>());
+        }
 
+        // Always honour a movement release so a key/stick let go during a state
+        // transition can never leave a character drifting.
         private void OnMoveCanceled(InputAction.CallbackContext ctx)
             => Active()?.ReceiveStopMove();
 
         private void OnInteract(InputAction.CallbackContext ctx)
-            => Active()?.ReceiveInteract();
+        {
+            if (!_inputEnabled) return;
+            Active()?.ReceiveInteract();
+        }
 
         private void OnSwitchCharacter(InputAction.CallbackContext ctx)
             => TrySwitchCharacter();
+
+        // When the game leaves the Playing state (failure panel, pause, level
+        // complete), suppress input and halt both characters so neither keeps
+        // sliding on its last movement vector.
+        private void HandleGameStateChanged(GameState state)
+        {
+            _inputEnabled = state == GameState.Playing;
+
+            if (!_inputEnabled)
+            {
+                _scarlet?.ReceiveStopMove();
+                _dani?.ReceiveStopMove();
+            }
+        }
 
         private CharacterBase Active()
             => ActiveCharacter == CharacterType.Scarlet ? _scarlet : _dani;

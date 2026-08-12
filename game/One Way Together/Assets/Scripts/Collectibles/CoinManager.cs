@@ -37,6 +37,12 @@ namespace OneWayTogether.Collectibles
         /// <summary>Number of coins the player currently holds.</summary>
         public int CoinCount { get; private set; }
 
+        /// <summary>Coin cost to respawn in place, read from CoinSystemData (0 if unassigned).</summary>
+        public int RespawnCost => _data != null ? _data.RespawnCost : 0;
+
+        /// <summary>True when the player holds enough coins to pay for a respawn-in-place.</summary>
+        public bool CanAffordRespawn => _data != null && CoinCount >= _data.RespawnCost;
+
         // ── Unity lifecycle ───────────────────────────────────────────────────────
 
         private void Awake()
@@ -92,32 +98,38 @@ namespace OneWayTogether.Collectibles
             return true;
         }
 
-        /// <summary>
-        /// Attempts to purchase the specified hint tier.
-        /// Returns the hint tier purchased (1, 2, or 3), or 0 if insufficient coins.
-        /// </summary>
-        public int TryPurchaseHint()
+        /// <summary>Coin cost of a specific hint tier (1-3). Returns 0 for an invalid tier or missing data.</summary>
+        public int HintCost(int tier)
         {
             if (_data == null) return 0;
+            return tier switch
+            {
+                1 => _data.Hint1Cost,
+                2 => _data.Hint2Cost,
+                3 => _data.Hint3Cost,
+                _ => 0,
+            };
+        }
 
-            // Purchase the best hint the player can currently afford.
-            if (CoinCount >= _data.Hint3Cost)
-            {
-                SpendCoins(_data.Hint3Cost);
-                return 3;
-            }
-            if (CoinCount >= _data.Hint2Cost)
-            {
-                SpendCoins(_data.Hint2Cost);
-                return 2;
-            }
-            if (CoinCount >= _data.Hint1Cost)
-            {
-                SpendCoins(_data.Hint1Cost);
-                return 1;
-            }
+        /// <summary>True when the player can afford the given hint tier.</summary>
+        public bool CanAffordHint(int tier)
+        {
+            int cost = HintCost(tier);
+            return cost > 0 && CoinCount >= cost;
+        }
 
-            return 0;
+        /// <summary>
+        /// Attempts to purchase a specific hint tier (hints are revealed progressively,
+        /// so the caller — <see cref="OneWayTogether.Core.HintManager"/> — asks for the
+        /// next tier in sequence). Returns true if the coins were spent.
+        /// </summary>
+        public bool TryPurchaseHint(int tier)
+        {
+            int cost = HintCost(tier);
+            if (cost <= 0 || CoinCount < cost) return false;
+
+            SpendCoins(cost);
+            return true;
         }
 
         // ── Private ───────────────────────────────────────────────────────────────
