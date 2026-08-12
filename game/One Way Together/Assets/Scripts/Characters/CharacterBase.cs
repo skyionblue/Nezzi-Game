@@ -147,13 +147,11 @@ namespace OneWayTogether.Characters
         private void DriveAnimator()
         {
             // XZ speed only — ignores vertical fall velocity.
-            // Cap animator input at MoveSpeed so the walk cycle stays in sync
-            // whether the character is walking or running. Run animation support
-            // can be added later by uncapping once a Run state exists.
+            // Pass raw speed so the animator's Walk/Run thresholds (0.1 / 5.5) can
+            // select the correct clip. Walk clips play at 0.1–5.5, Run at 5.5+.
             Vector3 v = _cc.velocity;
             float speed = new Vector2(v.x, v.z).magnitude;
-            float animSpeed = _data != null ? Mathf.Min(speed, _data.MoveSpeed) : speed;
-            _animator.SetFloat(AnimSpeed, animSpeed);
+            _animator.SetFloat(AnimSpeed, speed);
         }
 
         // ── Event handlers ────────────────────────────────────────────────────────
