@@ -46,28 +46,27 @@ namespace OneWayTogether.UI
         {
             Font legacyFont = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
 
-            // Find every TMP component in the scene and replace it with a legacy Text.
-            // TMP renders as black tofu boxes on this setup; legacy font always renders.
+            // Unity forbids adding Text to a GameObject that already has TextMeshProUGUI
+            // (both inherit MaskableGraphic and conflict). DestroyImmediate removes TMP
+            // synchronously so we can add Text in the same Awake call.
             var tmpComponents = FindObjectsByType<TMPro.TextMeshProUGUI>(FindObjectsSortMode.None);
             foreach (var tmp in tmpComponents)
             {
                 string content = tmp.text;
-                float size     = tmp.fontSize;
-                Color color    = tmp.color;
+                float  size    = tmp.fontSize;
+                Color  color   = tmp.color;
                 GameObject go  = tmp.gameObject;
 
-                tmp.enabled = false; // hide without waiting for Destroy
+                DestroyImmediate(tmp); // synchronous — Text can be added immediately after
 
-                // Only add a legacy Text if one isn't already there.
                 if (go.GetComponent<Text>() == null)
                 {
-                    Text legacyText       = go.AddComponent<Text>();
-                    legacyText.font       = legacyFont;
-                    legacyText.text       = content;
-                    legacyText.fontSize   = Mathf.RoundToInt(size);
-                    legacyText.color      = color;
-                    legacyText.alignment  = TextAnchor.MiddleCenter;
-                    legacyText.resizeTextForBestFit = false;
+                    Text legacyText     = go.AddComponent<Text>();
+                    legacyText.font     = legacyFont;
+                    legacyText.text     = content;
+                    legacyText.fontSize = Mathf.RoundToInt(size);
+                    legacyText.color    = color;
+                    legacyText.alignment = TextAnchor.MiddleCenter;
                 }
             }
         }

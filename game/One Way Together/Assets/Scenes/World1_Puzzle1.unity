@@ -576,7 +576,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f77198b1c53b403395c5e4771b7b0b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: OneWayTogether::OneWayTogether.Core.HintManager
-  _levelData: {fileID: 11400000, guid: db9c94ce5b38e4bacba3e0f3ed93fbda, type: 2}
+  _levelData: {fileID: 11400000, guid: 4ec569035c65645d8911ad6f20619bbf, type: 2}
 --- !u!4 &193379911
 Transform:
   m_ObjectHideFlags: 0

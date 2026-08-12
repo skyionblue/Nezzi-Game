@@ -780,10 +780,248 @@ MonoBehaviour:
     position: {x: 21, y: 0, z: 15}
     scale: {x: 1, y: 1, z: 1}
     yRotation: 0
+  - type: 8
+    position: {x: -18, y: 0, z: -15}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 0
+  - type: 8
+    position: {x: -18, y: 0, z: 15}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 0
+  - type: 8
+    position: {x: 18, y: 0, z: -15}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 0
+  - type: 8
+    position: {x: 18, y: 0, z: 15}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 0
+  - type: 8
+    position: {x: -18, y: 0, z: -6}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 45
+  - type: 8
+    position: {x: -18, y: 0, z: 6}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 90
+  - type: 8
+    position: {x: 18, y: 0, z: -6}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 135
+  - type: 8
+    position: {x: 18, y: 0, z: 6}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 180
+  - type: 9
+    position: {x: -15, y: 0, z: -15}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 30
+  - type: 9
+    position: {x: -15, y: 0, z: 15}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 60
+  - type: 9
+    position: {x: 15, y: 0, z: -15}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 120
+  - type: 9
+    position: {x: 15, y: 0, z: 15}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 200
+  - type: 9
+    position: {x: -18, y: 0, z: -12}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 0
+  - type: 9
+    position: {x: -18, y: 0, z: 12}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 45
+  - type: 9
+    position: {x: 18, y: 0, z: -12}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 90
+  - type: 9
+    position: {x: 18, y: 0, z: 12}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 135
+  - type: 10
+    position: {x: -9, y: 0, z: -15}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 0
+  - type: 10
+    position: {x: -3, y: 0, z: -15}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 60
+  - type: 10
+    position: {x: 6, y: 0, z: -15}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 120
+  - type: 10
+    position: {x: 12, y: 0, z: -15}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 180
+  - type: 10
+    position: {x: -9, y: 0, z: 15}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 30
+  - type: 10
+    position: {x: 3, y: 0, z: 15}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 90
+  - type: 10
+    position: {x: 6, y: 0, z: 15}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 150
+  - type: 10
+    position: {x: 12, y: 0, z: 15}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 210
+  - type: 11
+    position: {x: -18, y: 0, z: -9}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 0
+  - type: 11
+    position: {x: -18, y: 0, z: 9}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 45
+  - type: 11
+    position: {x: 18, y: 0, z: -9}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 90
+  - type: 11
+    position: {x: 18, y: 0, z: 9}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 135
+  - type: 12
+    position: {x: -15, y: 0, z: -12}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 0
+  - type: 12
+    position: {x: -15, y: 0, z: 12}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 60
+  - type: 12
+    position: {x: 15, y: 0, z: -12}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 120
+  - type: 12
+    position: {x: 15, y: 0, z: 12}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 180
+  - type: 12
+    position: {x: -12, y: 0, z: -15}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 0
+  - type: 12
+    position: {x: 12, y: 0, z: 15}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 90
   objects:
   - type: 6
     position: {x: -6, y: 0, z: 0}
     yRotation: 0
+    id:
+    oneShot: 0
+    triggerSize: {x: 0, y: 0}
+    gateOpenOffset: {x: 0, y: 0, z: 0}
+  - type: 4
+    position: {x: -15, y: 0, z: -6}
+    id:
+    oneShot: 0
+    triggerSize: {x: 0, y: 0}
+    gateOpenOffset: {x: 0, y: 0, z: 0}
+  - type: 4
+    position: {x: -15, y: 0, z: 6}
+    id:
+    oneShot: 0
+    triggerSize: {x: 0, y: 0}
+    gateOpenOffset: {x: 0, y: 0, z: 0}
+  - type: 4
+    position: {x: -9, y: 0, z: -9}
+    id:
+    oneShot: 0
+    triggerSize: {x: 0, y: 0}
+    gateOpenOffset: {x: 0, y: 0, z: 0}
+  - type: 4
+    position: {x: -9, y: 0, z: 9}
+    id:
+    oneShot: 0
+    triggerSize: {x: 0, y: 0}
+    gateOpenOffset: {x: 0, y: 0, z: 0}
+  - type: 4
+    position: {x: -3, y: 0, z: -12}
+    id:
+    oneShot: 0
+    triggerSize: {x: 0, y: 0}
+    gateOpenOffset: {x: 0, y: 0, z: 0}
+  - type: 4
+    position: {x: -3, y: 0, z: 12}
+    id:
+    oneShot: 0
+    triggerSize: {x: 0, y: 0}
+    gateOpenOffset: {x: 0, y: 0, z: 0}
+  - type: 4
+    position: {x: 3, y: 0, z: -9}
+    id:
+    oneShot: 0
+    triggerSize: {x: 0, y: 0}
+    gateOpenOffset: {x: 0, y: 0, z: 0}
+  - type: 4
+    position: {x: 3, y: 0, z: 9}
+    id:
+    oneShot: 0
+    triggerSize: {x: 0, y: 0}
+    gateOpenOffset: {x: 0, y: 0, z: 0}
+  - type: 4
+    position: {x: 9, y: 0, z: -6}
+    id:
+    oneShot: 0
+    triggerSize: {x: 0, y: 0}
+    gateOpenOffset: {x: 0, y: 0, z: 0}
+  - type: 4
+    position: {x: 9, y: 0, z: 6}
+    id:
+    oneShot: 0
+    triggerSize: {x: 0, y: 0}
+    gateOpenOffset: {x: 0, y: 0, z: 0}
+  - type: 4
+    position: {x: 12, y: 0, z: -9}
+    id:
+    oneShot: 0
+    triggerSize: {x: 0, y: 0}
+    gateOpenOffset: {x: 0, y: 0, z: 0}
+  - type: 4
+    position: {x: 12, y: 0, z: 9}
+    id:
+    oneShot: 0
+    triggerSize: {x: 0, y: 0}
+    gateOpenOffset: {x: 0, y: 0, z: 0}
+  - type: 4
+    position: {x: 0, y: 0, z: 0}
+    id:
+    oneShot: 0
+    triggerSize: {x: 0, y: 0}
+    gateOpenOffset: {x: 0, y: 0, z: 0}
+  - type: 4
+    position: {x: -6, y: 0, z: -15}
+    id:
+    oneShot: 0
+    triggerSize: {x: 0, y: 0}
+    gateOpenOffset: {x: 0, y: 0, z: 0}
+  - type: 4
+    position: {x: -6, y: 0, z: 15}
+    id:
+    oneShot: 0
+    triggerSize: {x: 0, y: 0}
+    gateOpenOffset: {x: 0, y: 0, z: 0}
+  - type: 4
+    position: {x: 6, y: 0, z: -15}
+    id:
+    oneShot: 0
+    triggerSize: {x: 0, y: 0}
+    gateOpenOffset: {x: 0, y: 0, z: 0}
+  - type: 4
+    position: {x: 6, y: 0, z: 15}
     id:
     oneShot: 0
     triggerSize: {x: 0, y: 0}
