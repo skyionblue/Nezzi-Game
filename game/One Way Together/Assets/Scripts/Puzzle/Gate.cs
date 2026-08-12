@@ -4,12 +4,12 @@ using OneWayTogether.Events;
 namespace OneWayTogether.Puzzle
 {
     /// <summary>
-    /// A gate or door that responds to pressure plate and lever events.
-    /// Configure <see cref="_triggerPlateId"/> to match the ID of the
-    /// <see cref="PressurePlate"/> or lever that should control this gate.
+    /// A double-door gate that swings open in response to pressure-plate / lever
+    /// events (matched by <see cref="_triggerPlateId"/>). Two leaf transforms
+    /// rotate about their hinges between a closed (rest) pose and an open pose;
+    /// an optional blocker collider is disabled while open so characters can pass.
     ///
-    /// The gate moves between <see cref="_closedPosition"/> and
-    /// <see cref="_openPosition"/> using a simple lerp.
+    /// Replaces the old "raise the whole gate up" translation with a hinged swing.
     /// </summary>
     public class Gate : MonoBehaviour
     {
@@ -24,22 +24,44 @@ namespace OneWayTogether.Puzzle
         [Tooltip("When true the gate starts open and closes when the plate is active.")]
         [SerializeField] private bool _invertLogic = false;
 
-        [Header("Movement")]
-        [SerializeField] private Vector3 _openPosition  = new Vector3(0f, 2f, 0f);
-        [SerializeField] private Vector3 _closedPosition = Vector3.zero;
-        [SerializeField, Range(0.1f, 5f)] private float _moveSpeed = 2f;
+        [Header("Doors")]
+        [Tooltip("Left door leaf — its pivot must sit at the hinge (outer edge).")]
+        [SerializeField] private Transform _leftLeaf;
+
+        [Tooltip("Right door leaf — its pivot must sit at the hinge (outer edge).")]
+        [SerializeField] private Transform _rightLeaf;
+
+        [Tooltip("Degrees each leaf swings open from its closed (rest) pose. The left leaf uses +angle, the right uses -angle.")]
+        [SerializeField] private float _openAngle = 90f;
+
+        [Tooltip("Swing speed in degrees/second.")]
+        [SerializeField, Range(30f, 720f)] private float _openSpeed = 160f;
+
+        [Tooltip("Local axis each leaf rotates about — up (Y) for a vertical hinge.")]
+        [SerializeField] private Vector3 _hingeAxis = Vector3.up;
+
+        [Header("Blocking")]
+        [Tooltip("Collider that blocks passage while closed and is disabled when open. Optional.")]
+        [SerializeField] private Collider _blocker;
 
         // ── State ─────────────────────────────────────────────────────────────────
 
         private bool _isOpen;
-        private Vector3 _targetPosition;
+        // The mesh is modeled CLOSED, so the leaves' authored pose is the closed rest pose.
+        private Quaternion _leftClosed = Quaternion.identity;
+        private Quaternion _rightClosed = Quaternion.identity;
+        private Quaternion _leftTarget = Quaternion.identity;
+        private Quaternion _rightTarget = Quaternion.identity;
 
         // ── Unity lifecycle ───────────────────────────────────────────────────────
 
         private void Awake()
         {
-            _targetPosition = _closedPosition;
-            transform.localPosition = _closedPosition;
+            if (_leftLeaf != null) _leftClosed = _leftLeaf.localRotation;
+            if (_rightLeaf != null) _rightClosed = _rightLeaf.localRotation;
+
+            _isOpen = false;
+            UpdateTargets(instant: true);
         }
 
         private void OnEnable()
@@ -54,10 +76,13 @@ namespace OneWayTogether.Puzzle
 
         private void Update()
         {
-            transform.localPosition = Vector3.MoveTowards(
-                transform.localPosition,
-                _targetPosition,
-                _moveSpeed * Time.deltaTime);
+            if (_leftLeaf != null && _leftLeaf.localRotation != _leftTarget)
+                _leftLeaf.localRotation = Quaternion.RotateTowards(
+                    _leftLeaf.localRotation, _leftTarget, _openSpeed * Time.deltaTime);
+
+            if (_rightLeaf != null && _rightLeaf.localRotation != _rightTarget)
+                _rightLeaf.localRotation = Quaternion.RotateTowards(
+                    _rightLeaf.localRotation, _rightTarget, _openSpeed * Time.deltaTime);
         }
 
         // ── Private ───────────────────────────────────────────────────────────────
@@ -65,45 +90,45 @@ namespace OneWayTogether.Puzzle
         private void HandlePlateChanged(string plateId, bool isActive)
         {
             if (plateId != _triggerPlateId) return;
-
-            bool shouldOpen = _invertLogic ? !isActive : isActive;
-            SetOpen(shouldOpen);
+            SetOpen(_invertLogic ? !isActive : isActive);
         }
 
         private void SetOpen(bool open)
         {
             if (_isOpen == open) return;
             _isOpen = open;
-            _targetPosition = open ? _openPosition : _closedPosition;
+            UpdateTargets(instant: false);
             GameEvents.RaiseGateStateChanged(_gateId, _isOpen);
+        }
+
+        private void UpdateTargets(bool instant)
+        {
+            // Closed = the authored rest pose; open = swung outward by _openAngle (mirrored per leaf).
+            _leftTarget  = _isOpen ? _leftClosed  * Quaternion.AngleAxis( _openAngle, _hingeAxis) : _leftClosed;
+            _rightTarget = _isOpen ? _rightClosed * Quaternion.AngleAxis(-_openAngle, _hingeAxis) : _rightClosed;
+
+            if (instant)
+            {
+                if (_leftLeaf != null) _leftLeaf.localRotation = _leftTarget;
+                if (_rightLeaf != null) _rightLeaf.localRotation = _rightTarget;
+            }
+
+            // Blocker is solid while closed, cleared while open.
+            if (_blocker != null) _blocker.enabled = !_isOpen;
         }
 
         // ── Runtime configuration ─────────────────────────────────────────────────
 
         /// <summary>
-        /// Configures the gate at runtime — call immediately after Instantiate, before
-        /// OnEnable fires the subscription. Safe to call before Awake because Awake
-        /// will not have run yet on a freshly instantiated object.
-        ///
-        /// <paramref name="gateId"/> is the unique ID published to GameEvents.
-        /// <paramref name="plateId"/> must match the Lever or PressurePlate that controls this gate.
-        /// <paramref name="openOffset"/> is the local-space position offset when open.
+        /// Configures the gate at runtime — call immediately after Instantiate.
+        /// <paramref name="openOffset"/> is retained for API compatibility with
+        /// <see cref="OneWayTogether.Core.LevelBuilder"/>; swing doors open
+        /// rotationally and ignore it.
         /// </summary>
         public void Init(string gateId, string plateId, Vector3 openOffset)
         {
             _gateId         = gateId;
             _triggerPlateId = plateId;
-            _openPosition   = openOffset;
-        }
-
-        // ── Gizmos ────────────────────────────────────────────────────────────────
-
-        private void OnDrawGizmosSelected()
-        {
-            Gizmos.color = new Color(0.2f, 1f, 0.2f, 0.5f);
-            Gizmos.DrawWireCube(transform.position + _openPosition, Vector3.one * 0.3f);
-            Gizmos.color = new Color(1f, 0.2f, 0.2f, 0.5f);
-            Gizmos.DrawWireCube(transform.position + _closedPosition, Vector3.one * 0.3f);
         }
     }
 }
