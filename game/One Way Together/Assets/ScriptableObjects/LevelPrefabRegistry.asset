@@ -28,8 +28,8 @@ MonoBehaviour:
   ancientRuinsArchPrefab: {fileID: 1993788779803430713, guid: 4a1e9ae75f49b1644999e907d8bbf30c, type: 3}
   ancientRuinsColumnPrefab: {fileID: 8969334208638092436, guid: 74ccf3aabd7d55e47a044a4bc829c43d, type: 3}
   ancientRuinsWallPrefab: {fileID: 0}
-  vegetationTreePinePrefab: {fileID: 805371847936112456, guid: 9f4af9cc13e2a084e8a07d8dacff37a1, type: 3}
-  vegetationTreeAlpinePrefab: {fileID: 6277941606561850662, guid: 4c9eeacba18d8ba44be2d8439d8092b2, type: 3}
+  vegetationTreePinePrefab: {fileID: 3519317480451287062, guid: ed9cd0b3e7ca9ae44978a197eaa5639d, type: 3}
+  vegetationTreeAlpinePrefab: {fileID: 3519317480451287062, guid: ed9cd0b3e7ca9ae44978a197eaa5639d, type: 3}
   gatePrefab: {fileID: 784320978720200122, guid: 3fffbc6af82f0457f91fb19d6a8aa15c, type: 3}
   leverPrefab: {fileID: 6106122092968054198, guid: a8101dbb94d3e43d1b4d2006db9bb38c, type: 3}
   reunionTriggerPrefab: {fileID: 1132471707918468657, guid: fafc9a4ea1abc4872b68e0fa81e28500, type: 3}
