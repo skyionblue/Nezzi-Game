@@ -1,35 +1,37 @@
+using System.Collections;
 using UnityEngine;
 using OneWayTogether.Events;
 
 namespace OneWayTogether.Puzzle
 {
     /// <summary>
-    /// Flat walkable platform. Starts <see cref="_retractOffset"/> units below its
-    /// authored world position. Snaps to the authored position (deployed) when the
-    /// linked pressure-plate ID fires active, and retracts when it fires inactive.
+    /// Flat walkable platform. Starts above the camera (retractOffset units above
+    /// its authored world position) and smoothly lowers into the gap when the linked
+    /// lever fires. Uses the same OnPressurePlateChanged bus as Gate/Lever.
     ///
-    /// Uses the same <see cref="GameEvents.OnPressurePlateChanged"/> bus as Gate/Lever
-    /// so a single Lever can raise the bridge without any direct reference.
-    ///
-    /// Init is called by LevelBuilder after Instantiate, which sets _plateId and
-    /// calculates deployed/retracted positions from the authored transform.
+    /// Init is called by LevelBuilder immediately after Instantiate.
     /// </summary>
     [RequireComponent(typeof(Collider))]
     public class Bridge : MonoBehaviour
     {
         [SerializeField] private string _plateId;
 
-        [Tooltip("Distance below the authored position the bridge sits when hidden.")]
-        [SerializeField] private float _retractOffset = -10f;
+        [Tooltip("Distance ABOVE the authored position the bridge starts. Must be positive — high enough to be off-camera.")]
+        [SerializeField] private float _retractOffset = 20f;
+
+        [Tooltip("Speed in world units per second at which the bridge descends into place.")]
+        [SerializeField, Range(1f, 30f)] private float _lowerSpeed = 12f;
 
         private Vector3 _deployedPos;
         private Vector3 _retractedPos;
-        private bool _initialised;
+        private bool    _initialised;
+        private bool    _isDeployed;
+        private Coroutine _moveCoroutine;
 
         // ── Public API (called by LevelBuilder) ──────────────────────────────────
 
         /// <summary>
-        /// Binds the bridge to a plate ID and hides it below the floor.
+        /// Binds the bridge to a plate ID and hides it above the scene.
         /// Must be called immediately after Instantiate, before any frame update.
         /// </summary>
         public void Init(string plateId)
@@ -38,25 +40,47 @@ namespace OneWayTogether.Puzzle
             _deployedPos  = transform.position;
             _retractedPos = _deployedPos + Vector3.up * _retractOffset;
             transform.position = _retractedPos;
-            _initialised = true;
+            _initialised  = true;
+            _isDeployed   = false;
         }
 
         // ── Unity lifecycle ──────────────────────────────────────────────────────
 
         private void OnEnable()  => GameEvents.OnPressurePlateChanged += HandlePlate;
-        private void OnDisable() => GameEvents.OnPressurePlateChanged -= HandlePlate;
+        private void OnDisable()
+        {
+            GameEvents.OnPressurePlateChanged -= HandlePlate;
+            if (_moveCoroutine != null) StopCoroutine(_moveCoroutine);
+        }
 
         // ── Event handler ────────────────────────────────────────────────────────
 
         private void HandlePlate(string id, bool active)
         {
-            if (id != _plateId) return;
+            if (id != _plateId || !_initialised) return;
 
-            // Guard against an event firing before Init has run (edge case during
-            // scene load ordering), though LevelBuilder always calls Init first.
-            if (!_initialised) return;
+            Vector3 target = active ? _deployedPos : _retractedPos;
+            bool    deploy = active;
 
-            transform.position = active ? _deployedPos : _retractedPos;
+            if (deploy == _isDeployed) return; // already in the right state
+            _isDeployed = deploy;
+
+            if (_moveCoroutine != null) StopCoroutine(_moveCoroutine);
+            _moveCoroutine = StartCoroutine(MoveTo(target));
+        }
+
+        // ── Movement coroutine ────────────────────────────────────────────────────
+
+        private IEnumerator MoveTo(Vector3 target)
+        {
+            while (Vector3.Distance(transform.position, target) > 0.01f)
+            {
+                transform.position = Vector3.MoveTowards(
+                    transform.position, target, _lowerSpeed * Time.deltaTime);
+                yield return null;
+            }
+            transform.position = target;
+            _moveCoroutine = null;
         }
     }
 }
