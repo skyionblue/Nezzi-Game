@@ -48,6 +48,7 @@ namespace OneWayTogether.Characters
 
         // Animator hashes
         private static readonly int AnimCarry = Animator.StringToHash("Carry");
+        private static readonly int AnimCrawl = Animator.StringToHash("Crawl");
 
         // ── Properties ───────────────────────────────────────────────────────────
 
@@ -65,6 +66,11 @@ namespace OneWayTogether.Characters
         {
             if (_isLifted) return; // Scarlet drives position while holding Dani.
             base.Update();
+        }
+
+        protected override void OnControllerColliderHit(ControllerColliderHit hit)
+        {
+            base.OnControllerColliderHit(hit); // triggers WallFlash if present
         }
 
         // ── Input API ────────────────────────────────────────────────────────────
@@ -105,6 +111,10 @@ namespace OneWayTogether.Characters
             transform.SetParent(scarletTransform);
             transform.localPosition = liftOffset;
             transform.localRotation = Quaternion.identity;
+
+            // Cancel out Scarlet's scale so Dani keeps her own world-space size.
+            Vector3 ps = scarletTransform.lossyScale;
+            transform.localScale = new Vector3(1f / ps.x, 1f / ps.y, 1f / ps.z);
         }
 
         /// <summary>
@@ -122,6 +132,7 @@ namespace OneWayTogether.Characters
             _scarletTransform = null;
 
             transform.SetParent(null);
+            transform.localScale = Vector3.one;
             _cc.enabled = true;
 
             // Upward impulse — Dani visibly jumps off Scarlet's shoulders.
@@ -187,6 +198,15 @@ namespace OneWayTogether.Characters
         {
             // Stub — climb is not yet implemented for the HD-2D isometric build.
             // RopeTrigger still calls this so the interface remains stable.
+        }
+
+        /// <summary>
+        /// Called by CrawlTrigger when Dani enters or exits a narrow passage.
+        /// Drives the Crawl bool on the Animator so the crawl clip plays.
+        /// </summary>
+        public void SetCrawlingState(bool crawling)
+        {
+            _animator.SetBool(AnimCrawl, crawling);
         }
 
         // ── Gizmos ────────────────────────────────────────────────────────────────

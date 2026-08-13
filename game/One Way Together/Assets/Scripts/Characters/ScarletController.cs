@@ -20,7 +20,7 @@ namespace OneWayTogether.Characters
 
         [Header("Lift Settings")]
         [Tooltip("Local-space offset where Dani sits when being held. Y = height (shoulders), Z = small forward lean.")]
-        [SerializeField] private Vector3 _liftOffset = new Vector3(0f, 1.6f, 0.3f);
+        [SerializeField] private Vector3 _liftOffset = new Vector3(0f, 0.9f, 0.0f);
 
         [Tooltip("Radius around Scarlet's center checked for Dani's presence when Interact is pressed.")]
         [SerializeField, Range(0.1f, 3f)] private float _liftRange = 1.5f;
@@ -65,11 +65,13 @@ namespace OneWayTogether.Characters
 
         // ── Boulder push ─────────────────────────────────────────────────────────
 
-        private void OnControllerColliderHit(ControllerColliderHit hit)
+        protected override void OnControllerColliderHit(ControllerColliderHit hit)
         {
+            base.OnControllerColliderHit(hit);
+
             Rigidbody rb = hit.collider.attachedRigidbody;
             if (rb == null || rb.isKinematic) return;
-            if (hit.moveDirection.y < -0.3f) return; // don't push objects downward
+            if (hit.moveDirection.y < -0.3f) return;
 
             Vector3 pushDir = new Vector3(hit.moveDirection.x, 0f, hit.moveDirection.z);
             rb.AddForce(pushDir * _pushForce, ForceMode.Force);

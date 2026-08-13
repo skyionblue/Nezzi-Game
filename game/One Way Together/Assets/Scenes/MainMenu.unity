@@ -403,7 +403,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!223 &745436241
 Canvas:
   m_ObjectHideFlags: 0
@@ -461,7 +461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1ae6a0377a664512a571db29966783c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: OneWayTogether::OneWayTogether.UI.MainMenuController
-  _firstPuzzleScene: World1_Puzzle1
+  _firstPuzzleScene: CityWorld
 --- !u!1 &1800968894
 GameObject:
   m_ObjectHideFlags: 0

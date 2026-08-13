@@ -12,24 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37bf95203d2a34f6195dbd8dde91067c, type: 3}
   m_Name: LevelPrefabRegistry
   m_EditorClassIdentifier: OneWayTogether::OneWayTogether.Data.LevelPrefabRegistry
-  forestPlatformPrefab: {fileID: 342671067029898321, guid: c59544e8c50634a4b87fc7d0f36839b0, type: 3}
-  stoneWallPrefab: {fileID: 4601918314967128819, guid: 7f3284f1bddcd49f8a21c3210119eea6, type: 3}
-  backgroundWallPrefab: {fileID: 1897526723447177428, guid: f93f5b653f6e6464faea44a48853e03f, type: 3}
-  rpgFloorCoveredPrefab: {fileID: 605680911520812344, guid: 4c138002398975e46891e2025595d146, type: 3}
-  rpgFloorDirtPrefab: {fileID: 8593301090965940156, guid: 8d1820413e3163448a31464b35c929aa, type: 3}
-  rpgFloorStonePrefab: {fileID: 1181067637800506010, guid: 3d1ffb7d7c07f5a4ab9e04dca9e8961d, type: 3}
+  forestPlatformPrefab: {fileID: 0}
+  stoneWallPrefab: {fileID: 3373083032469309127, guid: 5a19a7eef363e498d9aec3337205c139, type: 3}
+  backgroundWallPrefab: {fileID: 0}
+  rpgFloorCoveredPrefab: {fileID: 2346707730949504201, guid: e291de041db7b4d8b9578ed1910654d5, type: 3}
+  rpgFloorDirtPrefab: {fileID: 2346707730949504201, guid: e291de041db7b4d8b9578ed1910654d5, type: 3}
+  rpgFloorStonePrefab: {fileID: 2346707730949504201, guid: e291de041db7b4d8b9578ed1910654d5, type: 3}
   rpgFloorWaterPrefab: {fileID: 0}
-  rpgRampCoveredPrefab: {fileID: 5669306796041958791, guid: 09ebf57c5f4b84f4cb79f617bfbb96c3, type: 3}
-  vegetationBushLargePrefab: {fileID: 7172694890989307008, guid: 45f58c1679621ff4b8ad1a3c4795ed64, type: 3}
-  vegetationBushSmallPrefab: {fileID: 267889871428196528, guid: b3c985ab3b083e547a847f720f3fd85e, type: 3}
-  vegetationFernPrefab: {fileID: 6287258103444042649, guid: 868cb32d0f674664381f934ea0574b41, type: 3}
-  rockBoulderPrefab: {fileID: 7447261060674255585, guid: 14f4fd85344d47c4db24c61a5f46da36, type: 3}
-  rockChunksPrefab: {fileID: 1223436078147778068, guid: 20deefc9ae149d14ebca9a9c7163d105, type: 3}
-  ancientRuinsArchPrefab: {fileID: 1993788779803430713, guid: 4a1e9ae75f49b1644999e907d8bbf30c, type: 3}
-  ancientRuinsColumnPrefab: {fileID: 8969334208638092436, guid: 74ccf3aabd7d55e47a044a4bc829c43d, type: 3}
+  rpgRampCoveredPrefab: {fileID: 0}
+  vegetationBushLargePrefab: {fileID: 3465402479358489797, guid: 1fbfcd755c566e348984c2a5582925b5, type: 3}
+  vegetationBushSmallPrefab: {fileID: 4055979996380649174, guid: 88be9be61358bb444b914842bd18f181, type: 3}
+  vegetationFernPrefab: {fileID: 0}
+  rockBoulderPrefab: {fileID: 0}
+  rockChunksPrefab: {fileID: 0}
+  ancientRuinsArchPrefab: {fileID: 0}
+  ancientRuinsColumnPrefab: {fileID: 0}
   ancientRuinsWallPrefab: {fileID: 0}
-  vegetationTreePinePrefab: {fileID: 3519317480451287062, guid: ed9cd0b3e7ca9ae44978a197eaa5639d, type: 3}
-  vegetationTreeAlpinePrefab: {fileID: 3519317480451287062, guid: ed9cd0b3e7ca9ae44978a197eaa5639d, type: 3}
+  vegetationTreePinePrefab: {fileID: 1756716969218307087, guid: 329560d27e5f1a744a9d13d141e0512e, type: 3}
+  vegetationTreeAlpinePrefab: {fileID: 6230834852378693467, guid: 0e5331a5fe044c54497eafa7ed5490d7, type: 3}
   gatePrefab: {fileID: 784320978720200122, guid: 3fffbc6af82f0457f91fb19d6a8aa15c, type: 3}
   leverPrefab: {fileID: 6106122092968054198, guid: a8101dbb94d3e43d1b4d2006db9bb38c, type: 3}
   reunionTriggerPrefab: {fileID: 1132471707918468657, guid: fafc9a4ea1abc4872b68e0fa81e28500, type: 3}

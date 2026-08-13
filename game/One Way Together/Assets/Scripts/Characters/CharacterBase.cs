@@ -205,5 +205,11 @@ namespace OneWayTogether.Characters
             if (state != GameState.Playing)
                 _moveInput = Vector2.zero;
         }
+
+        protected virtual void OnControllerColliderHit(ControllerColliderHit hit)
+        {
+            var flash = hit.gameObject.GetComponent<OneWayTogether.Puzzle.WallFlash>();
+            if (flash != null) flash.Flash();
+        }
     }
 }

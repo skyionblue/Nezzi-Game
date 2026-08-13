@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 81dc6b90e21da46dc9f10ed9616cf29a
   - enabled: 1
+    path: Assets/Scenes/CityWorld.unity
+    guid: 31dcd143acd814aa38d2df14d7c5ecd8
+  - enabled: 1
     path: Assets/Scenes/World1_Puzzle1.unity
     guid: fa92f2750f8ef4f3bb7534ae630c48fd
   - enabled: 1
@@ -38,4 +41,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/World1_Puzzle10.unity
     guid: 26a263a67387a4f2eb6a7b4463544ea6
+  - enabled: 1
+    path: Assets/Scenes/World1_Puzzle11.unity
+    guid: 73e7aaa1cf127442b967869ce8401e36
   m_configObjects: {}

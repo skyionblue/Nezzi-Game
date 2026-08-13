@@ -3,5 +3,6 @@
   <Project Path="MCPForUnity.Editor.csproj" />
   <Project Path="OneWayTogether.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="StepHeightSystem.csproj" />
   <Project Path="Assembly-CSharp-Editor.csproj" />
 </Solution>
