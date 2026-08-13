@@ -30,6 +30,9 @@ namespace OneWayTogether.Puzzle
         [Tooltip("When true, the plate permanently latches in the activated state the first time it fires — Scarlet can step off and the gate stays open.")]
         [SerializeField] private bool _oneShot = false;
 
+        [Tooltip("When true, only Rigidbody objects (boulders) activate this plate. CharacterController capsules are ignored — prevents players from walking over boulder-only plates.")]
+        [SerializeField] private bool _requiresPhysics = false;
+
         [Header("Visuals")]
         [Tooltip("Renderer whose material colour changes to show activation state.")]
         [SerializeField] private Renderer _indicator;
@@ -53,10 +56,11 @@ namespace OneWayTogether.Puzzle
         /// Sets the plate ID (and optional one-shot latch) at spawn time.
         /// Call immediately after Instantiate, before the first physics frame.
         /// </summary>
-        public void Init(string plateId, bool oneShot = false)
+        public void Init(string plateId, bool oneShot = false, bool requiresPhysics = false)
         {
             _plateId = plateId;
             _oneShot = oneShot;
+            _requiresPhysics = requiresPhysics;
         }
 
         /// <summary>
@@ -81,6 +85,7 @@ namespace OneWayTogether.Puzzle
         private void OnTriggerEnter(Collider other)
         {
             if (_isLocked) return;
+            if (_requiresPhysics && other.attachedRigidbody == null) return;
             _overlappingObjects++;
             if (_overlappingObjects == 1) SetActive(true);
         }
@@ -88,6 +93,7 @@ namespace OneWayTogether.Puzzle
         private void OnTriggerExit(Collider other)
         {
             if (_isLocked) return;
+            if (_requiresPhysics && other.attachedRigidbody == null) return;
             _overlappingObjects = Mathf.Max(0, _overlappingObjects - 1);
             if (_overlappingObjects == 0) SetActive(false);
         }

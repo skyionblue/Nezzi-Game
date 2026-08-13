@@ -47,6 +47,9 @@ namespace OneWayTogether.Data
         [Tooltip("For Lever: when true the gate stays open after the lever is thrown once.")]
         public bool oneShot;
 
+        [Tooltip("For StonePressurePlate: when true only Rigidbody objects (boulders) activate the plate — CharacterControllers are ignored.")]
+        public bool requiresPhysics;
+
         [Tooltip("For ReunionTrigger: overrides the BoxCollider size. Leave at (0,0) to keep the prefab default.")]
         public Vector2 triggerSize;
 

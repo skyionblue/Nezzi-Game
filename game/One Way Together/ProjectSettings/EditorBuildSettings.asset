@@ -32,4 +32,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/World1_Puzzle8.unity
     guid: a77cc260ef24a4403a3320f1ea146332
+  - enabled: 1
+    path: Assets/Scenes/World1_Puzzle9.unity
+    guid: 5a4a50ec5fd4f484e895bfb4ca2aa7ab
+  - enabled: 1
+    path: Assets/Scenes/World1_Puzzle10.unity
+    guid: 26a263a67387a4f2eb6a7b4463544ea6
   m_configObjects: {}
