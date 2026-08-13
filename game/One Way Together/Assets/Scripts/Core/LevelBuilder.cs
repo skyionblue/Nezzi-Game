@@ -79,11 +79,8 @@ namespace OneWayTogether.Core
             // onto the tile surface rather than starting inside it.
             Vector3 spawnOffset = Vector3.up * 0.5f;
 
-            if (_scarletRoot != null)
-                _scarletRoot.position = _levelData.scarletStart + spawnOffset;
-
-            if (_daniRoot != null)
-                _daniRoot.position = _levelData.daniStart + spawnOffset;
+            TeleportCharacter(_scarletRoot, _levelData.scarletStart + spawnOffset);
+            TeleportCharacter(_daniRoot, _levelData.daniStart + spawnOffset);
 
             // Re-register after moving so CheckpointManager holds the correct start positions.
             // CharacterBase.Awake() may have registered stale scene positions before LevelBuilder ran.
@@ -95,6 +92,22 @@ namespace OneWayTogether.Core
                 if (_daniRoot != null)
                     cm.RegisterCharacter(CharacterType.Dani, _daniRoot, _levelData.daniStart);
             }
+        }
+
+        /// <summary>
+        /// Moves a character to a position. Disables the CharacterController around the
+        /// move because an enabled CharacterController resists direct transform.position
+        /// changes — without this the character stays at its baked scene position and,
+        /// if that position is off the level, falls forever.
+        /// </summary>
+        private void TeleportCharacter(Transform characterRoot, Vector3 position)
+        {
+            if (characterRoot == null) return;
+
+            CharacterController cc = characterRoot.GetComponent<CharacterController>();
+            if (cc != null) cc.enabled = false;
+            characterRoot.position = position;
+            if (cc != null) cc.enabled = true;
         }
 
         private void BuildPlatforms()
@@ -156,6 +169,10 @@ namespace OneWayTogether.Core
                         SpawnPushBoulder(pos);
                         break;
 
+                    case LevelObjectType.StonePressurePlate:
+                        SpawnStonePressurePlate(pos, rot, def.id);
+                        break;
+
                     // Scarlet/Dani are handled by PlaceCharacters — skip here.
                     case LevelObjectType.Scarlet:
                     case LevelObjectType.Dani:
@@ -206,6 +223,7 @@ namespace OneWayTogether.Core
                 : openOffset;
 
             GameObject go   = Instantiate(_prefabs.gatePrefab, pos, rot, _objectContainer);
+            go.transform.localScale = Vector3.one * 2f; // scale up to match thick platforms
             Gate       gate = go.GetComponent<Gate>();
             if (gate != null)
                 gate.Init(id, id, effectiveOffset);
@@ -292,6 +310,20 @@ namespace OneWayTogether.Core
                 return;
             }
             Instantiate(_prefabs.pushBoulderPrefab, pos, Quaternion.identity, _objectContainer);
+        }
+
+        private void SpawnStonePressurePlate(Vector3 pos, Quaternion rot, string plateId)
+        {
+            if (_prefabs.stonePressurePlatePrefab == null)
+            {
+                Debug.LogWarning("[LevelBuilder] stonePressurePlatePrefab not assigned in LevelPrefabRegistry.", this);
+                return;
+            }
+
+            GameObject   go    = Instantiate(_prefabs.stonePressurePlatePrefab, pos, rot, _objectContainer);
+            PressurePlate plate = go.GetComponent<PressurePlate>();
+            if (plate != null)
+                plate.Init(plateId);
         }
 
         private void SpawnBridge(Vector3 pos, Quaternion rot, string plateId)

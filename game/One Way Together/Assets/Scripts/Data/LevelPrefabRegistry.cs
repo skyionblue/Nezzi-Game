@@ -71,6 +71,9 @@ namespace OneWayTogether.Data
         [Tooltip("Pushable boulder — must have a Rigidbody and be on the Stackable layer.")]
         public GameObject pushBoulderPrefab;
 
+        [Tooltip("Stone pressure plate — triggers on Rigidbody or Character overlap.")]
+        public GameObject stonePressurePlatePrefab;
+
         [Header("Collectibles")]
         [Tooltip("Coin pickup prefab — must have CoinPickup.cs attached.")]
         public GameObject coinPrefab;

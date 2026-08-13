@@ -1,0 +1,369 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d33a56cbedd44661af5a08cde4018a6, type: 3}
+  m_Name: World1_Puzzle4
+  m_EditorClassIdentifier: OneWayTogether::OneWayTogether.Data.LevelData
+  levelName: "World 1 - Puzzle 4 \u2014 Hold and Cross"
+  scarletStart: {x: -3, y: 0, z: -6}
+  daniStart: {x: 3, y: 0, z: -6}
+  platforms:
+  - type: 3
+    position: {x: -6, y: -1.5, z: -9}
+    scale: {x: 1, y: 0.5, z: 1}
+    yRotation: 0
+  - type: 3
+    position: {x: -6, y: -1.5, z: -6}
+    scale: {x: 1, y: 0.5, z: 1}
+    yRotation: 0
+  - type: 3
+    position: {x: -6, y: -1.5, z: -3}
+    scale: {x: 1, y: 0.5, z: 1}
+    yRotation: 0
+  - type: 3
+    position: {x: -3, y: -1.5, z: -9}
+    scale: {x: 1, y: 0.5, z: 1}
+    yRotation: 0
+  - type: 3
+    position: {x: -3, y: -1.5, z: -6}
+    scale: {x: 1, y: 0.5, z: 1}
+    yRotation: 0
+  - type: 3
+    position: {x: -3, y: -1.5, z: -3}
+    scale: {x: 1, y: 0.5, z: 1}
+    yRotation: 0
+  - type: 3
+    position: {x: -3, y: -1.5, z: 0}
+    scale: {x: 1, y: 0.5, z: 1}
+    yRotation: 0
+  - type: 3
+    position: {x: -3, y: -1.5, z: 3}
+    scale: {x: 1, y: 0.5, z: 1}
+    yRotation: 0
+  - type: 3
+    position: {x: -3, y: -1.5, z: 6}
+    scale: {x: 1, y: 0.5, z: 1}
+    yRotation: 0
+  - type: 3
+    position: {x: -3, y: -1.5, z: 9}
+    scale: {x: 1, y: 0.5, z: 1}
+    yRotation: 0
+  - type: 3
+    position: {x: -3, y: -1.5, z: 12}
+    scale: {x: 1, y: 0.5, z: 1}
+    yRotation: 0
+  - type: 3
+    position: {x: -3, y: -1.5, z: 15}
+    scale: {x: 1, y: 0.5, z: 1}
+    yRotation: 0
+  - type: 3
+    position: {x: 0, y: -1.5, z: -9}
+    scale: {x: 1, y: 0.5, z: 1}
+    yRotation: 0
+  - type: 3
+    position: {x: 0, y: -1.5, z: -6}
+    scale: {x: 1, y: 0.5, z: 1}
+    yRotation: 0
+  - type: 3
+    position: {x: 0, y: -1.5, z: -3}
+    scale: {x: 1, y: 0.5, z: 1}
+    yRotation: 0
+  - type: 3
+    position: {x: 0, y: -1.5, z: 12}
+    scale: {x: 1, y: 0.5, z: 1}
+    yRotation: 0
+  - type: 3
+    position: {x: 0, y: -1.5, z: 15}
+    scale: {x: 1, y: 0.5, z: 1}
+    yRotation: 0
+  - type: 3
+    position: {x: 3, y: -1.5, z: -9}
+    scale: {x: 1, y: 0.5, z: 1}
+    yRotation: 0
+  - type: 3
+    position: {x: 3, y: -1.5, z: -6}
+    scale: {x: 1, y: 0.5, z: 1}
+    yRotation: 0
+  - type: 3
+    position: {x: 3, y: -1.5, z: -3}
+    scale: {x: 1, y: 0.5, z: 1}
+    yRotation: 0
+  - type: 3
+    position: {x: 3, y: -1.5, z: 0}
+    scale: {x: 1, y: 0.5, z: 1}
+    yRotation: 0
+  - type: 3
+    position: {x: 3, y: -1.5, z: 3}
+    scale: {x: 1, y: 0.5, z: 1}
+    yRotation: 0
+  - type: 3
+    position: {x: 3, y: -1.5, z: 6}
+    scale: {x: 1, y: 0.5, z: 1}
+    yRotation: 0
+  - type: 3
+    position: {x: 3, y: -1.5, z: 9}
+    scale: {x: 1, y: 0.5, z: 1}
+    yRotation: 0
+  - type: 3
+    position: {x: 3, y: -1.5, z: 12}
+    scale: {x: 1, y: 0.5, z: 1}
+    yRotation: 0
+  - type: 3
+    position: {x: 3, y: -1.5, z: 15}
+    scale: {x: 1, y: 0.5, z: 1}
+    yRotation: 0
+  - type: 3
+    position: {x: 6, y: -1.5, z: -9}
+    scale: {x: 1, y: 0.5, z: 1}
+    yRotation: 0
+  - type: 3
+    position: {x: 6, y: -1.5, z: -6}
+    scale: {x: 1, y: 0.5, z: 1}
+    yRotation: 0
+  - type: 3
+    position: {x: 6, y: -1.5, z: -3}
+    scale: {x: 1, y: 0.5, z: 1}
+    yRotation: 0
+  - type: 1
+    position: {x: -9, y: 0, z: -12}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 90
+  - type: 1
+    position: {x: -9, y: 0, z: -9}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 90
+  - type: 1
+    position: {x: -9, y: 0, z: -6}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 90
+  - type: 1
+    position: {x: -9, y: 0, z: -3}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 90
+  - type: 1
+    position: {x: -9, y: 0, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 90
+  - type: 1
+    position: {x: -6, y: 0, z: -12}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 90
+  - type: 1
+    position: {x: -6, y: 0, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 90
+  - type: 1
+    position: {x: -6, y: 0, z: 3}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 90
+  - type: 1
+    position: {x: -6, y: 0, z: 6}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 90
+  - type: 1
+    position: {x: -6, y: 0, z: 9}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 90
+  - type: 1
+    position: {x: -6, y: 0, z: 12}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 90
+  - type: 1
+    position: {x: -6, y: 0, z: 15}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 90
+  - type: 1
+    position: {x: -6, y: 0, z: 18}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 90
+  - type: 1
+    position: {x: -3, y: 0, z: -12}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 90
+  - type: 1
+    position: {x: -3, y: 0, z: 18}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 90
+  - type: 1
+    position: {x: 0, y: 0, z: -12}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 90
+  - type: 1
+    position: {x: 0, y: 0, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 90
+  - type: 1
+    position: {x: 0, y: 0, z: 3}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 90
+  - type: 1
+    position: {x: 0, y: 0, z: 6}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 90
+  - type: 1
+    position: {x: 0, y: 0, z: 9}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 90
+  - type: 1
+    position: {x: 0, y: 0, z: 18}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 90
+  - type: 1
+    position: {x: 3, y: 0, z: -12}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 90
+  - type: 1
+    position: {x: 3, y: 0, z: 18}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 90
+  - type: 1
+    position: {x: 6, y: 0, z: -12}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 90
+  - type: 1
+    position: {x: 6, y: 0, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 90
+  - type: 1
+    position: {x: 6, y: 0, z: 3}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 90
+  - type: 1
+    position: {x: 6, y: 0, z: 6}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 90
+  - type: 1
+    position: {x: 6, y: 0, z: 9}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 90
+  - type: 1
+    position: {x: 6, y: 0, z: 12}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 90
+  - type: 1
+    position: {x: 6, y: 0, z: 15}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 90
+  - type: 1
+    position: {x: 6, y: 0, z: 18}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 90
+  - type: 1
+    position: {x: 9, y: 0, z: -12}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 90
+  - type: 1
+    position: {x: 9, y: 0, z: -9}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 90
+  - type: 1
+    position: {x: 9, y: 0, z: -6}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 90
+  - type: 1
+    position: {x: 9, y: 0, z: -3}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 90
+  - type: 1
+    position: {x: 9, y: 0, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+    yRotation: 90
+  objects:
+  - type: 6
+    position: {x: 0, y: 0, z: -9}
+    yRotation: 0
+    id: 
+    oneShot: 0
+    triggerSize: {x: 0, y: 0}
+    gateOpenOffset: {x: 0, y: 0, z: 0}
+  - type: 10
+    position: {x: 0, y: 0, z: -6}
+    yRotation: 0
+    id: gate_a
+    oneShot: 0
+    triggerSize: {x: 0, y: 0}
+    gateOpenOffset: {x: 0, y: 0, z: 0}
+  - type: 2
+    position: {x: -3, y: 0, z: 3}
+    yRotation: 0
+    id: gate_a
+    oneShot: 0
+    triggerSize: {x: 0, y: 0}
+    gateOpenOffset: {x: 0, y: 3.7, z: 0}
+  - type: 3
+    position: {x: -3, y: 0, z: 12}
+    yRotation: 0
+    id: gate_b
+    oneShot: 1
+    triggerSize: {x: 0, y: 0}
+    gateOpenOffset: {x: 0, y: 0, z: 0}
+  - type: 2
+    position: {x: 3, y: 0, z: 3}
+    yRotation: 0
+    id: gate_b
+    oneShot: 0
+    triggerSize: {x: 0, y: 0}
+    gateOpenOffset: {x: 0, y: 3.7, z: 0}
+  - type: 5
+    position: {x: 0, y: 0, z: 15}
+    yRotation: 0
+    id: 
+    oneShot: 0
+    triggerSize: {x: 2, y: 2}
+    gateOpenOffset: {x: 0, y: 0, z: 0}
+  - type: 4
+    position: {x: -6, y: 0, z: -9}
+    yRotation: 0
+    id: 
+    oneShot: 0
+    triggerSize: {x: 0, y: 0}
+    gateOpenOffset: {x: 0, y: 0, z: 0}
+  - type: 4
+    position: {x: -6, y: 0, z: -3}
+    yRotation: 0
+    id: 
+    oneShot: 0
+    triggerSize: {x: 0, y: 0}
+    gateOpenOffset: {x: 0, y: 0, z: 0}
+  - type: 4
+    position: {x: 6, y: 0, z: -9}
+    yRotation: 0
+    id: 
+    oneShot: 0
+    triggerSize: {x: 0, y: 0}
+    gateOpenOffset: {x: 0, y: 0, z: 0}
+  - type: 4
+    position: {x: 6, y: 0, z: -3}
+    yRotation: 0
+    id: 
+    oneShot: 0
+    triggerSize: {x: 0, y: 0}
+    gateOpenOffset: {x: 0, y: 0, z: 0}
+  - type: 4
+    position: {x: 0, y: 0, z: -9}
+    yRotation: 0
+    id: 
+    oneShot: 0
+    triggerSize: {x: 0, y: 0}
+    gateOpenOffset: {x: 0, y: 0, z: 0}
+  - type: 4
+    position: {x: 0, y: 0, z: -3}
+    yRotation: 0
+    id: 
+    oneShot: 0
+    triggerSize: {x: 0, y: 0}
+    gateOpenOffset: {x: 0, y: 0, z: 0}
+  hints:
+  - "Two gates block two paths north. The left gate stays open only while someone stands on the stone plate."
+  - "Only Dani can pull levers. So Scarlet must stand on the plate to hold the left gate open while Dani crosses to the lever."
+  - "Scarlet stands on the plate to open the left gate. Dani goes up the left path and pulls the lever, which opens the right gate. Then Scarlet takes the right path, and both meet at the glowing circle."
+  skyColor: {r: 0.08, g: 0.1, b: 0.14, a: 1}
+  orthographicSize: 8

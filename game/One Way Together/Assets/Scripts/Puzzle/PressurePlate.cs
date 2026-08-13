@@ -47,6 +47,16 @@ namespace OneWayTogether.Puzzle
         public bool IsActive => _isActive;
 
         /// <summary>
+        /// Sets the plate ID at spawn time. Call this immediately after Instantiate,
+        /// before the first physics frame, so gates that listen for this ID are bound
+        /// to the correct plate.
+        /// </summary>
+        public void Init(string plateId)
+        {
+            _plateId = plateId;
+        }
+
+        /// <summary>
         /// Permanently activates the plate regardless of whether anything is standing on it.
         /// Called by levers or external puzzle logic.
         /// </summary>

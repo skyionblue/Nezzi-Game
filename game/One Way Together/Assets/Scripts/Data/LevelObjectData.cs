@@ -17,7 +17,8 @@ namespace OneWayTogether.Data
         Checkpoint     = 6,
         RopeTrigger    = 7,
         Bridge         = 8,
-        PushBoulder    = 9,
+        PushBoulder          = 9,
+        StonePressurePlate   = 10,
     }
 
     /// <summary>

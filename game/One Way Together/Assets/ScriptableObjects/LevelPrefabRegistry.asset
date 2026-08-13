@@ -37,4 +37,5 @@ MonoBehaviour:
   ropeTriggerPrefab: {fileID: 0}
   bridgePrefab: {fileID: 2237964585787368525, guid: 0320b8742263b4c198cde20bea27677d, type: 3}
   pushBoulderPrefab: {fileID: 6994596613884693936, guid: e5410edf2a2d14a30969d5efc3f9d3d7, type: 3}
+  stonePressurePlatePrefab: {fileID: 1402427037398982032, guid: 946758e3d55504a899fc2afd5ccaabac, type: 3}
   coinPrefab: {fileID: 718130947656893199, guid: 3a59e741dc6ad47a0baf3cda100dc1c2, type: 3}
