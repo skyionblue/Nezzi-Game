@@ -44,6 +44,7 @@ namespace OneWayTogether.Characters
         private bool _isCarrying;
 
         private float _liftLaunchForce;
+        private Transform _scarletTransform;
 
         // Animator hashes
         private static readonly int AnimCarry = Animator.StringToHash("Carry");
@@ -97,22 +98,34 @@ namespace OneWayTogether.Characters
         {
             _isLifted = true;
             _liftLaunchForce = launchForce;
+            _scarletTransform = scarletTransform;
 
             _cc.enabled = false;
 
             transform.SetParent(scarletTransform);
             transform.localPosition = liftOffset;
+            transform.localRotation = Quaternion.identity;
         }
 
         /// <summary>
-        /// Releases Dani from Scarlet's hold, restoring the CharacterController.
+        /// Releases Dani from Scarlet's hold. Nudges her forward in Scarlet's facing
+        /// direction and applies an upward impulse so she jumps off and lands on the ledge.
         /// </summary>
         public void EndLiftedState()
         {
             _isLifted = false;
 
+            // Push Dani half a unit forward in Scarlet's facing direction so she clears
+            // the ledge wall and lands on the surface above.
+            if (_scarletTransform != null)
+                transform.position += _scarletTransform.forward * 0.5f;
+            _scarletTransform = null;
+
             transform.SetParent(null);
             _cc.enabled = true;
+
+            // Upward impulse — Dani visibly jumps off Scarlet's shoulders.
+            SetVerticalVelocity(_liftLaunchForce);
         }
 
         // ── Stack objects ─────────────────────────────────────────────────────────

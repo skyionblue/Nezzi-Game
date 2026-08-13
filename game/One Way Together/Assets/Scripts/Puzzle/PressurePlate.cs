@@ -27,6 +27,9 @@ namespace OneWayTogether.Puzzle
         [Tooltip("When true, the plate can be permanently locked in the activated state by an external signal (e.g., a lever).")]
         [SerializeField] private bool _lockable = false;
 
+        [Tooltip("When true, the plate permanently latches in the activated state the first time it fires — Scarlet can step off and the gate stays open.")]
+        [SerializeField] private bool _oneShot = false;
+
         [Header("Visuals")]
         [Tooltip("Renderer whose material colour changes to show activation state.")]
         [SerializeField] private Renderer _indicator;
@@ -47,13 +50,13 @@ namespace OneWayTogether.Puzzle
         public bool IsActive => _isActive;
 
         /// <summary>
-        /// Sets the plate ID at spawn time. Call this immediately after Instantiate,
-        /// before the first physics frame, so gates that listen for this ID are bound
-        /// to the correct plate.
+        /// Sets the plate ID (and optional one-shot latch) at spawn time.
+        /// Call immediately after Instantiate, before the first physics frame.
         /// </summary>
-        public void Init(string plateId)
+        public void Init(string plateId, bool oneShot = false)
         {
             _plateId = plateId;
+            _oneShot = oneShot;
         }
 
         /// <summary>
@@ -97,6 +100,10 @@ namespace OneWayTogether.Puzzle
             _isActive = active;
             RefreshVisual();
             GameEvents.RaisePressurePlateChanged(_plateId, _isActive);
+            // One-shot plates latch permanently on first activation so the gate
+            // stays open after the character steps off.
+            if (_oneShot && _isActive)
+                _isLocked = true;
         }
 
         private void RefreshVisual()

@@ -19,11 +19,11 @@ namespace OneWayTogether.Characters
         [SerializeField, Range(1f, 50f)] private float _pushForce = 15f;
 
         [Header("Lift Settings")]
-        [Tooltip("Local-space offset where Dani sits when being held.")]
-        [SerializeField] private Vector3 _liftOffset = new Vector3(0f, 1.2f, 0f);
+        [Tooltip("Local-space offset where Dani sits when being held. Y = height (shoulders), Z = small forward lean.")]
+        [SerializeField] private Vector3 _liftOffset = new Vector3(0f, 1.6f, 0.3f);
 
         [Tooltip("Radius around Scarlet's center checked for Dani's presence when Interact is pressed.")]
-        [SerializeField, Range(0.1f, 2f)] private float _liftRange = 1f;
+        [SerializeField, Range(0.1f, 3f)] private float _liftRange = 1.5f;
 
         [Tooltip("Layer on which Dani's collider lives — used by the overlap check.")]
         [SerializeField] private LayerMask _daniLayer;
@@ -35,6 +35,16 @@ namespace OneWayTogether.Characters
 
         private DaniController _heldDani;
         private bool _isHoldingDani;
+
+        // ── Unity lifecycle ───────────────────────────────────────────────────────
+
+        protected override void Awake()
+        {
+            base.Awake();
+            // Fall back to the Character layer if the mask was never set in the Inspector.
+            if (_daniLayer.value == 0)
+                _daniLayer = LayerMask.GetMask("Character");
+        }
 
         // ── CharacterBase overrides ───────────────────────────────────────────────
 
@@ -76,7 +86,12 @@ namespace OneWayTogether.Characters
             Collider[] hits = Physics.OverlapSphere(transform.position, _liftRange, _daniLayer);
             if (hits.Length == 0) return;
 
-            DaniController dani = hits[0].GetComponentInParent<DaniController>();
+            DaniController dani = null;
+            foreach (Collider hit in hits)
+            {
+                dani = hit.GetComponentInParent<DaniController>();
+                if (dani != null) break;
+            }
             if (dani == null) return;
 
             _heldDani = dani;

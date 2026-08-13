@@ -365,46 +365,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &73190607
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97c23e3b12dc18c42a140437e53d3951, type: 3}
-  m_Name: Tonemapping
-  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.Tonemapping
-  active: 1
-  mode:
-    m_OverrideState: 1
-    m_Value: 1
-  neutralHDRRangeReductionMode:
-    m_OverrideState: 1
-    m_Value: 2
-  acesPreset:
-    m_OverrideState: 1
-    m_Value: 3
-  hueShiftAmount:
-    m_OverrideState: 1
-    m_Value: 0
-  detectPaperWhite:
-    m_OverrideState: 1
-    m_Value: 0
-  paperWhite:
-    m_OverrideState: 1
-    m_Value: 300
-  detectBrightnessLimits:
-    m_OverrideState: 1
-    m_Value: 1
-  minNits:
-    m_OverrideState: 1
-    m_Value: 0.005
-  maxNits:
-    m_OverrideState: 1
-    m_Value: 1000
 --- !u!1 &131242623
 GameObject:
   m_ObjectHideFlags: 0
@@ -499,8 +459,8 @@ GameObject:
   - component: {fileID: 153647523}
   - component: {fileID: 153647522}
   - component: {fileID: 153647521}
-  - component: {fileID: 153647520}
   - component: {fileID: 153647519}
+  - component: {fileID: 153647520}
   m_Layer: 8
   m_Name: Dani
   m_TagString: Dani
@@ -521,7 +481,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: OneWayTogether::OneWayTogether.Characters.DaniController
   _data: {fileID: 11400000, guid: 117225f02bd3b4fbb85c0ff77daa002a, type: 2}
-  _stepHeightController: {fileID: 0}
+  _stepHeightController: {fileID: 153647519}
   _carryOffset: {x: 0, y: 0.8, z: 0}
   _interactRange: 1.5
   _stackableLayer:
@@ -561,7 +521,7 @@ Transform:
   m_GameObject: {fileID: 153647511}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6, y: 0, z: 0}
+  m_LocalPosition: {x: 3, y: 0, z: -6}
   m_LocalScale: {x: 0.72, y: 0.72, z: 0.72}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -575,7 +535,7 @@ CharacterController:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 153647511}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2093188589}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -602,9 +562,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 153647511}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a20da8876bb74ccaa0cdaac26d7fe2f, type: 3}
+  m_Script: {fileID: 11500000, guid: 2b6f835613078ab4f99d34c84437db9e, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: OneWayTogether::OneWayTogether.Characters.StepHeight.StepHeightBootstrapper
+  m_EditorClassIdentifier: StepHeightSystem::LB.Player.Movement.StepHeight.StepHeightController
+  stepHeight: 0.6
+  stepUpSmoothFactor: 4.5
+  stepUpAngleThreshold: 65
+  layersToIgnore:
+    serializedVersion: 2
+    m_Bits: 64
+  disableStepHeight: 0
+  debugLog: 0
+  debugLogWarning: 0
+  debugLogError: 1
+  debugVisualization: 0
 --- !u!114 &153647520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -614,20 +585,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 153647511}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b6f835613078ab4f99d34c84437db9e, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a20da8876bb74ccaa0cdaac26d7fe2f, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: StepHeightSystem::LB.Player.Movement.StepHeight.StepHeightController
-  stepHeight: 0.5
-  stepUpSmoothFactor: 4.5
-  stepUpAngleThreshold: 65
-  layersToIgnore:
-    serializedVersion: 2
-    m_Bits: 0
-  disableStepHeight: 0
-  debugLog: 0
-  debugLogWarning: 0
-  debugLogError: 1
-  debugVisualization: 0
+  m_EditorClassIdentifier: OneWayTogether::OneWayTogether.Characters.StepHeight.StepHeightBootstrapper
 --- !u!114 &153647521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -642,7 +602,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: OneWayTogether::OneWayTogether.Characters.StepHeight.CCColliderManager
   _layersToIgnore:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!114 &153647522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -696,7 +656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f77198b1c53b403395c5e4771b7b0b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: OneWayTogether::OneWayTogether.Core.HintManager
-  _levelData: {fileID: 11400000, guid: 4ec569035c65645d8911ad6f20619bbf, type: 2}
+  _levelData: {fileID: 11400000, guid: faeef73092e2c4b92a1a696752ae5e24, type: 2}
 --- !u!4 &193379911
 Transform:
   m_ObjectHideFlags: 0
@@ -921,7 +881,6 @@ GameObject:
   - component: {fileID: 317170155}
   - component: {fileID: 317170154}
   - component: {fileID: 317170157}
-  - component: {fileID: 317170158}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1019,23 +978,6 @@ MonoBehaviour:
   _dani: {fileID: 153647517}
   _offset: {x: 0, y: 14, z: -11}
   _smoothSpeed: 8
---- !u!114 &317170158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 317170153}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91ab0143d8c864065a53e08153a2af2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: OneWayTogether::OneWayTogether.Core.WallOcclusion
-  _characters: []
-  _fadeAlpha: 0.25
-  _occludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!1 &318519180
 GameObject:
   m_ObjectHideFlags: 0
@@ -1051,8 +993,8 @@ GameObject:
   - component: {fileID: 318519190}
   - component: {fileID: 318519189}
   - component: {fileID: 318519188}
-  - component: {fileID: 318519187}
   - component: {fileID: 318519186}
+  - component: {fileID: 318519187}
   m_Layer: 8
   m_Name: Scarlet
   m_TagString: Scarlet
@@ -1069,7 +1011,7 @@ Transform:
   m_GameObject: {fileID: 318519180}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4, y: 0, z: 0}
+  m_LocalPosition: {x: -3, y: 0, z: -6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1089,7 +1031,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: OneWayTogether::OneWayTogether.Characters.ScarletController
   _data: {fileID: 11400000, guid: 689b3aca9b0e94c4787e3b66c5f13561, type: 2}
-  _stepHeightController: {fileID: 0}
+  _stepHeightController: {fileID: 318519186}
   _pushForce: 15
   _liftOffset: {x: 0, y: 1.2, z: 0}
   _liftRange: 1
@@ -1126,7 +1068,7 @@ CharacterController:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 318519180}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 641194572}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1153,9 +1095,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 318519180}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a20da8876bb74ccaa0cdaac26d7fe2f, type: 3}
+  m_Script: {fileID: 11500000, guid: 2b6f835613078ab4f99d34c84437db9e, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: OneWayTogether::OneWayTogether.Characters.StepHeight.StepHeightBootstrapper
+  m_EditorClassIdentifier: StepHeightSystem::LB.Player.Movement.StepHeight.StepHeightController
+  stepHeight: 0.6
+  stepUpSmoothFactor: 4.5
+  stepUpAngleThreshold: 65
+  layersToIgnore:
+    serializedVersion: 2
+    m_Bits: 64
+  disableStepHeight: 0
+  debugLog: 0
+  debugLogWarning: 0
+  debugLogError: 1
+  debugVisualization: 0
 --- !u!114 &318519187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1165,20 +1118,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 318519180}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b6f835613078ab4f99d34c84437db9e, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a20da8876bb74ccaa0cdaac26d7fe2f, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: StepHeightSystem::LB.Player.Movement.StepHeight.StepHeightController
-  stepHeight: 0.5
-  stepUpSmoothFactor: 4.5
-  stepUpAngleThreshold: 65
-  layersToIgnore:
-    serializedVersion: 2
-    m_Bits: 0
-  disableStepHeight: 0
-  debugLog: 0
-  debugLogWarning: 0
-  debugLogError: 1
-  debugVisualization: 0
+  m_EditorClassIdentifier: OneWayTogether::OneWayTogether.Characters.StepHeight.StepHeightBootstrapper
 --- !u!114 &318519188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1193,7 +1135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: OneWayTogether::OneWayTogether.Characters.StepHeight.CCColliderManager
   _layersToIgnore:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!114 &318519189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1459,7 +1401,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 434224138}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.40821794, y: 0.23456973, z: -0.10938166, w: 0.8754261}
+  m_LocalRotation: {x: 0.36955, y: 0.17861, z: -0.07465, w: 0.90963}
   m_LocalPosition: {x: 0, y: 10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1841,22 +1783,6 @@ MonoBehaviour:
   _hintPanel: {fileID: 212157459}
   _hintText: {fileID: 570994124}
   _closeButton: {fileID: 38747294}
---- !u!114 &555100394
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.RenderPipelines.Core.Runtime::UnityEngine.Rendering.VolumeProfile
-  components:
-  - {fileID: 1991341950}
-  - {fileID: 875688205}
-  - {fileID: 73190607}
 --- !u!1 &570994122
 GameObject:
   m_ObjectHideFlags: 0
@@ -1986,6 +1912,72 @@ MonoBehaviour:
   _coinCountText: {fileID: 131242625}
   _scarletIndicator: {fileID: 0}
   _daniIndicator: {fileID: 0}
+--- !u!134 &641194572
+PhysicsMaterial:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 2
+  m_DynamicFriction: 0.6
+  m_StaticFriction: 0.6
+  m_Bounciness: 0
+  m_FrictionCombine: 0
+  m_BounceCombine: 0
+--- !u!1 &701840401
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 701840403}
+  - component: {fileID: 701840402}
+  m_Layer: 0
+  m_Name: GroundPlane
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &701840402
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701840401}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 100, y: 1, z: 100}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &701840403
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701840401}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -10, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &819216310
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2189,34 +2181,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 864088420}
   m_CullTransparentMesh: 1
---- !u!114 &875688205
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66f335fb1ffd8684294ad653bf1c7564, type: 3}
-  m_Name: ColorAdjustments
-  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.ColorAdjustments
-  active: 1
-  postExposure:
-    m_OverrideState: 1
-    m_Value: 0
-  contrast:
-    m_OverrideState: 1
-    m_Value: 12
-  colorFilter:
-    m_OverrideState: 1
-    m_Value: {r: 1, g: 1, b: 1, a: 1}
-  hueShift:
-    m_OverrideState: 1
-    m_Value: 0
-  saturation:
-    m_OverrideState: 1
-    m_Value: 20
 --- !u!1 &876142040
 GameObject:
   m_ObjectHideFlags: 0
@@ -3232,7 +3196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41f4b4852ad904c858c5228077c4fa05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: OneWayTogether::OneWayTogether.Core.LevelBuilder
-  _levelData: {fileID: 11400000, guid: 4ec569035c65645d8911ad6f20619bbf, type: 2}
+  _levelData: {fileID: 11400000, guid: faeef73092e2c4b92a1a696752ae5e24, type: 2}
   _prefabs: {fileID: 11400000, guid: d953b62d68f144a03a70bf918d019b96, type: 2}
   _scarletRoot: {fileID: 318519181}
   _daniRoot: {fileID: 153647517}
@@ -3248,6 +3212,73 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1581796771
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1581796774}
+  - component: {fileID: 1581796773}
+  - component: {fileID: 1581796772}
+  m_Layer: 0
+  m_Name: FallHazard
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1581796772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1581796771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6df6a4026812c4334bc24d60970e2b4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OneWayTogether::OneWayTogether.Puzzle.Hazard
+  _armed: 1
+--- !u!65 &1581796773
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1581796771}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 25, y: 2, z: 35}
+  m_Center: {x: 0, y: -5, z: 3}
+--- !u!4 &1581796774
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1581796771}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3680,60 +3711,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1884751817
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1884751819}
-  - component: {fileID: 1884751818}
-  m_Layer: 0
-  m_Name: LevelSequenceController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1884751818
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1884751817}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0c2a58f20d304df69b3929555db64df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: OneWayTogether::OneWayTogether.Core.LevelSequenceController
-  _levelScenes:
-  - World1_Puzzle1
-  - World1_Puzzle2
-  - World1_Puzzle3
-  - World1_Puzzle4
-  - World1_Puzzle5
-  - World1_Puzzle6
-  - World1_Puzzle7
-  - World1_Puzzle8
-  _completionDelay: 2.5
---- !u!4 &1884751819
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1884751817}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1911720551
 GameObject:
   m_ObjectHideFlags: 0
@@ -3992,56 +3969,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1952255013}
   m_CullTransparentMesh: 1
---- !u!114 &1991341950
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b2db86121404754db890f4c8dfe81b2, type: 3}
-  m_Name: Bloom
-  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.Bloom
-  active: 1
-  skipIterations:
-    m_OverrideState: 1
-    m_Value: 1
-  threshold:
-    m_OverrideState: 1
-    m_Value: 0.9
-  intensity:
-    m_OverrideState: 1
-    m_Value: 0.25
-  scatter:
-    m_OverrideState: 1
-    m_Value: 0.7
-  clamp:
-    m_OverrideState: 1
-    m_Value: 65472
-  tint:
-    m_OverrideState: 1
-    m_Value: {r: 1, g: 1, b: 1, a: 1}
-  highQualityFiltering:
-    m_OverrideState: 1
-    m_Value: 0
-  filter:
-    m_OverrideState: 1
-    m_Value: 0
-  downscale:
-    m_OverrideState: 1
-    m_Value: 0
-  maxIterations:
-    m_OverrideState: 1
-    m_Value: 6
-  dirtTexture:
-    m_OverrideState: 1
-    m_Value: {fileID: 0}
-    dimension: 1
-  dirtIntensity:
-    m_OverrideState: 1
-    m_Value: 0
 --- !u!1 &2004363780
 GameObject:
   m_ObjectHideFlags: 0
@@ -4200,108 +4127,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2012558023}
   m_CullTransparentMesh: 1
---- !u!1 &2039966375
-GameObject:
+--- !u!134 &2093188589
+PhysicsMaterial:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2039966377}
-  - component: {fileID: 2039966376}
-  m_Layer: 0
-  m_Name: PostProcessVolume
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2039966376
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2039966375}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Unity.RenderPipelines.Core.Runtime::UnityEngine.Rendering.Volume
-  m_IsGlobal: 1
-  priority: 10
-  blendDistance: 0
-  weight: 1
-  sharedProfile: {fileID: 555100394}
---- !u!4 &2039966377
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2039966375}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2070971594
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2070971596}
-  - component: {fileID: 2070971595}
-  m_Layer: 0
-  m_Name: GroundPlane
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!65 &2070971595
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2070971594}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 100, y: 0.1, z: 100}
-  m_Center: {x: 0, y: -0.05, z: 0}
---- !u!4 &2070971596
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2070971594}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_DynamicFriction: 0.6
+  m_StaticFriction: 0.6
+  m_Bounciness: 0
+  m_FrictionCombine: 0
+  m_BounceCombine: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -4319,12 +4157,11 @@ SceneRoots:
   - {fileID: 1794426821}
   - {fileID: 469781245}
   - {fileID: 1545952632}
-  - {fileID: 2070971596}
   - {fileID: 434224141}
   - {fileID: 1024773786}
   - {fileID: 942564877}
   - {fileID: 893705787}
   - {fileID: 193379911}
   - {fileID: 1603058486}
-  - {fileID: 1884751819}
-  - {fileID: 2039966377}
+  - {fileID: 701840403}
+  - {fileID: 1581796774}

@@ -50,6 +50,9 @@ namespace OneWayTogether.Characters
         /// <summary>Clears accumulated fall velocity so a checkpoint teleport doesn't immediately re-fall.</summary>
         public void ResetVelocity() => _verticalVelocity = 0f;
 
+        /// <summary>Directly sets the vertical velocity — used by the lift mechanic to apply a jump impulse on release.</summary>
+        protected void SetVerticalVelocity(float v) => _verticalVelocity = v;
+
         // Animator parameter IDs — cached to avoid per-frame string hashing.
         private static readonly int AnimSpeed = Animator.StringToHash("Speed");
 

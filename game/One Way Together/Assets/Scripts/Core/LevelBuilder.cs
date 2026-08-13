@@ -170,7 +170,7 @@ namespace OneWayTogether.Core
                         break;
 
                     case LevelObjectType.StonePressurePlate:
-                        SpawnStonePressurePlate(pos, rot, def.id);
+                        SpawnStonePressurePlate(pos, rot, def.id, def.oneShot);
                         break;
 
                     // Scarlet/Dani are handled by PlaceCharacters — skip here.
@@ -312,7 +312,7 @@ namespace OneWayTogether.Core
             Instantiate(_prefabs.pushBoulderPrefab, pos, Quaternion.identity, _objectContainer);
         }
 
-        private void SpawnStonePressurePlate(Vector3 pos, Quaternion rot, string plateId)
+        private void SpawnStonePressurePlate(Vector3 pos, Quaternion rot, string plateId, bool oneShot = false)
         {
             if (_prefabs.stonePressurePlatePrefab == null)
             {
@@ -323,7 +323,7 @@ namespace OneWayTogether.Core
             GameObject   go    = Instantiate(_prefabs.stonePressurePlatePrefab, pos, rot, _objectContainer);
             PressurePlate plate = go.GetComponent<PressurePlate>();
             if (plate != null)
-                plate.Init(plateId);
+                plate.Init(plateId, oneShot);
         }
 
         private void SpawnBridge(Vector3 pos, Quaternion rot, string plateId)
