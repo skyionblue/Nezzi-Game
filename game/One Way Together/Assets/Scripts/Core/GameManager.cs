@@ -102,7 +102,8 @@ namespace OneWayTogether.Core
 
                 case GameState.PuzzleComplete:
                 case GameState.Failure:
-                    // Keep timeScale at 1 — UI/animation drives pacing here.
+                case GameState.ZoneTransition:
+                    // Keep timeScale at 1 — UI/camera drives pacing here.
                     break;
             }
         }

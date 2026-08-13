@@ -147,7 +147,9 @@ namespace OneWayTogether.Events
         /// <summary>Both characters reunited — level complete sequence running.</summary>
         PuzzleComplete,
         /// <summary>A failure was triggered — awaiting checkpoint reset or coin respawn.</summary>
-        Failure
+        Failure,
+        /// <summary>Camera is dollying between puzzle zones. Input blocked, no UI shown.</summary>
+        ZoneTransition
     }
 
     /// <summary>Identifies which sibling a component or event refers to.</summary>
