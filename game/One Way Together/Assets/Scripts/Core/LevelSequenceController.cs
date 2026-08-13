@@ -25,7 +25,7 @@ namespace OneWayTogether.Core
         // ── Serialised ───────────────────────────────────────────────────────────
 
         [Tooltip("Ordered list of scene names to load in sequence.")]
-        [SerializeField] private string[] _levelScenes = { "World1_Puzzle1", "World1_Puzzle2" };
+        [SerializeField] private string[] _levelScenes = { "World1_Puzzle1", "World1_Puzzle2", "World1_Puzzle3", "World1_Puzzle4" };
 
         [Tooltip("Seconds to wait after reunion before loading the next scene.")]
         [SerializeField] private float _completionDelay = 2.5f;
