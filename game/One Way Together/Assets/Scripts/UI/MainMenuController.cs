@@ -21,11 +21,17 @@ namespace OneWayTogether.UI
                 c.gameObject.SetActive(false);
 
             // Ensure exactly one EventSystem exists.
+            // Use InputSystemUIInputModule (New Input System) so touch works on Android/iOS.
+            // Fall back to StandaloneInputModule only if the New Input System package is absent.
             if (FindAnyObjectByType<EventSystem>() == null)
             {
                 GameObject es = new GameObject("EventSystem");
                 es.AddComponent<EventSystem>();
+#if ENABLE_INPUT_SYSTEM
+                es.AddComponent<UnityEngine.InputSystem.UI.InputSystemUIInputModule>();
+#else
                 es.AddComponent<StandaloneInputModule>();
+#endif
             }
 
             BuildMenu();
