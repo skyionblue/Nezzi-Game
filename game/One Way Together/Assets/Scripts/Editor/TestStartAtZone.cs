@@ -1,54 +1,99 @@
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace OneWayTogether.Editor
 {
     /// <summary>
-    /// Editor-only helper to start play mode at a specific puzzle zone.
-    /// Tools → One Way Together → Start at Zone N
+    /// Editor window that lists every zone in CityZoneSequencer dynamically.
+    /// No code changes needed when new puzzle zones are added.
+    /// Open via: Tools → One Way Together → Jump to Zone…
     /// </summary>
-    public static class TestStartAtZone
+    public class TestStartAtZone : EditorWindow
     {
-        [MenuItem("Tools/One Way Together/Start at Zone 0 (Puzzle 1)")]
-        static void Zone0() => SetupZone(0);
+        private Vector2 _scroll;
 
-        [MenuItem("Tools/One Way Together/Start at Zone 1 (Puzzle 2)")]
-        static void Zone1() => SetupZone(1);
-
-        [MenuItem("Tools/One Way Together/Start at Zone 2 (Puzzle 3)")]
-        static void Zone2() => SetupZone(2);
-
-        [MenuItem("Tools/One Way Together/Start at Zone 3 (Puzzle 4 - Hospital)")]
-        static void Zone3() => SetupZone(3);
-
-        static void SetupZone(int zoneIndex)
+        [MenuItem("Tools/One Way Together/Jump to Zone…")]
+        static void OpenWindow()
         {
-            // Find the sequencer and set its starting zone
-            var seq = Object.FindAnyObjectByType<Core.CityZoneSequencer>();
-            if (seq == null) { Debug.LogError("CityZoneSequencer not found. Open CityWorld scene first."); return; }
+            var win = GetWindow<TestStartAtZone>("Jump to Zone");
+            win.minSize = new Vector2(280, 160);
+            win.Show();
+        }
 
-            var bf = System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance;
+        void OnGUI()
+        {
+            var seq = FindAnyObjectByType<Core.CityZoneSequencer>();
+            if (seq == null)
+            {
+                EditorGUILayout.HelpBox("Open CityWorld scene first.", MessageType.Warning);
+                return;
+            }
+
+            var bf         = System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance;
             var zonesField = typeof(Core.CityZoneSequencer).GetField("_zones", bf);
-            var currentField = typeof(Core.CityZoneSequencer).GetField("_currentZone", bf);
-            var zones = zonesField.GetValue(seq) as System.Array;
-            if (zones == null || zoneIndex >= zones.Length) { Debug.LogError("Zone " + zoneIndex + " out of range."); return; }
+            var zones      = zonesField?.GetValue(seq) as System.Array;
+            if (zones == null || zones.Length == 0)
+            {
+                EditorGUILayout.HelpBox("No zones configured on CityZoneSequencer.", MessageType.Info);
+                return;
+            }
 
-            // Activate the requested zone root, deactivate others
-            var zoneType = typeof(Core.CityZoneSequencer).GetNestedType("ZoneAnchor");
+            var zoneType    = typeof(Core.CityZoneSequencer).GetNestedType("ZoneAnchor");
+            var currentField= typeof(Core.CityZoneSequencer).GetField("_currentZone", bf);
+            int current     = (int)(currentField?.GetValue(seq) ?? 0);
+
+            EditorGUILayout.Space(4);
+            EditorGUILayout.LabelField("Select a zone to jump to:", EditorStyles.boldLabel);
+            EditorGUILayout.Space(4);
+
+            _scroll = EditorGUILayout.BeginScrollView(_scroll);
             for (int i = 0; i < zones.Length; i++)
             {
-                var z = zones.GetValue(i);
+                var z    = zones.GetValue(i);
+                var root = zoneType.GetField("zoneRoot").GetValue(z) as GameObject;
+
+                // Label: "Zone 0  (active)" or "Zone 0 — Puzzle2_ParkingLot"
+                string zoneName = root != null ? root.name : "(Zone 0 — always active)";
+                string label    = "Zone " + i + " — " + zoneName;
+                bool   isCurrent= i == current;
+
+                GUI.color = isCurrent ? new Color(0.6f, 1f, 0.6f) : Color.white;
+                if (GUILayout.Button(label, GUILayout.Height(28)))
+                    SetupZone(seq, zones, zoneType, i);
+                GUI.color = Color.white;
+            }
+            EditorGUILayout.EndScrollView();
+
+            EditorGUILayout.Space(4);
+            EditorGUILayout.HelpBox(
+                "Click a zone, then press Play.\n" +
+                "Zone roots are activated/deactivated automatically.\n" +
+                "Characters are teleported to each zone's spawn point.",
+                MessageType.None);
+        }
+
+        static void SetupZone(Core.CityZoneSequencer seq, System.Array zones,
+                               System.Type zoneType, int zoneIndex)
+        {
+            var bf          = System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance;
+            var currentField= typeof(Core.CityZoneSequencer).GetField("_currentZone", bf);
+
+            // Activate only the selected zone root
+            for (int i = 0; i < zones.Length; i++)
+            {
+                var z    = zones.GetValue(i);
                 var root = zoneType.GetField("zoneRoot").GetValue(z) as GameObject;
                 if (root == null) continue;
                 root.SetActive(i == zoneIndex);
             }
 
-            // Set the sequencer to start at this zone
             currentField.SetValue(seq, zoneIndex);
             EditorUtility.SetDirty(seq.gameObject);
 
-            // Move characters to the zone spawn point
-            var targetZone = zones.GetValue(zoneIndex);
+            // Teleport characters to spawn
+            var targetZone  = zones.GetValue(zoneIndex);
             var spawnCenter = (Vector3)zoneType.GetField("spawnCenter").GetValue(targetZone);
             if (spawnCenter != Vector3.zero)
             {
@@ -56,21 +101,15 @@ namespace OneWayTogether.Editor
                 MoveCharacter("Dani",    spawnCenter + new Vector3( 4f, 0f, 0f));
             }
 
-            EditorSceneManager_MarkDirty();
-            Debug.Log("[TestStartAtZone] Ready at Zone " + zoneIndex + ". Press Play to begin there.");
+            var scene = SceneManager.GetActiveScene();
+            EditorSceneManager.MarkSceneDirty(scene);
+            Debug.Log("[TestStartAtZone] Ready at Zone " + zoneIndex + ". Press Play.");
         }
 
         static void MoveCharacter(string tag, Vector3 pos)
         {
             var go = GameObject.FindWithTag(tag);
             if (go != null) { go.transform.position = pos; EditorUtility.SetDirty(go); }
-        }
-
-        // Avoids a 'using' import that isn't available in all Unity versions
-        static void EditorSceneManager_MarkDirty()
-        {
-            var scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
-            UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(scene);
         }
     }
 }
