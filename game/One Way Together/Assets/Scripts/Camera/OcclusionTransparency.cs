@@ -40,6 +40,13 @@ namespace OneWayTogether.Camera
 
         private void Start()
         {
+#if UNITY_ANDROID || UNITY_IOS
+            // Building fade is expensive on mobile (scans hundreds of renderers per LateUpdate).
+            // Disable on device — players can see characters through buildings less often anyway
+            // due to the lower camera angle on phone screens.
+            enabled = false;
+            return;
+#endif
             foreach (var rootName in _occluderRoots)
             {
                 var root = GameObject.Find(rootName);
