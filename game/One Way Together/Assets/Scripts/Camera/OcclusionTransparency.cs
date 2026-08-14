@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.Profiling;
 using UnityEngine;
 
 namespace OneWayTogether.Camera
@@ -33,6 +34,8 @@ namespace OneWayTogether.Camera
         private readonly Dictionary<Renderer, Material[]> _savedMaterials   = new();
         private readonly Dictionary<Material, Material>   _transparentCache = new();
 
+        private static readonly ProfilerMarker s_marker = new ProfilerMarker("OcclusionTransparency.LateUpdate");
+
         // ── Unity lifecycle ────────────────────────────────────────────────────────
 
         private void Start()
@@ -53,6 +56,7 @@ namespace OneWayTogether.Camera
 
         private void LateUpdate()
         {
+            using var _ = s_marker.Auto();
             // Swap current → previous
             _prevOccluders.Clear();
             foreach (var r in _currentOccluders) _prevOccluders.Add(r);
