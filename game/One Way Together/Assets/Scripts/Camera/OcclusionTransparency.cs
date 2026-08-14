@@ -19,7 +19,11 @@ namespace OneWayTogether.Camera
 
         [Header("Occluder Groups (root GameObject names to scan)")]
         [SerializeField] private string[] _occluderRoots =
-            { "Houses", "Skyscraper", "Institutioanal", "Props" };
+            { "Houses", "Skyscraper", "Institutioanal" };
+
+        [Tooltip("Only occlude renderers whose world-space height exceeds this. " +
+                 "Filters out small props like trees and benches.")]
+        [SerializeField] private float _minOccluderHeight = 3f;
 
         // ── State ──────────────────────────────────────────────────────────────────
 
@@ -37,7 +41,13 @@ namespace OneWayTogether.Camera
             {
                 var root = GameObject.Find(rootName);
                 if (root == null) continue;
-                _candidates.AddRange(root.GetComponentsInChildren<Renderer>(includeInactive: false));
+                foreach (var r in root.GetComponentsInChildren<Renderer>(includeInactive: false))
+                {
+                    // Skip props shorter than the threshold — trees, benches, signs, etc.
+                    // Only tall structures (buildings, skyscrapers) should go transparent.
+                    if (r.bounds.size.y >= _minOccluderHeight)
+                        _candidates.Add(r);
+                }
             }
         }
 
