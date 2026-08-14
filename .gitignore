@@ -1,5 +1,5 @@
 .idea
-
+/game/**/.utmp
 /models/
 .DS_Store
 art/props/StoneShrineLever/source/

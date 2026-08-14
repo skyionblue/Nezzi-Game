@@ -18,6 +18,7 @@ Thumbs.db
 .vscode/
 *.csproj
 *.sln
+*.slnx
 *.suo
 *.user
 *.userprefs
