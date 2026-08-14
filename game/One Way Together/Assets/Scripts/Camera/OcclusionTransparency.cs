@@ -79,12 +79,14 @@ namespace OneWayTogether.Camera
                 if (_savedMaterials.ContainsKey(r)) continue;
                 if (r == null) continue;
 
-                _savedMaterials[r] = r.sharedMaterials;
+                // Cache sharedMaterials — each call allocates a new Material[].
+                var shared      = r.sharedMaterials;
+                _savedMaterials[r] = shared;
 
-                var transparent = new Material[r.sharedMaterials.Length];
+                var transparent = new Material[shared.Length];
                 for (int i = 0; i < transparent.Length; i++)
-                    transparent[i] = GetTransparentClone(r.sharedMaterials[i]);
-                r.materials = transparent; // creates per-renderer instances
+                    transparent[i] = GetTransparentClone(shared[i]);
+                r.materials = transparent;
             }
         }
 

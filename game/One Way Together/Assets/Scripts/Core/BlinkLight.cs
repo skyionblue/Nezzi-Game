@@ -28,6 +28,8 @@ namespace OneWayTogether.Core
 
         private string    _watchPlateId;
         private bool      _activated;
+        private WaitForSeconds _waitOn;
+        private WaitForSeconds _waitOff;
         private Transform _scarlet;
         private Transform _dani;
         private float     _nextPulse;
@@ -38,6 +40,8 @@ namespace OneWayTogether.Core
         private void Awake()
         {
             if (_light == null) _light = GetComponentInChildren<Light>();
+            _waitOn  = new WaitForSeconds(_onDuration);
+            _waitOff = new WaitForSeconds(_offDuration);
 
             // Auto-detect plate ID from a sibling Lever so we know when to stop.
             var lever = GetComponent<Lever>();
@@ -99,9 +103,9 @@ namespace OneWayTogether.Core
             while (true)
             {
                 if (_light != null) { _light.color = _color; _light.intensity = _intensity; }
-                yield return new WaitForSeconds(_onDuration);
+                yield return _waitOn;   // cached — no allocation
                 if (_light != null) _light.intensity = 0f;
-                yield return new WaitForSeconds(_offDuration);
+                yield return _waitOff;  // cached — no allocation
             }
         }
 
