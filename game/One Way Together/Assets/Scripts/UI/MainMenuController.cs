@@ -41,9 +41,20 @@ namespace OneWayTogether.UI
 
         public void QuitGame()
         {
-            Application.Quit();
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
+#elif UNITY_ANDROID
+            // Application.Quit() alone sometimes leaves the Android process running.
+            // Finish the activity explicitly so the app fully closes.
+            try
+            {
+                using var player   = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+                using var activity = player.GetStatic<AndroidJavaObject>("currentActivity");
+                activity.Call("finish");
+            }
+            catch { Application.Quit(); }
+#else
+            Application.Quit();
 #endif
         }
 
