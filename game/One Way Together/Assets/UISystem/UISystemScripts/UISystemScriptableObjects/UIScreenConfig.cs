@@ -1,4 +1,6 @@
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 
 namespace LB.UI.System
@@ -31,7 +33,9 @@ namespace LB.UI.System
 		private void OnValidate()
 		{
 			screenID = name.ToLower();
+#if UNITY_EDITOR
 			EditorUtility.SetDirty(this);
+#endif
 		}
 	}
 }
