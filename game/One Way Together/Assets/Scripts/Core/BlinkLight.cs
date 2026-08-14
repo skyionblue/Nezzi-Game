@@ -109,6 +109,37 @@ namespace OneWayTogether.Core
             }
         }
 
+        // ── Haptic ────────────────────────────────────────────────────────────────
+
+        private static void TriggerHaptic()
+        {
+#if UNITY_IOS
+            Handheld.Vibrate();
+#elif UNITY_ANDROID && !UNITY_EDITOR
+            try
+            {
+                // Use VibrationEffect (Android 8+) for a short 40ms tick.
+                // Falls back to legacy vibrate() on older devices.
+                using var vibrator = new AndroidJavaObject("android.os.Vibrator",
+                    new AndroidJavaClass("com.unity3d.player.UnityPlayer")
+                        .GetStatic<AndroidJavaObject>("currentActivity")
+                        .Call<AndroidJavaObject>("getSystemService", "vibrator"));
+                int sdk = new AndroidJavaClass("android.os.Build$VERSION").GetStatic<int>("SDK_INT");
+                if (sdk >= 26) // Android 8.0 Oreo
+                {
+                    using var effect = new AndroidJavaClass("android.os.VibrationEffect")
+                        .CallStatic<AndroidJavaObject>("createOneShot", 40L, 128);
+                    vibrator.Call("vibrate", effect);
+                }
+                else
+                {
+                    vibrator.Call("vibrate", 40L);
+                }
+            }
+            catch { Handheld.Vibrate(); }
+#endif
+        }
+
         // ── Proximity haptic ──────────────────────────────────────────────────────
 
         private void Update()
@@ -122,9 +153,7 @@ namespace OneWayTogether.Core
             float interval = Mathf.Lerp(_intervalFar, _intervalClose, t);
             _nextPulse = Time.time + interval;
 
-#if UNITY_IOS || UNITY_ANDROID
-            Handheld.Vibrate();
-#endif
+            TriggerHaptic();
         }
 
         private float ClosestDistance()
