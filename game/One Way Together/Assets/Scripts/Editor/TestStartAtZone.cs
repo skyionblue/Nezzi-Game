@@ -124,10 +124,17 @@ namespace OneWayTogether.Editor
             currentField.SetValue(seq, zoneIndex);
             EditorUtility.SetDirty(seq.gameObject);
 
-            // Teleport characters to spawn
+            // Teleport characters to spawn.
+            // Zone 0 always resets to the hardcoded Puzzle 1 positions so the
+            // scene is always in a valid state for a real game launch.
             var targetZone  = zones.GetValue(zoneIndex);
             var spawnCenter = (Vector3)zoneType.GetField("spawnCenter").GetValue(targetZone);
-            if (spawnCenter != Vector3.zero)
+            if (zoneIndex == 0 || spawnCenter == Vector3.zero)
+            {
+                MoveCharacter("Scarlet", new Vector3(-104f, 22f, 272f));
+                MoveCharacter("Dani",    new Vector3( -96f, 22f, 272f));
+            }
+            else
             {
                 MoveCharacter("Scarlet", spawnCenter + new Vector3(-4f, 0f, 0f));
                 MoveCharacter("Dani",    spawnCenter + new Vector3( 4f, 0f, 0f));
