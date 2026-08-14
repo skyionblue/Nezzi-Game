@@ -73,6 +73,37 @@ namespace OneWayTogether.Editor
                 "Zone roots are activated/deactivated automatically.\n" +
                 "Characters are teleported to each zone's spawn point.",
                 MessageType.None);
+
+            EditorGUILayout.Space(6);
+            EditorGUILayout.LabelField("Health Check", EditorStyles.boldLabel);
+            if (GUILayout.Button("✔  Verify All ReunionTriggers", GUILayout.Height(26)))
+                VerifyReunionTriggers();
+        }
+
+        static void VerifyReunionTriggers()
+        {
+            var all = Object.FindObjectsByType<Transform>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+            int fixed2 = 0, ok = 0;
+            foreach (var t in all)
+            {
+                if (!t.name.Contains("Reunion") || t.parent == null) continue;
+                var rt = t.GetComponent<Puzzle.ReunionTrigger>();
+                if (rt != null) { ok++; continue; }
+
+                // Missing — add it back
+                t.gameObject.AddComponent<Puzzle.ReunionTrigger>();
+                var bc = t.GetComponent<BoxCollider>();
+                if (bc != null) { bc.isTrigger = true; bc.size = new Vector3(5f,2f,5f); bc.center = new Vector3(0f,1f,0f); }
+                EditorUtility.SetDirty(t.gameObject);
+                fixed2++;
+                Debug.LogWarning($"[HealthCheck] ReunionTrigger was MISSING on {t.name} — re-added.");
+            }
+
+            var scene = SceneManager.GetActiveScene();
+            if (fixed2 > 0) EditorSceneManager.MarkSceneDirty(scene);
+
+            Debug.Log($"[HealthCheck] ReunionTriggers: {ok} OK, {fixed2} fixed. " +
+                      (fixed2 > 0 ? "Scene marked dirty — save before building." : "All good!"));
         }
 
         static void SetupZone(Core.CityZoneSequencer seq, System.Array zones,
