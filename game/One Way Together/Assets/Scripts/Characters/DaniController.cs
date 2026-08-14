@@ -188,6 +188,12 @@ namespace OneWayTogether.Characters
             return true;
         }
 
+        /// <summary>
+        /// Called by Scarlet while holding Dani — lets Dani press a switch from
+        /// her elevated position without requiring a character swap.
+        /// </summary>
+        public bool TryActivateSwitchWhileLifted() => TryActivateSwitch();
+
         // ── Climb (deferred — kept as stub for RopeTrigger compatibility) ──────────
 
         /// <summary>

@@ -58,9 +58,18 @@ namespace OneWayTogether.Characters
             if (!IsControllable) return;
 
             if (_isHoldingDani)
-                ReleaseDani();
+            {
+                // While carrying Dani, let her try to press a nearby switch
+                // from her elevated position before deciding to release her.
+                if (_heldDani != null && _heldDani.TryActivateSwitchWhileLifted())
+                    return; // Dani pressed a switch — stay in carry mode
+
+                ReleaseDani(); // Nothing in range — release as normal
+            }
             else
+            {
                 TryLiftDani();
+            }
         }
 
         // ── Boulder push ─────────────────────────────────────────────────────────
