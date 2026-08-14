@@ -31,6 +31,14 @@ namespace OneWayTogether.Core
 
             Instance = this;
             DontDestroyOnLoad(gameObject);
+
+            // Cap frame rate on mobile to reduce thermal throttling.
+            // 30fps is more than enough for a turn-based puzzle game and
+            // cuts GPU/CPU load in half compared to the default 60fps target.
+#if UNITY_ANDROID || UNITY_IOS
+            Application.targetFrameRate = 30;
+            QualitySettings.vSyncCount  = 0; // let targetFrameRate take effect
+#endif
         }
 
         private void OnEnable()

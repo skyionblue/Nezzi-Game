@@ -36,6 +36,10 @@ namespace OneWayTogether.Camera
 
         private static readonly ProfilerMarker s_marker = new ProfilerMarker("OcclusionTransparency.LateUpdate");
 
+        // On mobile run every 3 frames (not every LateUpdate) to reduce thermal pressure.
+        // Buildings fade with a very slight visual lag that is imperceptible at 30fps.
+        private int _frameSkip;
+
         // ── Unity lifecycle ────────────────────────────────────────────────────────
 
         private void Start()
@@ -56,6 +60,9 @@ namespace OneWayTogether.Camera
 
         private void LateUpdate()
         {
+#if UNITY_ANDROID || UNITY_IOS
+            if (++_frameSkip % 3 != 0) return;
+#endif
             using var _ = s_marker.Auto();
             // Swap current → previous
             _prevOccluders.Clear();
